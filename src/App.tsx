@@ -2,13 +2,15 @@
 import React, { useState, useEffect } from 'react';
 // 🧩
 import './App.css';
-import { FetchMe, tokenHeader } from 'components/functions/auth';
+import { Posts } from 'components/functions/posts';
 
 const App = () => {
   //🚩データの取得
   useEffect(() => {
-    FetchMe({
-      success: async function (res): Promise<void> {}
+    Posts({
+      success: async function (res): Promise<void> {
+        console.log(res);
+      }
     });
   }, []);
   return (
