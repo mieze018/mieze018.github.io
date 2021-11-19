@@ -1,0 +1,22 @@
+{
+	"doc1_": "設定用ドキュメント:https://github.com/prettier/prettier/blob/1.13.7/docs/options.md",
+	"doc2_": "整形されたくないコードブロックの前の行を「// prettier-ignore」とすると整形されない",
+	"bracketSpacing_": "オブジェクトリテラル内の角かっこの間にスペースを挿入します。",
+	"bracketSpacing": true,
+	"printWidth_": "折り返す行の長さ 80以下推奨",
+	"printWidth": 80,
+	"singleQuote_": "二重引用符ではなく、単一引用符を使用します。",
+	"singleQuote": true,
+	"trailingComma_": "複数行の場合は、可能な限り末尾のコンマを出力します。たとえば、単一行の配列は、末尾のコンマを取得しません。",
+	"trailingComma": "none",
+	"tabWidth_": "インデントレベルごとのスペースの数を指定します",
+	"tabWidth": 2,
+	"useTabs_": "インデントにタブを使用",
+	"useTabs": false,
+	"Semicolons_": "ステートメントの最後にセミコロンを印刷します。",
+	"Semicolons": true,
+	"JSX Brackets_": "JSXタグの>の前に改行を挿入（自己完結タグには挿入しない）",
+	"JSX Brackets": true,
+	"Arrow Function Parentheses_": "唯一の矢印関数パラメーターを括弧で囲みます。avoid|always",
+	"Arrow Function Parentheses": "avoid"
+}
