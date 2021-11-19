@@ -1,4 +1,4 @@
-import { NavigateFunction } from 'react-router';
+// import { NavigateFunction } from 'react-router';
 /**CUDを指定する文字列。'Create' | 'Update' | 'Delete' | string 汎用的でないリクエストを使う場合は独自の文字列を都度用意する*/
 export type cud = 'Create' | 'Update' | 'Delete' | 'tagDL' | 'ApplyTelCreate' | 'ApplyChannelUpdate' | 'ApplyTelDelete' | 'ApplyLicenseUpdate' | 'csvCreate';
 /**リスト表示で使う型 
@@ -86,7 +86,7 @@ export type ConfirmDialogProps = {
   - UpdateFetchedData: リクエスト成功後に実行する関数
 */
 export type API_Request = {
-  navigate: NavigateFunction;
+  // navigate: NavigateFunction;
   access_token: string;
   company_id: string;
   request_url: string;
