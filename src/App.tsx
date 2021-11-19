@@ -1,34 +1,42 @@
 // ⚛️
-import React, { useState, useEffect } from 'react';
+import React, { useState, createContext } from 'react';
+import { useRoutes } from 'react-router-dom';
+import routes from 'routes';
 // 🧩
 import './App.css';
-import { Posts } from 'components/functions/posts';
+import { DataCTXType } from 'Type';
+// 🏁
+export const DataCTX = createContext<DataCTXType>({
+  loading: false,
+  setDataCtx: (props) => props
+});
 
 const App = () => {
+  const routing = useRoutes(routes);
+  const setDataCtx = (props: DataCTXType) => {
+    setDataState({ ...DataState, ...props });
+  };
+  const [DataState, setDataState] = useState<DataCTXType>({
+    setDataCtx: setDataCtx,
+    loading: false
+  });
   //🚩データの取得
-  useEffect(() => {
-    Posts({
-      success: async function (res): Promise<void> {
-        console.log(res);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   Posts({
+  //     success: async function (res): Promise<void> {
+  //       console.log(res);
+  //     }
+  //   });
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataCTX.Provider
+      value={{
+        ...DataState
+      }}
+    >
+      {routing}
+    </DataCTX.Provider>
   );
 };
 

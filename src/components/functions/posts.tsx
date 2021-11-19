@@ -14,15 +14,7 @@ const tumblrConsumerKey: string =
 - finally  :meのpost後成功失敗にかかわらず実行する関数
  */
 export function Posts(props: {
-  success: (res_data: {
-    name: string;
-    email: string;
-    id: string;
-    company: {
-      id: string;
-      name: string;
-    };
-  }) => any;
+  success: (res_data: any) => any;
   catch?: (err: any) => any;
   finally?: () => any;
 }): void {
