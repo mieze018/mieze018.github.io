@@ -15,7 +15,9 @@ const TopBar = memo(() => {
         <p className="header-desc hero">
           {GetDataCTX['info'] ? (
             <span
-              dangerouslySetInnerHTML={{ __html: GetDataCTX['description'] }}
+              dangerouslySetInnerHTML={{
+                __html: GetDataCTX['info']['description']
+              }}
             ></span>
           ) : (
             ''

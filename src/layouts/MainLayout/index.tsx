@@ -31,7 +31,7 @@ const MainLayout = memo(() => {
           loading: false,
           info: res.data.response.blog,
           posts: res.data.response.posts,
-          description: res.data.response.blog['description']
+          description: res.data.response.blog['description'].split('<br/>', 1)
         });
       })
       .catch((err) => {
@@ -45,6 +45,13 @@ const MainLayout = memo(() => {
     document.title = GetDataCTX['info']['title'];
     document
       .querySelector('link[rel="apple-touch-icon"]')!
+      .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
+
+    document
+      .querySelector('meta[name="description"]')!
+      .setAttribute('content', GetDataCTX['description']);
+    document
+      .querySelector('link[rel="icon"]')!
       .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
 
