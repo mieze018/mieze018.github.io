@@ -56,11 +56,58 @@ const MainLayout = memo(() => {
   }
 
   return (
-    <div>
-      {GetDataCTX['info'] ? SetHead() : ''}
+    <article className="m-auto">
+      {GetDataCTX['info'] && SetHead()}
       <TopBar />
+      <section id="wrapper" className="wrapper sunk-short fade-in">
+        {/* <!--Content holder--> */}
+        <div id="content">
+          {GetDataCTX['posts'] &&
+            GetDataCTX['posts']
+              .filter(
+                (i: any) => !i.tags.find((tag: string) => tag === 'commission')
+              )
+              .map((post: any) => {
+                return (
+                  <article>
+                    <div className="photoset db">
+                      <div className="container-l">
+                        {post.photos.map((photo: any) => {
+                          return (
+                            <img src={photo.original_size.url} alt="img" />
+                          );
+                        })}
+                      </div>
+                      <div
+                        className="container"
+                        dangerouslySetInnerHTML={{
+                          __html: post['caption']
+                        }}
+                      ></div>
+                      <footer className="post__footer container">
+                        <div className="metadata">
+                          <ul className="post__buttons"></ul>
+                          <ul className="post__info">
+                            <li>
+                              <span className="time-ago">
+                                {new Intl.DateTimeFormat('en-US', {
+                                  year: 'numeric',
+                                  month: 'long'
+                                }).format(new Date(post.date))}
+                              </span>
+                            </li>
+                          </ul>
+                          <ul className="post__tags"></ul>
+                        </div>
+                      </footer>
+                    </div>
+                  </article>
+                );
+              })}
+        </div>
+      </section>
       <Outlet />
-    </div>
+    </article>
   );
 });
 
