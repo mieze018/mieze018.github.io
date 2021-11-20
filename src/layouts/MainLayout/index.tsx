@@ -1,48 +1,60 @@
-import React from 'react';
+// ⚛️
+import React, { useEffect, useContext, memo } from 'react';
 import { Outlet } from 'react-router-dom';
+import axios from 'axios';
+// 🧩
+import { DataCTX } from 'App';
+import { api_uri, api_Key, Blog_name } from 'functions';
 import TopBar from 'layouts/MainLayout/TopBar';
 
 import './index.scss';
 
-const MainLayout = () => {
+const MainLayout = memo(() => {
+  //🏁GetAPI start
+  const GetDataCTX: any = useContext(DataCTX);
+  // 🚩データの取得
+  useEffect(() => {
+    RefreshData();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // useEffect(() => {
+  //   setData(GetDataCTX[method]);
+  // }, [GetDataCTX]);
+  //🏁GetAPI end
+  function RefreshData() {
+    axios
+      .get(`${api_uri}${Blog_name}/posts?api_key=${api_Key}`)
+      .then((res) => {
+        GetDataCTX.setDataCtx({
+          ...GetDataCTX,
+          loading: false,
+          info: res.data.response.blog,
+          posts: res.data.response.posts,
+          description: res.data.response.blog['description']
+        });
+      })
+      .catch((err) => {
+        GetDataCTX.setDataCtx({
+          ...GetDataCTX,
+          info: [err]
+        });
+      });
+  }
+  function SetHead() {
+    document.title = GetDataCTX['info']['title'];
+    document
+      .querySelector('link[rel="apple-touch-icon"]')!
+      .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
+  }
+
   return (
-    <div
-      style={{
-        display: 'flex',
-        height: '100%',
-        overflow: 'hidden',
-        width: '100%'
-      }}
-    >
+    <div>
+      {GetDataCTX['info'] ? SetHead() : ''}
       <TopBar />
-      <div
-        style={{
-          display: 'flex',
-          flex: '1 1 auto',
-          overflow: 'hidden',
-          paddingTop: 64
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flex: '1 1 auto',
-            overflow: 'hidden'
-          }}
-        >
-          <div
-            style={{
-              flex: '1 1 auto',
-              height: '100%',
-              overflow: 'auto'
-            }}
-          >
-            <Outlet />
-          </div>
-        </div>
-      </div>
+      <Outlet />
     </div>
   );
-};
+});
 
 export default MainLayout;

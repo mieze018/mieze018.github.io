@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+// ⚛️
 import axios, { AxiosError } from 'axios';
 
 export const api_uri = 'https://api.tumblr.com/v2/blog/';
 export const api_Key: string =
-  '?api_key=' + '9MDztWXXMhCeeN5rXMyS89gqMxoIKNRegyqnOfFK81iscjVzEp';
+  '9MDztWXXMhCeeN5rXMyS89gqMxoIKNRegyqnOfFK81iscjVzEp';
 export const Blog_name = 'mieze018.tumblr.com';
 
 export function GetAPI(props: {
@@ -13,7 +13,7 @@ export function GetAPI(props: {
   finally?: () => any;
 }): void {
   axios
-    .get(`${api_uri}${Blog_name}/${props.method}${api_Key}`)
+    .get(`${api_uri}${Blog_name}/${props.method}?api_key=${api_Key}`)
     .then((res) => {
       props.success(res.data);
     })

@@ -4,8 +4,6 @@ import { Navigate } from 'react-router-dom';
 import MainLayout from 'layouts/MainLayout';
 import NotFoundView from 'views/errors/NotFoundView';
 
-import DebugView from 'views/debug';
-
 import IndexView from 'views/Index';
 import CommissionView from 'views/Commission';
 
@@ -24,8 +22,7 @@ export const urls = {
       element: <CommissionView />,
       title: 'Commission'
     },
-    NotFound: { path: '404', element: <NotFoundView /> },
-    Debug: { path: 'debug', element: <DebugView /> }
+    NotFound: { path: '404', element: <NotFoundView /> }
   }
 };
 
