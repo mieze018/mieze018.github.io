@@ -2,6 +2,8 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import TopBar from 'layouts/MainLayout/TopBar';
 
+import './index.scss';
+
 const MainLayout = () => {
   return (
     <div

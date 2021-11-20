@@ -3,7 +3,6 @@ import React, { useState, createContext } from 'react';
 import { useRoutes } from 'react-router-dom';
 import routes from 'routes';
 // 🧩
-import './App.css';
 import { DataCTXType } from 'Type';
 // 🏁
 export const DataCTX = createContext<DataCTXType>({

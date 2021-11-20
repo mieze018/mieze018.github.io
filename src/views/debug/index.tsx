@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // 🧩
 import axios, { Method } from 'axios';
-import { GetAPI } from 'components/functions/';
+import { GetAPI } from 'functions';
 
 //🏁
 const ListView = () => {
@@ -40,7 +40,8 @@ const ListView = () => {
   function handleClick(e: any) {
     e.preventDefault();
     setData('waiting...');
-    Posts({
+    GetAPI({
+      method: 'posts',
       success: async function (res): Promise<void> {
         console.log(res);
       }

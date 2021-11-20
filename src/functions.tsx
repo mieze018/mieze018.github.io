@@ -7,7 +7,7 @@ export const api_Key: string =
 export const Blog_name = 'mieze018.tumblr.com';
 
 export function GetAPI(props: {
-  method: string;
+  method: 'info' | 'avatar' | 'posts' | 'tagged'; // https://www.tumblr.com/docs/en/api/v2
   success: (res_data: any) => any;
   catch?: (err: any) => any;
   finally?: () => any;

@@ -8,7 +8,7 @@ import React, { useContext } from 'react';
 // 🙂
 
 // 🧩
-import { SetErrMsg } from 'components/functions';
+import { SetErrMsg } from 'functions';
 import { DataCTX } from 'App';
 
 // 🏁
