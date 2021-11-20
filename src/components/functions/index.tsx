@@ -1,6 +1,32 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosError } from 'axios';
 
+export const api_uri = 'https://api.tumblr.com/v2/blog/';
+export const api_Key: string =
+  '?api_key=' + '9MDztWXXMhCeeN5rXMyS89gqMxoIKNRegyqnOfFK81iscjVzEp';
+export const Blog_name = 'mieze018.tumblr.com';
+
+export function GetAPI(props: {
+  method: string;
+  success: (res_data: any) => any;
+  catch?: (err: any) => any;
+  finally?: () => any;
+}): void {
+  axios
+    .get(`${api_uri}${Blog_name}/${props.method}${api_Key}`)
+    .then((res) => {
+      props.success(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      if (props.finally) {
+        props.finally();
+      }
+    });
+}
+
 /** axiosのエラーレスポンスデータの型定義に'detail'パラメータを追加 */
 export type Error = AxiosError<{ detail?: string | [{ msg: string }] }>;
 /**エラーメッセージをstringに直す関数*/

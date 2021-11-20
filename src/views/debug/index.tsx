@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 // 🧩
 import axios, { Method } from 'axios';
-import { Posts } from 'components/functions/posts';
+import { GetAPI } from 'components/functions/';
 
 //🏁
 const ListView = () => {
@@ -28,7 +28,8 @@ const ListView = () => {
   }, [url1, ComID, url2]);
   useEffect(() => {
     if (ComID === 'company_id/') {
-      Posts({
+      GetAPI({
+        method: 'posts',
         success: async function (res): Promise<void> {
           console.log(res);
         }

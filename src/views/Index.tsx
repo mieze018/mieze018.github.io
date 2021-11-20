@@ -4,14 +4,15 @@ import React, { useEffect, useState, useContext, memo } from 'react';
 import Page from 'layouts/Page';
 import Results from 'components/organisms/SimpleListView';
 import { DataCTX } from 'App';
-import { Posts } from 'components/functions/posts';
+import { GetAPI } from 'components/functions/';
 
 const View = memo(() => {
   const GetDataCTX: any = useContext(DataCTX);
   const [data, setData] = useState<'error' | [] | any>();
   // 🚩データの取得
   function RefreshData() {
-    Posts({
+    GetAPI({
+      method: 'posts',
       success: (res_data) => {
         console.log(res_data);
         GetDataCTX.setDataCtx({
