@@ -1,0 +1,475 @@
+﻿body {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.38),
+    0 2px 0 rgba(255, 124, 0, 0.16);
+  letter-spacing: 0.05em;
+}
+body,
+a {
+  color: #797979;
+}
+/*a{color: #333;}*/
+html.win {
+}
+html.mac,
+html.safari,
+html.mac.chrome {
+}
+html.gecko,
+html.android {
+  font-size: 0.85em;
+}
+.Eng {
+  line-height: 1.4em;
+  letter-spacing: 1px;
+}
+.Jpn {
+  letter-spacing: 0px;
+  font-size: small;
+  line-height: 1.6em;
+  letter-spacing: 0.1px;
+}
+.handwriting {
+  font-style: italic;
+  font-family: 'Monsieur La Doulaise', cursive;
+}
+
+/* @end */
+/* @group スタティック */
+STATIC {
+  color: white;
+  background-color: lime;
+}
+form,
+form * {
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+img,
+a img {
+  border: 0;
+}
+a {
+  text-decoration: none;
+  z-index: 99999;
+  line-height: 1.92em;
+}
+
+a:active {
+  opacity: 1 important;
+}
+ol,
+p {
+  padding: 0px;
+  margin: 0px;
+}
+li {
+  list-style-type: none;
+}
+.fr {
+  float: right;
+}
+.fl {
+  float: left;
+}
+.ar {
+  text-align: right;
+}
+.al {
+  text-align: left;
+}
+.ac {
+  text-align: center;
+}
+.fc {
+  clear: both;
+}
+.vm {
+  vertical-align: middle;
+}
+.vt {
+  vertical-align: top;
+}
+.vb {
+  vertical-align: bottom;
+}
+.db {
+  display: block;
+}
+.di {
+  display: inline;
+}
+.pa {
+  position: absolute;
+}
+.pr {
+  position: relative;
+}
+.ps {
+  position: static;
+}
+.hidden {
+  display: none;
+}
+
+/*ショートカット*/
+/*フォントサイズ*/
+.px9 {
+  font-size: 9px !important;
+}
+.px10 {
+  font-size: 10px !important;
+}
+.px11 {
+  font-size: 11px !important;
+}
+.px12 {
+  font-size: 12px !important;
+}
+.px13 {
+  font-size: 13px !important;
+}
+.px14 {
+  font-size: 14px !important;
+}
+.px15 {
+  font-size: 15px !important;
+}
+.px16 {
+  font-size: 16px !important;
+}
+.px17 {
+  font-size: 17px !important;
+}
+.px18 {
+  font-size: 18px !important;
+}
+.px19 {
+  font-size: 19px !important;
+}
+.px20 {
+  font-size: 20px !important;
+}
+.px22 {
+  font-size: 22px !important;
+}
+.px24 {
+  font-size: 24px !important;
+}
+/*ゴシックここからアンチエイリアス	*/
+.px25 {
+  font-size: 25px !important;
+}
+.px26 {
+  font-size: 26px !important;
+}
+.px27 {
+  font-size: 27px !important;
+}
+.px28 {
+  font-size: 28px !important;
+}
+.px29 {
+  font-size: 29px !important;
+}
+.px30 {
+  font-size: 30px !important;
+  line-height: 1em;
+}
+.px32 {
+  font-size: 32px !important;
+  line-height: 1em;
+}
+.px36 {
+  font-size: 36px !important;
+  line-height: 1em;
+}
+.px42 {
+  font-size: 42px !important;
+  line-height: 1em;
+}
+.px1618p {
+  font-size: 161.8%;
+  line-height: 1em;
+}
+/*レイアウト*/
+.after:after {
+  height: 0;
+  visibility: hidden;
+  content: '.';
+  display: block;
+  clear: both;
+}
+.fll {
+  float: left !important;
+  clear: none;
+}
+
+.flr {
+  float: right !important;
+  clear: none;
+}
+.fll:after,
+.flr:after,
+.fc:after {
+  height: 0;
+  position: relative;
+  visibility: hidden;
+  content: '.';
+  display: block;
+  clear: both;
+}
+.fc {
+  clear: both !important;
+}
+.ac {
+  text-align: center !important;
+}
+.al {
+  text-align: left !important;
+}
+.ar {
+  text-align: right !important;
+}
+.vm {
+  vertical-align: middle !important;
+}
+.pr {
+  position: relative !important;
+}
+.pa {
+  position: absolute !important;
+}
+.pf {
+  position: fixed !important;
+}
+.db {
+  display: block !important;
+}
+.dib {
+  display: inline-block !important;
+}
+.w618 {
+  width: 59.8%;
+  margin: auto 1%;
+  padding: 0;
+  border: 0;
+}
+.w382 {
+  width: 36.2%;
+  margin: auto 1%;
+  padding: 0;
+  border: 0;
+}
+.w100 {
+  width: 100%;
+  margin: auto 0;
+  padding: 0;
+  border: 0;
+}
+.w711 {
+  width: 711px;
+  margin: auto 0;
+  padding: 0;
+  border: 0;
+}
+/*マージン、パディング*/
+.m {
+  margin: 0.6em;
+}
+.mv {
+  margin: 0.6em auto !important;
+}
+.mh {
+  margin: auto 0.6em !important;
+}
+.mt10 {
+  margin-top: 10px !important;
+}
+.mt20 {
+  margin-top: 20px !important;
+}
+.mt1em {
+  margin-top: 1em !important;
+}
+.mt2em {
+  margin-top: 2em !important;
+}
+.mt3em {
+  margin-top: 3em !important;
+}
+.mt4em {
+  margin-top: 4em !important;
+}
+.mb10 {
+  margin-bottom: 10px !important;
+}
+.mb20 {
+  margin-bottom: 20px !important;
+}
+.mb1em {
+  margin-bottom: 1em !important;
+}
+.mb2em {
+  margin-bottom: 2em !important;
+}
+.mb3em {
+  margin-bottom: 3em !important;
+}
+.mb4em {
+  margin-bottom: 4em !important;
+}
+.mt100 {
+  margin-top: 100vh !important;
+}
+.mb100 {
+  margin-bottom: 100vh !important;
+}
+.pd {
+  padding: 0.6em;
+}
+.pdh {
+  padding: 0 0.6em;
+}
+.pdhv {
+  padding: 0.3em 1em;
+}
+.pdv {
+  padding: 0.3em 1em;
+}
+.pdvh {
+  padding: 1em 0.3em;
+}
+.m2 {
+  margin: 1.2em;
+}
+.mv2 {
+  margin: 1.2em auto !important;
+}
+.mh2 {
+  margin: auto 1.2em !important;
+}
+.pd2 {
+  padding: 1.2em;
+}
+.pdh2 {
+  padding: 0 1.2em;
+}
+.mv3 {
+  margin: 1.6em auto;
+}
+.mh3 {
+  margin: auto 1.6em;
+}
+.pd3 {
+  padding: 1.6em;
+}
+.ml1 {
+  margin-left: 1em;
+}
+.ma {
+  margin: auto;
+}
+.fit {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+p.br {
+  height: 1em;
+}
+.br3 {
+  border-radius: 3px;
+}
+/*色*/
+.cb {
+  color: #000 !important;
+}
+.cw,
+.cfff {
+  color: #fff !important;
+}
+.cb1 {
+  color: #553 !important;
+}
+.c333 {
+  color: #333 !important;
+}
+.c666 {
+  color: #666 !important;
+}
+.c999 {
+  color: #999 !important;
+}
+.cccc {
+  color: #ccc !important;
+}
+.bgf0 {
+  background-color: #f0f0f0 !important;
+}
+.bg000 {
+  background-color: #000;
+}
+.bgfff {
+  background-color: #fff !important;
+}
+/*テキスト*/
+.lh1 {
+  line-height: 1em !important;
+}
+.lh15 {
+  line-height: 1.5em !important;
+}
+.lh2 {
+  line-height: 2em !important;
+}
+.ls-1 {
+  letter-spacing: -1px !important;
+}
+.ls0 {
+  letter-spacing: 0px !important;
+}
+.ls1 {
+  letter-spacing: 1px !important;
+}
+.ls2 {
+  letter-spacing: 2px !important;
+}
+.nobr {
+  white-space: nowrap !important;
+}
+
+/*フォント*/
+.b {
+  font-weight: bold;
+}
+.kakugo {
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo,
+    メイリオ, 'ＭＳ ゴシック', 'MS Gothic', sans-serif;
+}
+.meiryo {
+  font-family: Meiryo, メイリオ, 'Hiragino Kaku Gothic ProN',
+    'ヒラギノ角ゴ ProN W3', 'ＭＳ ゴシック', 'MS Gothic', sans-serif;
+}
+.mincho {
+  font-family: 'HGS明朝E', 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro',
+    'ＭＳ Ｐ明朝', serif;
+}
+.mincho_num {
+  font-family: 'HGS明朝E', 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro',
+    'ＭＳ Ｐ明朝', serif;
+}
+.font-outline {
+  text-shadow: 0 1px 1px black, 0 -1px 1px black, 1px 0 1px black,
+    -1px 0 1px black;
+}
+.font-outline-w {
+  text-shadow: 0 1px 1px white, 0 -1px 1px white, 1px 0 1px black,
+    -1px 0 1px white;
+}
+.font-anaglyph {
+  text-shadow: -0.06em 0 red, 0.06em 0 cyan;
+}
+.font-emboss {
+  text-shadow: 0px 1px 1px white, 0 -1px 1px black;
+}

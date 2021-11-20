@@ -1,4 +1,4 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap");
+﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
 
 article {
   display: block;
@@ -163,7 +163,11 @@ body {
   position: relative;
   line-height: 1.5em;
   -webkit-font-smoothing: antialiased;
-  font-family: "Baskerville Old Face", Baskerville, "Times New Roman", Times, serif, Georgia, Palatino, "Palatino Linotype", "HGS明朝E", "ヒラギノ明朝 Pro W3", "Hiragino Mincho Pro", "ＭＳ Ｐ明朝", "Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "ＭＳ Ｐ明朝", "MS PMincho", serif;
+  font-family: 'Baskerville Old Face', Baskerville, 'Times New Roman', Times,
+    serif, Georgia, Palatino, 'Palatino Linotype', 'HGS明朝E',
+    'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro', 'ＭＳ Ｐ明朝',
+    'Times New Roman', '游明朝', YuMincho, 'ヒラギノ明朝 ProN W3',
+    'Hiragino Mincho ProN', 'ＭＳ Ｐ明朝', 'MS PMincho', serif;
 
   /*明朝*/
 }
@@ -387,7 +391,7 @@ p > a {
     top: 0;
   }
 }
-iframe[id^="like_iframe"] {
+iframe[id^='like_iframe'] {
   position: absolute;
   width: 100%;
   -webkit-transform: translateY(-50%);
@@ -399,9 +403,7 @@ iframe[id^="like_iframe"] {
 .photoset .container-l.feature-has-large-images {
   max-width: 700px;
 }
-contents {
-  margin: auto;
-}
+
 h1.title a {
   line-height: 2em;
 }
@@ -416,14 +418,52 @@ h1.title a {
     display: none;
   }
 }
-.grade1 {  /*https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B'*/
+.grade1 {
+  /*https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B'*/
   background: rgba(245, 245, 245, 1);
-  background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(237, 251, 255, 1) 16%, rgba(237, 245, 247, 1) 24%, rgba(255, 255, 255, 1) 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(16%, rgba(237, 251, 255, 1)), color-stop(24%, rgba(237, 245, 247, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
-  background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(237, 251, 255, 1) 16%, rgba(237, 245, 247, 1) 24%, rgba(255, 255, 255, 1) 100%);
-  background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(237, 251, 255, 1) 16%, rgba(237, 245, 247, 1) 24%, rgba(255, 255, 255, 1) 100%);
-  background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(237, 251, 255, 1) 16%, rgba(237, 245, 247, 1) 24%, rgba(255, 255, 255, 1) 100%);
-  background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(237, 251, 255, 1) 16%, rgba(237, 245, 247, 1) 24%, rgba(255, 255, 255, 1) 100%);
+  background: -moz-linear-gradient(
+    top,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(237, 251, 255, 1) 16%,
+    rgba(237, 245, 247, 1) 24%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -webkit-gradient(
+    left top,
+    left bottom,
+    color-stop(0%, rgba(245, 245, 245, 1)),
+    color-stop(16%, rgba(237, 251, 255, 1)),
+    color-stop(24%, rgba(237, 245, 247, 1)),
+    color-stop(100%, rgba(255, 255, 255, 1))
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(237, 251, 255, 1) 16%,
+    rgba(237, 245, 247, 1) 24%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -o-linear-gradient(
+    top,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(237, 251, 255, 1) 16%,
+    rgba(237, 245, 247, 1) 24%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: -ms-linear-gradient(
+    top,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(237, 251, 255, 1) 16%,
+    rgba(237, 245, 247, 1) 24%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(237, 251, 255, 1) 16%,
+    rgba(237, 245, 247, 1) 24%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 .head-wrap {
   top: 0;
@@ -432,7 +472,11 @@ h1.title a {
 }
 .container-l {
   min-height: 20vh;
-  background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(245, 245, 245, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
 
   /* overflow-x: scroll;*/
 }
@@ -499,10 +543,9 @@ h1.title a {
     transform: translate(0, 0);
     opacity: 1;
   }
-};
+}
 
 /*index only*/
-
 
 .index-img {
   height: 38vh;
@@ -627,7 +670,7 @@ section > footer {
   article > div {
     width: 100%;
   }
-}/*.mobile .index-img {*/
+} /*.mobile .index-img {*/
 /*    background-size:auto 50%;*/
 /*    height: 28vh;*/
 /*}*/
