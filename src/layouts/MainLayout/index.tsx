@@ -2,6 +2,7 @@
 import React, { useEffect, useContext, memo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 // 🧩
 import { DataCTX } from 'App';
 import { api_uri, api_Key, Blog_name } from 'functions';
@@ -76,9 +77,11 @@ const MainLayout = memo(() => {
                       <div className="container-l">
                         {post.photos.map((photo: any, photoK: any) => {
                           return (
-                            <img
-                              src={photo.original_size.url}
+                            <LazyLoadImage
+                              src={photo.alt_sizes[1].url}
                               alt="img"
+                              width={photo.alt_sizes[1].width}
+                              height={photo.alt_sizes[1].height}
                               key={photoK}
                             />
                           );
