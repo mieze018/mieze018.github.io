@@ -5,7 +5,7 @@ import { DataCTX } from 'App';
 const TopBar = memo(() => {
   const GetDataCTX: any = useContext(DataCTX);
   return (
-    <div className="head-wrap grade1">
+    <header className="head-wrap grade1">
       <div className="index-img water"></div>
       <div className="sunk">
         <h1 className="head-title hero">
@@ -24,7 +24,7 @@ const TopBar = memo(() => {
           )}
         </p>
       </div>
-    </div>
+    </header>
   );
 });
 

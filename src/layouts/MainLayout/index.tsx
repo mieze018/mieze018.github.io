@@ -12,6 +12,7 @@ import './index.scss';
 const MainLayout = memo(() => {
   //🏁GetAPI start
   const GetDataCTX: any = useContext(DataCTX);
+
   // 🚩データの取得
   useEffect(() => {
     RefreshData();
@@ -56,25 +57,30 @@ const MainLayout = memo(() => {
   }
 
   return (
-    <article className="m-auto">
+    <>
       {GetDataCTX['info'] && SetHead()}
       <TopBar />
       <section id="wrapper" className="wrapper sunk-short fade-in">
         {/* <!--Content holder--> */}
-        <div id="content">
+        <div id="content" className="flex flex-col justify-center items-center">
           {GetDataCTX['posts'] &&
             GetDataCTX['posts']
               .filter(
-                (i: any) => !i.tags.find((tag: string) => tag === 'commission')
+                (post: any) =>
+                  !post.tags.find((tag: string, i: any) => tag === 'commission')
               )
-              .map((post: any) => {
+              .map((post: any, postK: any) => {
                 return (
-                  <article>
-                    <div className="photoset db">
+                  <article key={postK}>
+                    <div className={`${post.type}`}>
                       <div className="container-l">
-                        {post.photos.map((photo: any) => {
+                        {post.photos.map((photo: any, photoK: any) => {
                           return (
-                            <img src={photo.original_size.url} alt="img" />
+                            <img
+                              src={photo.original_size.url}
+                              alt="img"
+                              key={photoK}
+                            />
                           );
                         })}
                       </div>
@@ -107,7 +113,7 @@ const MainLayout = memo(() => {
         </div>
       </section>
       <Outlet />
-    </article>
+    </>
   );
 });
 
