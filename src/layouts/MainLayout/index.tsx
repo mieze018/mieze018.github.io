@@ -57,6 +57,8 @@ const MainLayout = memo(() => {
   const tags = ['personal work', 'commission'];
   const [tagState, setTagState] = useState<string>(tags[0]);
 
+  const now = new Date();
+  const this_year = now.getFullYear();
   return (
     <>
       {GetDataCTX['info'] && SetHead()}
@@ -72,14 +74,14 @@ const MainLayout = memo(() => {
               )
               .map((post: any, postK: any) => {
                 return (
-                  <article key={postK}>
+                  <article className=" flex" key={postK}>
                     <div className={`${post.type}`}>
                       <div className="container-l">
                         {post.photos.map((photo: any, photoK: any) => {
                           return (
                             <LazyLoadImage
                               src={photo.alt_sizes[1].url}
-                              alt="img"
+                              alt={photo.alt_sizes[1].url}
                               width={photo.alt_sizes[1].width}
                               height={photo.alt_sizes[1].height}
                               key={photoK}
@@ -115,6 +117,11 @@ const MainLayout = memo(() => {
               })}
         </div>
       </section>
+
+      <footer className=" text-center pb-5">
+        © 2009-{this_year} Ayu Nakata
+      </footer>
+
       <Outlet />
     </>
   );
