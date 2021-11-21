@@ -1,5 +1,5 @@
 // ⚛️
-import React, { useEffect, useContext, memo } from 'react';
+import React, { useEffect, useContext, memo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
 // 🧩
@@ -55,19 +55,28 @@ const MainLayout = memo(() => {
       .querySelector('link[rel="icon"]')!
       .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
+  // 表示するポストのタグによる切り替え
+  const tags = ['personal work', 'commission'];
+  const [tagState, setTagState] = useState<String>(tags[1]);
 
   return (
     <>
       {GetDataCTX['info'] && SetHead()}
       <TopBar />
+      <nav className=" ma text-center">
+        {tags.map((tag: string, tagK: any) => (
+          <button onClick={() => setTagState(tag)} key={tagK}>
+            {tag}
+          </button>
+        ))}
+      </nav>
       <section id="wrapper" className="wrapper sunk-short fade-in">
         {/* <!--Content holder--> */}
         <div id="content" className="flex flex-col justify-center items-center">
           {GetDataCTX['posts'] &&
             GetDataCTX['posts']
-              .filter(
-                (post: any) =>
-                  !post.tags.find((tag: string, i: any) => tag === 'commission')
+              .filter((post: any) =>
+                post.tags.find((tag: string, i: any) => tag === tagState)
               )
               .map((post: any, postK: any) => {
                 return (
