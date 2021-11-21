@@ -16,12 +16,9 @@ const MainLayout = memo(() => {
   // 🚩データの取得
   useEffect(() => {
     RefreshData();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  // useEffect(() => {
-  //   setData(GetDataCTX[method]);
-  // }, [GetDataCTX]);
+
   //🏁GetAPI end
   function RefreshData() {
     axios
@@ -57,19 +54,13 @@ const MainLayout = memo(() => {
   }
   // 表示するポストのタグによる切り替え
   const tags = ['personal work', 'commission'];
-  const [tagState, setTagState] = useState<String>(tags[1]);
+  const [tagState, setTagState] = useState<string>(tags[0]);
 
   return (
     <>
       {GetDataCTX['info'] && SetHead()}
-      <TopBar />
-      <nav className=" ma text-center">
-        {tags.map((tag: string, tagK: any) => (
-          <button onClick={() => setTagState(tag)} key={tagK}>
-            {tag}
-          </button>
-        ))}
-      </nav>
+      <TopBar tags={tags} setTagState={setTagState} tagState={tagState} />
+
       <section id="wrapper" className="wrapper sunk-short fade-in">
         {/* <!--Content holder--> */}
         <div id="content" className="flex flex-col justify-center items-center">
