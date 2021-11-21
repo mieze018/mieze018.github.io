@@ -22,7 +22,7 @@ const MainLayout = memo(() => {
   //🏁GetAPI end
   function RefreshData() {
     axios
-      .get(`${api_uri}${Blog_name}/posts?api_key=${api_Key}`)
+      .get(`${api_uri}${Blog_name}/posts?api_key=${api_Key}&limit=999`)
       .then((res) => {
         GetDataCTX.setDataCtx({
           ...GetDataCTX,

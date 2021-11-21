@@ -10,7 +10,9 @@ const TopBar = memo(
         <div className="index-img water"></div>
         <div className="sunk">
           <h1 className="head-title hero">
-            {GetDataCTX['info'] ? GetDataCTX['info']['title'] : ''}
+            {GetDataCTX['info']
+              ? GetDataCTX['info']['title']
+              : 'mieze illustration'}
           </h1>
 
           <p className="header-desc hero">
@@ -21,7 +23,7 @@ const TopBar = memo(
                 }}
               ></span>
             ) : (
-              ''
+              'by Ayu Nakata. Osaka, Japan-based illustrator/artist.'
             )}
           </p>
         </div>
