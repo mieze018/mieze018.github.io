@@ -40,6 +40,10 @@ const routes = [
       ...Object.entries(urls.root).map(([key, value]) => value),
 
       { path: '/', element: <Navigate to={GetUrl(['root', 'index'])} /> },
+      {
+        path: '/mieze018.net',
+        element: <Navigate to={GetUrl(['root', 'index'])} />
+      },
       { path: '*', element: <Navigate to={GetUrl(['root', 'NotFound'])} /> }
     ]
   }
