@@ -177,8 +177,11 @@ body.has-center-text {
 a#tumblr_lightbox_center_link {
   opacity: 1;
 }
-.SNS-link a {
-  opacity: 0.618;
+.SNS-link {
+  a {
+    margin: 0 0.5em;
+    letter-spacing: 0.1em;
+  }
 }
 a {
   &:hover {
@@ -448,7 +451,7 @@ h1.title a {
 }
 .head-wrap {
   top: 0;
-  height: 61.8vh;
+  // height: 61.8vh;
   width: 100%;
 }
 .container-l {
@@ -550,9 +553,12 @@ h1.title a {
   transform: translate(0px, -10em);
   opacity: 0;
 }
-.header-desc {
+header {
   font-size: 0.82rem;
 
+  nav {
+    font-size: 1rem;
+  }
   a {
     margin: 0 0.2em;
     letter-spacing: 0.15em;
@@ -655,3 +661,6 @@ section > footer {
 /*    height: 28vh;*/
 /*}*/
 /*photoset 最後の画像だけ表示*/
+#bio p {
+  margin-bottom: 1em;
+}

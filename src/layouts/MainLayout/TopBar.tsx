@@ -37,10 +37,11 @@ const TopBar = memo(
           </h1>
 
           <p className="header-desc hero">
-            {GetDataCTX['info'] ? (
+            {GetDataCTX['description'] ? (
               <span
                 dangerouslySetInnerHTML={{
-                  __html: GetDataCTX['info']['description']
+                  // __html: GetDataCTX['info']['description']
+                  __html: GetDataCTX['description']
                 }}
               ></span>
             ) : (
@@ -48,7 +49,7 @@ const TopBar = memo(
             )}
           </p>
         </div>
-        <nav className=" ma text-center">
+        <nav className=" ma text-center text-base">
           {props.tags.map((tag: string, tagK: any) => (
             <button
               onClick={() => props.setTagState(tag)}

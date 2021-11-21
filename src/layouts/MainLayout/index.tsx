@@ -6,7 +6,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 // 🧩
 import { DataCTX } from 'App';
 import { api_uri, api_Key, Blog_name } from 'functions';
-import TopBar from 'layouts/MainLayout/TopBar';
+import TopBar from './TopBar';
+import Info from './info';
 
 import './index.scss';
 
@@ -30,7 +31,7 @@ const MainLayout = memo(() => {
           loading: false,
           info: res.data.response.blog,
           posts: res.data.response.posts,
-          description: res.data.response.blog['description'].split('<br/>', 1)
+          description: res.data.response.blog['description'].split('<br', 1)
         });
       })
       .catch((err) => {
@@ -54,7 +55,7 @@ const MainLayout = memo(() => {
       .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
   // 表示するポストのタグによる切り替え
-  const tags = ['personal work', 'commission'];
+  const tags = ['personal work', 'commission', 'info'];
   const [tagState, setTagState] = useState<string>(tags[0]);
 
   const now = new Date();
@@ -67,6 +68,7 @@ const MainLayout = memo(() => {
       <section id="wrapper" className="wrapper sunk-short fade-in">
         {/* <!--Content holder--> */}
         <div id="content" className="flex flex-col justify-center items-center">
+          {tagState === 'info' && <Info />}
           {GetDataCTX['posts'] &&
             GetDataCTX['posts']
               .filter((post: any) =>
