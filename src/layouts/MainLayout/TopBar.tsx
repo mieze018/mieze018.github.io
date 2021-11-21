@@ -5,6 +5,27 @@ import { DataCTX } from 'App';
 const TopBar = memo(
   (props: { tags: any[]; setTagState: any; tagState: string }) => {
     const GetDataCTX: any = useContext(DataCTX);
+
+    //スマホでアクセスした時tumblrへのリンクをアプリから開くリンクに書き換え
+    {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      if (
+        userAgent.indexOf('iphone') !== -1 ||
+        userAgent.indexOf('ipad') !== -1 ||
+        userAgent.indexOf('android') !== -1
+      ) {
+        document.querySelector('html')?.classList.add('mobile');
+      } else {
+        document.querySelector('html')?.classList.add('desktop');
+      }
+      document
+        .querySelector('.mobile .tumblr')
+        ?.setAttribute(
+          'href',
+          'http://www.tumblr.com/open/app?app_args=blog&blogName=mieze018&page=blog'
+        );
+    }
+
     return (
       <header className="head-wrap grade1">
         <div className="index-img water"></div>
