@@ -4,7 +4,6 @@ import { useRoutes } from 'react-router-dom';
 import routes from 'routes';
 // 🧩
 import { DataCTXType } from 'Type';
-import 'theme.scss';
 // 🏁
 export const DataCTX = createContext<DataCTXType>({
   loading: false,

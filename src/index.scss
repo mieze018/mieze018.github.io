@@ -1,4 +1,8 @@
-﻿body {
+﻿/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.38),
     0 2px 0 rgba(255, 124, 0, 0.16);
   letter-spacing: 0.05em;
