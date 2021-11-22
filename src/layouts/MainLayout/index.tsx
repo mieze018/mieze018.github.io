@@ -92,7 +92,11 @@ const MainLayout = memo(() => {
               .map((post: any, postK: any) => {
                 return (
                   <article className="flex" key={postK}>
-                    <div className={`${post.type}`}>
+                    <div
+                      className={`${
+                        post.photoset_layout ? 'photoset block' : post.type
+                      }`}
+                    >
                       <div className="container-l">
                         {post.photos.map((photo: any, photoK: any) => {
                           return (
