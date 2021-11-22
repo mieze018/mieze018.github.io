@@ -6,11 +6,11 @@ const Info = memo(() => {
         <a href="https://www.tumblr.com/blog/mieze018/" className="tumblr">
           tumblr
         </a>
-        <a href="http://twitter.com/mieze018">twitter</a>
-        <a href="http://mieze018.deviantart.com/">deviantart</a>
-        <a href="http://www.pixiv.net/member.php?id=1144713">pixiv</a>
+        <a href="https://twitter.com/mieze018">twitter</a>
+        <a href="https://mieze018.deviantart.com/">deviantart</a>
+        <a href="https://www.pixiv.net/member.php?id=1144713">pixiv</a>
         <a href="https://www.behance.net/mieze018/">behance</a>
-        <a href="http://instagram.com/mieze018">instagram</a>
+        <a href="https://instagram.com/mieze018/">instagram</a>
         <a href="https://mieze.booth.pm/" target="_blank">
           booth
         </a>
