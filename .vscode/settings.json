@@ -1,0 +1,13 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "cSpell.words": [
+    "behance",
+    "browserslist",
+    "craco",
+    "deviantart",
+    "mieze",
+    "Nakata",
+    "pixiv",
+    "tailwindcss"
+  ]
+}
