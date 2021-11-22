@@ -33,6 +33,7 @@ const MainLayout = memo(() => {
           posts: res.data.response.posts,
           description: res.data.response.blog['description'].split('<br', 1)
         });
+        SetHead();
       })
       .catch((err) => {
         GetDataCTX.setDataCtx({
@@ -44,15 +45,15 @@ const MainLayout = memo(() => {
   function SetHead() {
     document.title = GetDataCTX['info']['title'];
     document
-      .querySelector('link[rel="apple-touch-icon"]')!
-      .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
+      .querySelector('link[rel="apple-touch-icon"]')
+      ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
 
     document
-      .querySelector('meta[name="description"]')!
-      .setAttribute('content', GetDataCTX['description']);
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', GetDataCTX['description']);
     document
-      .querySelector('link[rel="icon"]')!
-      .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
+      .querySelector('link[rel="icon"]')
+      ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
   // 表示するポストのタグによる切り替え
   const tags = ['personal work', 'commissioned work', 'info'];
@@ -65,19 +66,27 @@ const MainLayout = memo(() => {
       loading: true
     });
   }
-
+  //現在の年を取得
   const now = new Date();
   const this_year = now.getFullYear();
+
   return (
     <>
-      {GetDataCTX['info'] && SetHead()}
       <TopBar
         tags={tags}
         handleClickNavButton={handleClickNavButton}
         tagState={tagState}
       />
 
-      <section id="wrapper" className="wrapper sunk-short fade-in">
+      <section
+        id="wrapper"
+        className="wrapper sunk-short"
+        style={{
+          transition: '3s',
+          opacity: GetDataCTX.loading ? 0 : 0.5
+          // width: GetDataCTX.loading ? '60vw' : 0,
+        }}
+      >
         {/* <!--Content holder--> */}
         <div
           id="content"

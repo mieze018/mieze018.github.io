@@ -35,7 +35,7 @@ const TopBar = memo(
         <div className="index-img water"></div>
         <div className="sunk">
           <h1 className="head-title hero">
-            {GetDataCTX['info']
+            {GetDataCTX['info']['title']
               ? GetDataCTX['info']['title']
               : process.env.REACT_APP_title}
           </h1>
