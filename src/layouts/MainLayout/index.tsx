@@ -9,8 +9,6 @@ import { api_uri, api_Key, Blog_name } from 'functions';
 import TopBar from './TopBar';
 import Info from './info';
 
-import './index.css';
-
 const MainLayout = memo(() => {
   //🏁GetAPI start
   const GetDataCTX: any = useContext(DataCTX);
