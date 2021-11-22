@@ -57,7 +57,7 @@ const TopBar = memo(
           {props.tags.map((tag: string, tagK: any) => (
             <button
               onClick={() => props.handleClickNavButton(tag)}
-              className={` m-1 ${props.tagState === tag && 'underline'}`}
+              className={` m-3 ${props.tagState === tag && 'underline'}`}
               key={tagK}
             >
               {tag}

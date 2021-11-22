@@ -99,22 +99,31 @@ const MainLayout = memo(() => {
                     >
                       <div className="container-l">
                         {post.photos.map((photo: any, photoK: any) => {
-                          return (
-                            <LazyLoadImage
-                              src={photo.alt_sizes[1].url}
-                              alt={photo.alt_sizes[1].url}
-                              width={photo.alt_sizes[1].width}
-                              height={photo.alt_sizes[1].height}
-                              afterLoad={() =>
-                                GetDataCTX.setDataCtx({
-                                  ...GetDataCTX,
-                                  loading: false
-                                })
-                              }
-                              key={photoK}
-                              visibleByDefault={postK === 0 ? true : false}
-                            />
-                          );
+                          if (
+                            !post.tags.find(
+                              (tag: string, i: any) => tag === 's-o-l-p'
+                            ) ||
+                            photoK === post.photos.length - 1
+                          ) {
+                            return (
+                              <LazyLoadImage
+                                src={photo.alt_sizes[1].url}
+                                alt={photo.alt_sizes[1].url}
+                                width={photo.alt_sizes[1].width}
+                                height={photo.alt_sizes[1].height}
+                                afterLoad={() =>
+                                  GetDataCTX.setDataCtx({
+                                    ...GetDataCTX,
+                                    loading: false
+                                  })
+                                }
+                                key={photoK}
+                                visibleByDefault={postK === 0 ? true : false}
+                              />
+                            );
+                          } else {
+                            return null;
+                          }
                         })}
                       </div>
                       <div
