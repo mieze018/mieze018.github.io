@@ -33,12 +33,11 @@ const MainLayout = memo(() => {
           posts: res.data.response.posts,
           description: res.data.response.blog['description'].split('<br', 1)
         });
-        SetHead();
       })
       .catch((err) => {
         GetDataCTX.setDataCtx({
           ...GetDataCTX,
-          info: [err]
+          error: [err]
         });
       });
   }
@@ -47,7 +46,6 @@ const MainLayout = memo(() => {
     document
       .querySelector('link[rel="apple-touch-icon"]')
       ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
-
     document
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', GetDataCTX['description']);
@@ -61,6 +59,7 @@ const MainLayout = memo(() => {
 
   function handleClickNavButton(tag: string) {
     setTagState(tag);
+    GetDataCTX.error && RefreshData();
     GetDataCTX.setDataCtx({
       ...GetDataCTX,
       loading: true
@@ -93,74 +92,75 @@ const MainLayout = memo(() => {
           className="flex flex-col items-center justify-center min-h-screen"
         >
           {tagState === 'info' && <Info />}
-          {GetDataCTX['posts'] &&
-            GetDataCTX['posts']
-              .filter((post: any) =>
-                post.tags.find((tag: string, i: any) => tag === tagState)
-              )
-              .map((post: any, postK: any) => {
-                return (
-                  <article className="flex" key={postK}>
-                    <div
-                      className={`${
-                        post.photoset_layout ? 'photoset block' : post.type
-                      }`}
-                    >
-                      <div className="container-l">
-                        {post.photos.map((photo: any, photoK: any) => {
-                          if (
-                            !post.tags.find(
-                              (tag: string, i: any) => tag === 's-o-l-p'
-                            ) ||
-                            photoK === post.photos.length - 1
-                          ) {
-                            return (
-                              <LazyLoadImage
-                                src={photo.alt_sizes[1].url}
-                                alt={photo.alt_sizes[1].url}
-                                width={photo.alt_sizes[1].width}
-                                height={photo.alt_sizes[1].height}
-                                afterLoad={() =>
-                                  GetDataCTX.setDataCtx({
-                                    ...GetDataCTX,
-                                    loading: false
-                                  })
-                                }
-                                key={photoK}
-                                visibleByDefault={postK === 0 ? true : false}
-                              />
-                            );
-                          } else {
-                            return null;
-                          }
-                        })}
-                      </div>
+          {GetDataCTX.posts
+            ? GetDataCTX.posts
+                .filter((post: any) =>
+                  post.tags.find((tag: string, i: any) => tag === tagState)
+                )
+                .map((post: any, postK: any) => {
+                  return (
+                    <article className="flex" key={postK}>
                       <div
-                        className="container"
-                        dangerouslySetInnerHTML={{
-                          __html: post['caption']
-                        }}
-                      ></div>
-                      <footer className="post__footer container">
-                        <div className="metadata">
-                          <ul className="post__buttons"></ul>
-                          <ul className="post__info">
-                            <li>
-                              <span className="time-ago">
-                                {new Intl.DateTimeFormat('en-US', {
-                                  year: 'numeric',
-                                  month: 'long'
-                                }).format(new Date(post.date))}
-                              </span>
-                            </li>
-                          </ul>
-                          <ul className="post__tags"></ul>
+                        className={`${
+                          post.photoset_layout ? 'photoset block' : post.type
+                        }`}
+                      >
+                        <div className="container-l">
+                          {post.photos.map((photo: any, photoK: any) => {
+                            if (
+                              !post.tags.find(
+                                (tag: string, i: any) => tag === 's-o-l-p'
+                              ) ||
+                              photoK === post.photos.length - 1
+                            ) {
+                              return (
+                                <LazyLoadImage
+                                  src={photo.alt_sizes[1].url}
+                                  alt={photo.alt_sizes[1].url}
+                                  width={photo.alt_sizes[1].width}
+                                  height={photo.alt_sizes[1].height}
+                                  afterLoad={() =>
+                                    GetDataCTX.setDataCtx({
+                                      ...GetDataCTX,
+                                      loading: false
+                                    })
+                                  }
+                                  key={photoK}
+                                  visibleByDefault={postK === 0 ? true : false}
+                                />
+                              );
+                            } else {
+                              return null;
+                            }
+                          })}
                         </div>
-                      </footer>
-                    </div>
-                  </article>
-                );
-              })}
+                        <div
+                          className="container"
+                          dangerouslySetInnerHTML={{
+                            __html: post['caption']
+                          }}
+                        ></div>
+                        <footer className="post__footer container">
+                          <div className="metadata">
+                            <ul className="post__buttons"></ul>
+                            <ul className="post__info">
+                              <li>
+                                <span className="time-ago">
+                                  {new Intl.DateTimeFormat('en-US', {
+                                    year: 'numeric',
+                                    month: 'long'
+                                  }).format(new Date(post.date))}
+                                </span>
+                              </li>
+                            </ul>
+                            <ul className="post__tags"></ul>
+                          </div>
+                        </footer>
+                      </div>
+                    </article>
+                  );
+                })
+            : 'API Error'}
         </div>
       </section>
 
@@ -169,6 +169,7 @@ const MainLayout = memo(() => {
       </footer>
 
       <Outlet />
+      {GetDataCTX.info && SetHead()}
     </>
   );
 });
