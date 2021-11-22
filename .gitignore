@@ -24,3 +24,4 @@ yarn-error.log*
 # 追加
 /vendor
 テンプレートのjs.js
+get_post_サンプル.json

@@ -9,7 +9,7 @@ import { api_uri, api_Key, Blog_name } from 'functions';
 import TopBar from './TopBar';
 import Info from './info';
 
-import './index.scss';
+import './index.css';
 
 const MainLayout = memo(() => {
   //🏁GetAPI start
@@ -81,7 +81,7 @@ const MainLayout = memo(() => {
         {/* <!--Content holder--> */}
         <div
           id="content"
-          className="flex flex-col justify-center items-center min-h-screen"
+          className="flex flex-col items-center justify-center min-h-screen"
         >
           {tagState === 'info' && <Info />}
           {GetDataCTX['posts'] &&
@@ -91,7 +91,7 @@ const MainLayout = memo(() => {
               )
               .map((post: any, postK: any) => {
                 return (
-                  <article className=" flex" key={postK}>
+                  <article className="flex" key={postK}>
                     <div className={`${post.type}`}>
                       <div className="container-l">
                         {post.photos.map((photo: any, photoK: any) => {
@@ -142,7 +142,7 @@ const MainLayout = memo(() => {
         </div>
       </section>
 
-      <footer className=" text-center pb-5">
+      <footer className="pb-5 text-center">
         © 2009-{this_year} {process.env.REACT_APP_author}
       </footer>
 

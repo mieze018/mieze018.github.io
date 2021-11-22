@@ -4,7 +4,7 @@ import { useRoutes } from 'react-router-dom';
 import routes from 'routes';
 // 🧩
 import { DataCTXType } from 'Type';
-import 'index.scss';
+import 'index.css';
 export const DataCTX = createContext<DataCTXType>({
   loading: false,
   setDataCtx: (props) => props

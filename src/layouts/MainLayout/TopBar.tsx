@@ -53,7 +53,7 @@ const TopBar = memo(
             )}
           </p>
         </div>
-        <nav className=" ma text-center text-base">
+        <nav className="ma text-center text-base">
           {props.tags.map((tag: string, tagK: any) => (
             <button
               onClick={() => props.handleClickNavButton(tag)}

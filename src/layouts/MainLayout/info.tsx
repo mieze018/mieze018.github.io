@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 const Info = memo(() => {
   return (
-    <div id="bio" className=" text-center text-sm leading-7 ">
-      <div className="SNS-link m-auto text-base font-serif">
+    <div id="bio" className="text-center text-sm leading-7">
+      <div className="SNS-link m-auto font-serif text-base">
         <a
           href={`https://www.tumblr.com/blog/${process.env.REACT_APP_Tumblr_username}/`}
           className="tumblr"
