@@ -1,22 +1,17 @@
 {
   "files": {
-    "main.css": "/mieze018.net/static/css/main.1f72f438.chunk.css",
-    "main.js": "/mieze018.net/static/js/main.754aaebe.chunk.js",
-    "main.js.map": "/mieze018.net/static/js/main.754aaebe.chunk.js.map",
+    "main.css": "/mieze018.net/static/css/main.816ed7a0.chunk.css",
+    "main.js": "/mieze018.net/static/js/main.a46e8aa0.chunk.js",
     "runtime-main.js": "/mieze018.net/static/js/runtime-main.134f04d7.js",
-    "runtime-main.js.map": "/mieze018.net/static/js/runtime-main.134f04d7.js.map",
-    "static/js/2.4b7e3c30.chunk.js": "/mieze018.net/static/js/2.4b7e3c30.chunk.js",
-    "static/js/2.4b7e3c30.chunk.js.map": "/mieze018.net/static/js/2.4b7e3c30.chunk.js.map",
+    "static/js/2.39ba33d2.chunk.js": "/mieze018.net/static/js/2.39ba33d2.chunk.js",
     "static/js/3.02952fe2.chunk.js": "/mieze018.net/static/js/3.02952fe2.chunk.js",
-    "static/js/3.02952fe2.chunk.js.map": "/mieze018.net/static/js/3.02952fe2.chunk.js.map",
     "index.html": "/mieze018.net/index.html",
-    "static/css/main.1f72f438.chunk.css.map": "/mieze018.net/static/css/main.1f72f438.chunk.css.map",
-    "static/js/2.4b7e3c30.chunk.js.LICENSE.txt": "/mieze018.net/static/js/2.4b7e3c30.chunk.js.LICENSE.txt"
+    "static/js/2.39ba33d2.chunk.js.LICENSE.txt": "/mieze018.net/static/js/2.39ba33d2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.134f04d7.js",
-    "static/js/2.4b7e3c30.chunk.js",
-    "static/css/main.1f72f438.chunk.css",
-    "static/js/main.754aaebe.chunk.js"
+    "static/js/2.39ba33d2.chunk.js",
+    "static/css/main.816ed7a0.chunk.css",
+    "static/js/main.a46e8aa0.chunk.js"
   ]
 }
