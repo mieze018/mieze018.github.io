@@ -55,7 +55,7 @@ const MainLayout = memo(() => {
       .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
   // 表示するポストのタグによる切り替え
-  const tags = ['personal work', 'commission', 'info'];
+  const tags = ['personal work', 'commissioned work', 'info'];
   const [tagState, setTagState] = useState<string>(tags[0]);
 
   function handleClickNavButton(tag: string) {
