@@ -79,7 +79,10 @@ const MainLayout = memo(() => {
 
       <section id="wrapper" className="wrapper sunk-short fade-in">
         {/* <!--Content holder--> */}
-        <div id="content" className="flex flex-col justify-center items-center">
+        <div
+          id="content"
+          className="flex flex-col justify-center items-center min-h-screen"
+        >
           {tagState === 'info' && <Info />}
           {GetDataCTX['posts'] &&
             GetDataCTX['posts']
