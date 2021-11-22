@@ -140,7 +140,7 @@ const MainLayout = memo(() => {
       </section>
 
       <footer className=" text-center pb-5">
-        © 2009-{this_year} Ayu Nakata
+        © 2009-{this_year} {process.env.REACT_APP_author}
       </footer>
 
       <Outlet />

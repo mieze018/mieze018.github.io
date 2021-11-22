@@ -9,8 +9,8 @@ export const urls = {
       element: <IndexView />,
       title: ' '
     },
-    'mieze018.net': {
-      path: 'mieze018.net',
+    git_repo: {
+      path: process.env.REACT_APP_github_repo_name,
       element: <IndexView />,
       title: ' '
     },

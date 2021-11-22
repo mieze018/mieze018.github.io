@@ -1,17 +1,24 @@
-﻿import React, { memo } from 'react';
+import React, { memo } from 'react';
 const Info = memo(() => {
   return (
     <div id="bio" className=" text-center text-sm leading-7 ">
       <div className="SNS-link m-auto text-base font-serif">
-        <a href="https://www.tumblr.com/blog/mieze018/" className="tumblr">
+        <a
+          href={`https://www.tumblr.com/blog/${process.env.REACT_APP_Tumblr_username}/`}
+          className="tumblr"
+        >
           tumblr
         </a>
-        <a href="https://twitter.com/mieze018">twitter</a>
-        <a href="https://mieze018.deviantart.com/">deviantart</a>
-        <a href="https://www.pixiv.net/member.php?id=1144713">pixiv</a>
-        <a href="https://www.behance.net/mieze018/">behance</a>
-        <a href="https://instagram.com/mieze018/">instagram</a>
-        <a href="https://mieze.booth.pm/" target="_blank">
+        <a href={process.env.REACT_APP_twitter_url}>twitter</a>
+        <a href={process.env.REACT_APP_deviantart_url}>deviantart</a>
+        <a href={process.env.REACT_APP_pixiv_url}>pixiv</a>
+        <a href={process.env.REACT_APP_behance_url}>behance</a>
+        <a href={process.env.REACT_APP_instagram_url}>instagram</a>
+        <a
+          href={process.env.REACT_APP_booth_url}
+          target="_blank"
+          rel="noreferrer"
+        >
           booth
         </a>
       </div>
@@ -24,7 +31,10 @@ const Info = memo(() => {
           <br />
           お仕事のご依頼は以下のメールアドレスにお願いいたします。
           <br />
-          mail: <a href="mailto:mieze@mieze018.net">mieze@mieze018.net</a>
+          mail:{' '}
+          <a href={`mailto:${process.env.REACT_APP_mail}`}>
+            {process.env.REACT_APP_mail}
+          </a>
         </p>
         <p>
           イベントの参加予定

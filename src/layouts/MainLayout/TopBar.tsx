@@ -26,7 +26,7 @@ const TopBar = memo(
         .querySelector('.mobile .tumblr')
         ?.setAttribute(
           'href',
-          'http://www.tumblr.com/open/app?app_args=blog&blogName=mieze018&page=blog'
+          `http://www.tumblr.com/open/app?app_args=blog&blogName=${process.env.REACT_APP_Tumblr_username}&page=blog`
         );
     }
 
@@ -37,7 +37,7 @@ const TopBar = memo(
           <h1 className="head-title hero">
             {GetDataCTX['info']
               ? GetDataCTX['info']['title']
-              : 'mieze illustration'}
+              : process.env.REACT_APP_title}
           </h1>
 
           <p className="header-desc hero">
@@ -49,7 +49,7 @@ const TopBar = memo(
                 }}
               ></span>
             ) : (
-              'by Ayu Nakata. Osaka, Japan-based illustrator/artist.'
+              process.env.REACT_APP_description
             )}
           </p>
         </div>

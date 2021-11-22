@@ -12,7 +12,20 @@ export const DataCTX = createContext<DataCTXType>({
 
 const App = () => {
   const routing = useRoutes(routes);
-
+  //ヘッダ内を設定
+  process.env.REACT_APP_description &&
+    document
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', process.env.REACT_APP_description);
+  process.env.REACT_APP_author &&
+    document
+      .querySelector('meta[name="author"]')
+      ?.setAttribute('content', process.env.REACT_APP_author);
+  process.env.REACT_APP_url &&
+    document
+      .querySelector('link[rel="canonical"]')
+      ?.setAttribute('content', process.env.REACT_APP_url);
+  //context
   const setDataCtx = (props: DataCTXType) => {
     setDataState({ ...DataState, ...props });
   };

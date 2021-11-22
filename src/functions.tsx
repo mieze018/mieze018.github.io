@@ -1,10 +1,8 @@
 // ⚛️
 import axios, { AxiosError } from 'axios';
-
 export const api_uri = 'https://api.tumblr.com/v2/blog/';
-export const api_Key: string =
-  '9MDztWXXMhCeeN5rXMyS89gqMxoIKNRegyqnOfFK81iscjVzEp';
-export const Blog_name = 'mieze018.tumblr.com';
+export const api_Key = process.env.REACT_APP_api_Key;
+export const Blog_name = `${process.env.REACT_APP_Tumblr_username}.tumblr.com`;
 
 export function GetAPI(props: {
   method: 'info' | 'avatar' | 'posts' | 'tagged'; // https://www.tumblr.com/docs/en/api/v2
