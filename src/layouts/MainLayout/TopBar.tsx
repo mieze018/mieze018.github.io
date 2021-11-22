@@ -3,7 +3,11 @@ import React, { useContext, memo } from 'react';
 // 🧩
 import { DataCTX } from 'App';
 const TopBar = memo(
-  (props: { tags: any[]; setTagState: any; tagState: string }) => {
+  (props: {
+    tags: any[];
+    handleClickNavButton: (tag: string) => void;
+    tagState: string;
+  }) => {
     const GetDataCTX: any = useContext(DataCTX);
 
     //スマホでアクセスした時tumblrへのリンクをアプリから開くリンクに書き換え
@@ -52,7 +56,7 @@ const TopBar = memo(
         <nav className=" ma text-center text-base">
           {props.tags.map((tag: string, tagK: any) => (
             <button
-              onClick={() => props.setTagState(tag)}
+              onClick={() => props.handleClickNavButton(tag)}
               className={` m-1 ${props.tagState === tag && 'underline'}`}
               key={tagK}
             >

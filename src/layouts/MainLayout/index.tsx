@@ -58,12 +58,24 @@ const MainLayout = memo(() => {
   const tags = ['personal work', 'commission', 'info'];
   const [tagState, setTagState] = useState<string>(tags[0]);
 
+  function handleClickNavButton(tag: string) {
+    setTagState(tag);
+    GetDataCTX.setDataCtx({
+      ...GetDataCTX,
+      loading: true
+    });
+  }
+
   const now = new Date();
   const this_year = now.getFullYear();
   return (
     <>
       {GetDataCTX['info'] && SetHead()}
-      <TopBar tags={tags} setTagState={setTagState} tagState={tagState} />
+      <TopBar
+        tags={tags}
+        handleClickNavButton={handleClickNavButton}
+        tagState={tagState}
+      />
 
       <section id="wrapper" className="wrapper sunk-short fade-in">
         {/* <!--Content holder--> */}
@@ -86,7 +98,14 @@ const MainLayout = memo(() => {
                               alt={photo.alt_sizes[1].url}
                               width={photo.alt_sizes[1].width}
                               height={photo.alt_sizes[1].height}
+                              afterLoad={() =>
+                                GetDataCTX.setDataCtx({
+                                  ...GetDataCTX,
+                                  loading: false
+                                })
+                              }
                               key={photoK}
+                              visibleByDefault={postK === 0 ? true : false}
                             />
                           );
                         })}
