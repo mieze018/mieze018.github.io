@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/mieze018.net/static/css/main.c23a995b.chunk.css",
-    "main.js": "/mieze018.net/static/js/main.11a889a8.chunk.js",
-    "runtime-main.js": "/mieze018.net/static/js/runtime-main.1a74b424.js",
-    "static/js/2.25165d9c.chunk.js": "/mieze018.net/static/js/2.25165d9c.chunk.js",
-    "static/js/3.12515b0e.chunk.js": "/mieze018.net/static/js/3.12515b0e.chunk.js",
-    "index.html": "/mieze018.net/index.html",
-    "static/js/2.25165d9c.chunk.js.LICENSE.txt": "/mieze018.net/static/js/2.25165d9c.chunk.js.LICENSE.txt",
-    "static/media/TopBar.css": "/mieze018.net/static/media/surface.594a6c6f.webp"
+    "main.css": "/static/css/main.87ed6650.chunk.css",
+    "main.js": "/static/js/main.2020edbc.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.9c35ea4e.js",
+    "static/js/2.25165d9c.chunk.js": "/static/js/2.25165d9c.chunk.js",
+    "static/js/3.12515b0e.chunk.js": "/static/js/3.12515b0e.chunk.js",
+    "index.html": "/index.html",
+    "static/js/2.25165d9c.chunk.js.LICENSE.txt": "/static/js/2.25165d9c.chunk.js.LICENSE.txt",
+    "static/media/TopBar.css": "/static/media/surface.594a6c6f.webp"
   },
   "entrypoints": [
-    "static/js/runtime-main.1a74b424.js",
+    "static/js/runtime-main.9c35ea4e.js",
     "static/js/2.25165d9c.chunk.js",
-    "static/css/main.c23a995b.chunk.css",
-    "static/js/main.11a889a8.chunk.js"
+    "static/css/main.87ed6650.chunk.css",
+    "static/js/main.2020edbc.chunk.js"
   ]
 }
