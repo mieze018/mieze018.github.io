@@ -2,14 +2,18 @@
 import React, { useEffect, useContext, memo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { CSSTransition } from 'react-transition-group';
+
 // 🧩
 import './index.css';
 import { DataCTX } from 'App';
 import { api_uri, api_Key, Blog_name } from 'functions';
 import TopBar from './TopBar';
 import Info from './info';
+import Posts from './Posts';
 
+const tags = ['personal work', 'commissioned work'];
+const navItems = ['info'];
 const MainLayout = memo(() => {
   //🏁GetAPI start
   const GetDataCTX: any = useContext(DataCTX);
@@ -53,22 +57,21 @@ const MainLayout = memo(() => {
       ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
   // 表示するポストのタグによる切り替え
-  const tags = ['personal work', 'commissioned work', 'info'];
   const [tagState, setTagState] = useState<string>(tags[0]);
 
   function handleClickNavButton(tag: string) {
     GetDataCTX.error && RefreshData();
-    document.getElementById('posts-wrapper')?.classList.remove('appear');
+    // document.getElementById('posts-wrapper')?.classList.remove('appear');
 
-    setTimeout(
-      function () {
-        document.getElementById('posts-wrapper')?.classList.add('appear');
-      },
-      tag === 'info' ? 200 : 5000
-    );
-    setTimeout(function () {
-      setTagState(tag);
-    }, 300);
+    // setTimeout(
+    //   function () {
+    //     document.getElementById('posts-wrapper')?.classList.add('appear');
+    //   },
+    //   tag === 'info' ? 200 : 5000
+    // );
+    // setTimeout(function () {
+    setTagState(tag);
+    // }, 300);
   }
 
   //表示クラス付与
@@ -81,91 +84,38 @@ const MainLayout = memo(() => {
 
   //ディスプレイサイズに応じて取得する画像のサイズ変更
   const displayFork = document.body.clientWidth > 1280 ? 0 : 1;
-
+  //test
   return (
     <div className="m-auto">
       <TopBar
-        tags={tags}
+        navs={tags.concat(navItems)}
         handleClickNavButton={handleClickNavButton}
         tagState={tagState}
       />
 
-      <section id="posts-wrapper" className="sunk-short">
-        {/* <!--Content holder--> */}
-        <div className="flex flex-col items-center justify-center min-h-screen">
-          {tagState === 'info' && <Info />}
-          {GetDataCTX.posts
-            ? GetDataCTX.posts
-                .filter((post: any) =>
-                  post.tags.find((tag: string, i: any) => tag === tagState)
-                )
-                .map((post: any, postK: any) => {
-                  return (
-                    <article
-                      className="min-h-square flex mb-10 max-w-full"
-                      key={postK}
-                    >
-                      <div
-                        className={`${
-                          post.photoset_layout ? 'photoset block' : post.type
-                        }`}
-                      >
-                        <div className="photo-container min-w-golden23v xl:max-w-golden61v m-auto">
-                          {post.photos.map((photo: any, photoK: any) => {
-                            if (
-                              !post.tags.find(
-                                (tag: string, i: any) => tag === 's-o-l-p'
-                              ) ||
-                              photoK === post.photos.length - 1
-                            ) {
-                              return (
-                                <LazyLoadImage
-                                  className="w-full"
-                                  src={photo.alt_sizes[displayFork].url}
-                                  alt={photo.alt_sizes[displayFork].url}
-                                  width={photo.alt_sizes[displayFork].width}
-                                  height={photo.alt_sizes[displayFork].height}
-                                  afterLoad={() =>
-                                    postK === 0 &&
-                                    photoK === post.photos.length - 1 &&
-                                    switchEffect()
-                                  }
-                                  key={photoK}
-                                  visibleByDefault={postK === 0 ? true : false}
-                                />
-                              );
-                            } else {
-                              return null;
-                            }
-                          })}
-                        </div>
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: post['caption']
-                          }}
-                        ></div>
-                        <footer className="post-footer mt-0 text-sm">
-                          <div>
-                            <ul>
-                              <li>
-                                <span className="time-ago">
-                                  {new Intl.DateTimeFormat('en-US', {
-                                    year: 'numeric',
-                                    month: 'long'
-                                  }).format(new Date(post.date))}
-                                </span>
-                              </li>
-                            </ul>
-                          </div>
-                        </footer>
-                      </div>
-                    </article>
-                  );
-                })
-            : 'API Error'}
-        </div>
-      </section>
-
+      <CSSTransition
+        in={true}
+        timeout={300}
+        classNames="alert"
+        unmountOnExit
+        onEnter={() => setTagState(tags[0])}
+        onExited={() => setTagState(tags[1])}
+      >
+        <section id="posts-wrapper" className="sunk-short">
+          {tags.map((tagGroup: any, tagGroupK: number) => {
+            return (
+              <Posts
+                tag={tagGroup}
+                tagState={tagState}
+                displayFork={displayFork}
+                switchEffect={switchEffect}
+                key={tagGroupK}
+              />
+            );
+          })}
+          <Info tagState={tagState} tag={navItems[0]} />
+        </section>
+      </CSSTransition>
       <footer className="pb-5 text-center text-xs">
         © 2009-{this_year} {process.env.REACT_APP_author}
       </footer>

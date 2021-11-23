@@ -77,3 +77,20 @@ article {
     transform: translate(0, 0);
   }
 }
+/* //test */
+.fade-enter #posts-wrapper {
+  opacity: 0;
+}
+.fade-enter-active #posts-wrapper {
+  opacity: 1;
+}
+.fade-exit #posts-wrapper {
+  opacity: 1;
+}
+.fade-exit-active #posts-wrapper {
+  opacity: 0;
+}
+.fade-enter-active #posts-wrapper,
+.fade-exit-active #posts-wrapper {
+  transition: opacity 500ms, transform 500ms;
+}

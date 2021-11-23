@@ -6,7 +6,7 @@ import './TopBar.css';
 //
 const TopBar = memo(
   (props: {
-    tags: any[];
+    navs: any[];
     handleClickNavButton: (tag: string) => void;
     tagState: string;
   }) => {
@@ -33,7 +33,7 @@ const TopBar = memo(
     }
 
     return (
-      <header className="grade1 sticky top-0 w-full text-center text-sm">
+      <header className="grade1 z-10 top-0 w-full text-center text-sm">
         <div id="floater" className="index-img water"></div>
         <div id="sinker" className="sunk">
           <h1 className="head-title hero text-3xl">
@@ -55,7 +55,7 @@ const TopBar = memo(
             )}
           </p>
           <nav className="m-auto text-center text-base">
-            {props.tags.map((tag: string, tagK: any) => (
+            {props.navs.map((tag: string, tagK: any) => (
               <button
                 onClick={() => props.handleClickNavButton(tag)}
                 className={` m-3 ${props.tagState === tag && 'underline'}`}
