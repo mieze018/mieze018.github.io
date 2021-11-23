@@ -14,6 +14,11 @@ module.exports = {
         golden38v: '38.2vw',
         golden23v: '23.6vw'
       },
+      maxWidth: {
+        golden61v: '61.8vw',
+        golden38v: '38.2vw',
+        golden23v: '23.6vw'
+      },
       backgroundImage: {
         surface: `url('img/surface.webp')`
       }

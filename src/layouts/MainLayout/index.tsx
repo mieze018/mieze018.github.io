@@ -3,8 +3,8 @@ import React, { useEffect, useContext, memo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import './index.css';
 // 🧩
+import './index.css';
 import { DataCTX } from 'App';
 import { api_uri, api_Key, Blog_name } from 'functions';
 import TopBar from './TopBar';
@@ -57,12 +57,23 @@ const MainLayout = memo(() => {
   const [tagState, setTagState] = useState<string>(tags[0]);
 
   function handleClickNavButton(tag: string) {
-    setTagState(tag);
     GetDataCTX.error && RefreshData();
-    GetDataCTX.setDataCtx({
-      ...GetDataCTX,
-      loading: true
-    });
+    document.getElementById('posts-wrapper')?.classList.remove('appear');
+
+    setTimeout(
+      function () {
+        document.getElementById('posts-wrapper')?.classList.add('appear');
+      },
+      tag === 'info' ? 200 : 5000
+    );
+    setTimeout(function () {
+      setTagState(tag);
+    }, 300);
+  }
+
+  //表示クラス付与
+  function switchEffect() {
+    document.getElementById('posts-wrapper')?.classList.add('appear');
   }
   //現在の年を取得
   const now = new Date();
@@ -79,15 +90,7 @@ const MainLayout = memo(() => {
         tagState={tagState}
       />
 
-      <section
-        id="wrapper"
-        className="wrapper sunk-short"
-        style={{
-          transition: '3s',
-          opacity: GetDataCTX.loading ? 0 : 0.5
-          // width: GetDataCTX.loading ? '60vw' : 0,
-        }}
-      >
+      <section id="posts-wrapper" className="sunk-short">
         {/* <!--Content holder--> */}
         <div className="flex flex-col items-center justify-center min-h-screen">
           {tagState === 'info' && <Info />}
@@ -107,7 +110,7 @@ const MainLayout = memo(() => {
                           post.photoset_layout ? 'photoset block' : post.type
                         }`}
                       >
-                        <div className="photo-container min-w-golden23v max-w-golden38v m-auto">
+                        <div className="photo-container min-w-golden23v xl:max-w-golden61v m-auto">
                           {post.photos.map((photo: any, photoK: any) => {
                             if (
                               !post.tags.find(
@@ -123,10 +126,9 @@ const MainLayout = memo(() => {
                                   width={photo.alt_sizes[displayFork].width}
                                   height={photo.alt_sizes[displayFork].height}
                                   afterLoad={() =>
-                                    GetDataCTX.setDataCtx({
-                                      ...GetDataCTX,
-                                      loading: false
-                                    })
+                                    postK === 0 &&
+                                    photoK === post.photos.length - 1 &&
+                                    switchEffect()
                                   }
                                   key={photoK}
                                   visibleByDefault={postK === 0 ? true : false}

@@ -33,7 +33,7 @@ const TopBar = memo(
     }
 
     return (
-      <header className="grade1 top-0 w-full text-center text-sm">
+      <header className="grade1 sticky top-0 w-full text-center text-sm">
         <div id="floater" className="index-img water"></div>
         <div id="sinker" className="sunk">
           <h1 className="head-title hero text-3xl">

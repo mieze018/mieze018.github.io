@@ -18,10 +18,48 @@
   transform: matrix(1, 0, 0, 0.9, 0, 20);
   animation: wave 180s 0s linear forwards;
 }
+@keyframes wave {
+  0% {
+    transform: matrix(1, 0, 0, 0.7, 0, 10);
+  }
+  10% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+  30% {
+    transform: matrix(1, 0, 0, 0.8, 0, -10);
+  }
+  100% {
+    transform: matrix(1, 0, 0, 1, 0, -70);
+  }
+}
 .sunk {
   opacity: 0;
   transform: translate(0, -3em);
-  animation: sunk 30s 0.3s ease-out forwards;
+  animation: sunk 3s 0.3s ease-out forwards,
+    drift 10s ease-in-out 3s infinite alternate;
+}
+
+@keyframes sunk {
+  0% {
+    opacity: 0;
+    transform: translate(0, -3em);
+  }
+  1% {
+    opacity: 0.618;
+    transform: translate(0, -1em);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+@keyframes drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(0, -1em);
+  }
 }
 header a {
   margin: 0 0.2em;
@@ -78,33 +116,4 @@ header nav {
     #edf5f7 24%,
     white 100%
   );
-}
-@keyframes wave {
-  0% {
-    transform: matrix(1, 0, 0, 0.7, 0, 10);
-  }
-  10% {
-    transform: matrix(1, 0, 0, 1, 0, 0);
-  }
-  30% {
-    transform: matrix(1, 0, 0, 0.8, 0, -10);
-  }
-  100% {
-    transform: matrix(1, 0, 0, 1, 0, -70);
-  }
-}
-
-@keyframes sunk {
-  0% {
-    opacity: 0;
-    transform: translate(0, -3em);
-  }
-  1% {
-    opacity: 0.618;
-    transform: translate(0, -1em);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
 }
