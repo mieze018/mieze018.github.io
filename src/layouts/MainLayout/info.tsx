@@ -1,19 +1,22 @@
 import React, { memo } from 'react';
 const Info = memo(() => {
   return (
-    <div id="bio" className="text-center text-sm leading-7">
-      <div className="SNS-link flex flex-wrap items-center justify-center m-auto font-serif text-base">
+    <div id="bio" className="px-5 text-center text-xs leading-7 md:text-sm">
+      <div className="mb-0">
+        <a href={process.env.REACT_APP_linktree}>Linktree</a>
+      </div>
+      <div className="sns-link flex flex-wrap items-center justify-center m-auto">
+        <a href={process.env.REACT_APP_twitter_url}>twitter</a>
+        <a href={process.env.REACT_APP_pixiv_url}>pixiv</a>
+        <a href={process.env.REACT_APP_instagram_url}>instagram</a>
+        <a href={process.env.REACT_APP_deviantart_url}>deviantart</a>
+        <a href={process.env.REACT_APP_behance_url}>behance</a>
         <a
           href={`https://www.tumblr.com/blog/${process.env.REACT_APP_Tumblr_username}/`}
           className="tumblr"
         >
           tumblr
         </a>
-        <a href={process.env.REACT_APP_twitter_url}>twitter</a>
-        <a href={process.env.REACT_APP_deviantart_url}>deviantart</a>
-        <a href={process.env.REACT_APP_pixiv_url}>pixiv</a>
-        <a href={process.env.REACT_APP_behance_url}>behance</a>
-        <a href={process.env.REACT_APP_instagram_url}>instagram</a>
         <a
           href={process.env.REACT_APP_booth_url}
           target="_blank"
@@ -23,12 +26,15 @@ const Info = memo(() => {
         </a>
       </div>
       <hr />
+
       <div id="workExperience" className="Japanese mt-16 text-left">
         <p>
           mieze
           <br />
           大阪在住のイラストレーター・アーティスト。
-          <br />
+        </p>
+        <p>
+          {' '}
           お仕事のご依頼は以下のメールアドレスにお願いいたします。
           <br />
           mail:{' '}
@@ -36,10 +42,10 @@ const Info = memo(() => {
             {process.env.REACT_APP_mail}
           </a>
         </p>
-        <p>
+        {/* <p>
           イベントの参加予定
           <hr />-
-        </p>
+        </p> */}
         <p>
           仕事の経験(敬称略)
           <hr />
