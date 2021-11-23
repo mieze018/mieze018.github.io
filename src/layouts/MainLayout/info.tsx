@@ -1,13 +1,9 @@
 import React, { memo } from 'react';
 import './info.css';
-const Info = memo((props: { tag: string; tagState: string }) => {
+import Footer from './footer';
+const Info = memo((props: { tag: string; navState: string }) => {
   return (
-    <div
-      id={`tag_${props.tagState}`}
-      className={`flex-col items-center justify-center min-h-screen  ${
-        props.tagState === props.tag ? 'opacity-100 flex' : 'opacity-0 hidden'
-      }`}
-    >
+    <div id={`tag_${props.tag}`} className="fade-wrapper">
       <div
         id="tag_info"
         className="px-5 text-center text-xs leading-7 md:text-sm"
@@ -312,6 +308,7 @@ const Info = memo((props: { tag: string; tagState: string }) => {
         </a>
       </div> */}
       </div>
+      <Footer />
     </div>
   );
 });

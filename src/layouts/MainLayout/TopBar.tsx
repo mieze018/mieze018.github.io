@@ -8,7 +8,7 @@ const TopBar = memo(
   (props: {
     navs: any[];
     handleClickNavButton: (tag: string) => void;
-    tagState: string;
+    navState: string;
   }) => {
     const GetDataCTX: any = useContext(DataCTX);
 
@@ -58,7 +58,7 @@ const TopBar = memo(
             {props.navs.map((tag: string, tagK: any) => (
               <button
                 onClick={() => props.handleClickNavButton(tag)}
-                className={` m-3 ${props.tagState === tag && 'underline'}`}
+                className={` m-3 ${props.navState === tag && 'underline'}`}
                 key={tagK}
               >
                 {tag}

@@ -5,20 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 /* start */
-.load-wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 999;
-  background: #fff;
-  transition: opacity 0.2s ease-in;
-}
-.load-wrapper.hidden {
-  pointer-events: none;
-  opacity: 0;
-}
 .header-overlay {
   position: fixed;
   top: 50%;
@@ -55,15 +41,7 @@ article {
   width: 25%;
   margin: 0 0 1em;
 }
-#posts-wrapper {
-  padding: 25px 0;
-  opacity: 0;
-  transition: all 0.2s;
-}
-#posts-wrapper.appear {
-  opacity: 1;
-  transition: all 0.3s;
-}
+/* //ロード時のアニメーション */
 .sunk-short {
   transform: translate(0, -10em);
   animation: sunk-short 3s 0s ease-out forwards;
@@ -77,20 +55,56 @@ article {
     transform: translate(0, 0);
   }
 }
-/* //test */
-.fade-enter #posts-wrapper {
-  opacity: 0;
+/* //tag switch */
+/* http://reactcommunity.org/react-transition-group/css-transition */
+#posts-wrapper {
+  padding: 25px 0;
 }
-.fade-enter-active #posts-wrapper {
+.fade-wrapper {
+  @apply flex flex-col items-center justify-center min-h-screen;
+  position: absolute;
+  top: 0;
+  display: none;
+  width: 100%;
+  opacity: 0;
+  transition: 500ms, translate 2000ms;
+}
+.fade-appear-active,
+.fade-appear-done {
+  position: static;
+  display: flex;
+  opacity: 1;
+  transition: 3000ms;
+}
+.fade-appear,
+.fade-enter {
+  position: static;
+  display: flex;
+  opacity: 0;
+  transform: translate(0, -1rem);
+}
+.fade-enter-active {
+  position: static;
+  display: flex;
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.fade-enter-done {
+  position: static;
+  display: flex;
+  opacity: 1;
+  transform: translate(0, 0);
+}
+.fade-exit {
   opacity: 1;
 }
-.fade-exit #posts-wrapper {
-  opacity: 1;
-}
-.fade-exit-active #posts-wrapper {
+.fade-exit-active {
   opacity: 0;
 }
-.fade-enter-active #posts-wrapper,
-.fade-exit-active #posts-wrapper {
-  transition: opacity 500ms, transform 500ms;
+.fade-exit-done {
+  position: absolute;
+  top: 0;
+  display: none;
+  width: 100%;
+  transform: translate(0, -10rem);
 }

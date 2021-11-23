@@ -57,31 +57,13 @@ const MainLayout = memo(() => {
       ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
   // 表示するポストのタグによる切り替え
-  const [tagState, setTagState] = useState<string>(tags[0]);
+  const [navState, setNavState] = useState<string>(tags[0]);
 
   function handleClickNavButton(tag: string) {
     GetDataCTX.error && RefreshData();
-    // document.getElementById('posts-wrapper')?.classList.remove('appear');
-
-    // setTimeout(
-    //   function () {
-    //     document.getElementById('posts-wrapper')?.classList.add('appear');
-    //   },
-    //   tag === 'info' ? 200 : 5000
-    // );
-    // setTimeout(function () {
-    setTagState(tag);
-    // }, 300);
+    setNavState(tag);
   }
-
-  //表示クラス付与
-  function switchEffect() {
-    document.getElementById('posts-wrapper')?.classList.add('appear');
-  }
-  //現在の年を取得
-  const now = new Date();
-  const this_year = now.getFullYear();
-
+  const fadePrefix = 'fade';
   //ディスプレイサイズに応じて取得する画像のサイズ変更
   const displayFork = document.body.clientWidth > 1280 ? 0 : 1;
   //test
@@ -90,35 +72,39 @@ const MainLayout = memo(() => {
       <TopBar
         navs={tags.concat(navItems)}
         handleClickNavButton={handleClickNavButton}
-        tagState={tagState}
+        navState={navState}
       />
 
-      <CSSTransition
-        in={true}
-        timeout={300}
-        classNames="alert"
-        unmountOnExit
-        onEnter={() => setTagState(tags[0])}
-        onExited={() => setTagState(tags[1])}
-      >
-        <section id="posts-wrapper" className="sunk-short">
-          {tags.map((tagGroup: any, tagGroupK: number) => {
-            return (
+      <section id="posts-wrapper" className="sunk-short">
+        {tags.map((tagGroup: any, tagGroupK: number) => {
+          return (
+            <CSSTransition
+              in={navState === tagGroup}
+              appear={true}
+              timeout={500}
+              classNames={fadePrefix}
+              // onEnter={() => setTagState(navState)}
+              // onExited={() => setTagState(navState)}
+            >
               <Posts
                 tag={tagGroup}
-                tagState={tagState}
+                navState={navState}
                 displayFork={displayFork}
-                switchEffect={switchEffect}
                 key={tagGroupK}
+                // className={tagGroupK === 0 ? `${fadePrefix}-enter-done ` : ``}
               />
-            );
-          })}
-          <Info tagState={tagState} tag={navItems[0]} />
-        </section>
-      </CSSTransition>
-      <footer className="pb-5 text-center text-xs">
-        © 2009-{this_year} {process.env.REACT_APP_author}
-      </footer>
+            </CSSTransition>
+          );
+        })}
+
+        <CSSTransition
+          in={navState === navItems[0]}
+          timeout={500}
+          classNames="fade"
+        >
+          <Info navState={navState} tag={navItems[0]} />
+        </CSSTransition>
+      </section>
 
       <Outlet />
       {GetDataCTX.info && SetHead()}

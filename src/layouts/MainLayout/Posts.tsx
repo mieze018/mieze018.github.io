@@ -1,26 +1,24 @@
-﻿// ⚛️
+// ⚛️
 import React, { useContext, memo } from 'react';
-
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // 🧩
 import './index.css';
 import { DataCTX } from 'App';
+import Footer from './footer';
 
 const Posts = memo(
   (props: {
     tag: string;
-    tagState: string;
+    navState: string;
     displayFork: number;
-    switchEffect: () => void;
+    className?: string;
   }) => {
     const GetDataCTX: any = useContext(DataCTX);
     return (
       <div
-        id={`tag_${props.tag}`}
-        className={`flex-col items-center justify-center min-h-screen transition ease-out duration-300 ${
-          props.tagState === props.tag ? 'opacity-100 flex' : 'opacity-0 hidden'
-        }`}
+        id={`tag_${props.tag.replace(' ', '_')}`}
+        className={`fade-wrapper ${props.className && props.className}`}
       >
         {GetDataCTX.posts
           ? GetDataCTX.posts
@@ -51,11 +49,13 @@ const Posts = memo(
                                 className="w-full"
                                 src={photo.alt_sizes[props.displayFork].url}
                                 alt={photo.alt_sizes[props.displayFork].url}
-                                afterLoad={() =>
-                                  postK === 0 &&
-                                  photoK === post.photos.length - 1 &&
-                                  props.switchEffect()
-                                }
+                                threshold={1280}
+                                // afterLoad={() =>
+                                //   postK === 0 &&
+                                //   photoK === post.photos.length - 1 &&
+                                //   props.switchEffect()
+                                // }
+                                // delayTime={postK === 0 ? 1 : 0}
                                 key={photoK}
                                 visibleByDefault={postK === 0 ? true : false}
                               />
@@ -88,7 +88,8 @@ const Posts = memo(
                   </article>
                 );
               })
-          : 'API Error'}
+          : ' '}
+        <Footer />
       </div>
     );
   }
