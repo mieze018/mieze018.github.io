@@ -85,6 +85,7 @@ const MainLayout = memo(() => {
               classNames={fadePrefix}
               // onEnter={() => setTagState(navState)}
               // onExited={() => setTagState(navState)}
+              key={tagGroupK}
             >
               <Posts
                 tag={tagGroup}
