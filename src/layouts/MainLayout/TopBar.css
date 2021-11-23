@@ -16,11 +16,14 @@
   background-position: top center;
   background-size: 120% auto;
   transform: matrix(1, 0, 0, 0.9, 0, 20);
-  animation: wave 180s 0s linear forwards;
+  animation: wave 180s 0s ease-out forwards;
 }
 @keyframes wave {
   0% {
     transform: matrix(1, 0, 0, 0.7, 0, 10);
+  }
+  2% {
+    transform: matrix(1, 0, 0, 0.8, 0, 0);
   }
   10% {
     transform: matrix(1, 0, 0, 1, 0, 0);
