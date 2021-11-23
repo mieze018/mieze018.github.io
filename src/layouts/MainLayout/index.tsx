@@ -3,6 +3,7 @@ import React, { useEffect, useContext, memo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import './index.css';
 // 🧩
 import { DataCTX } from 'App';
 import { api_uri, api_Key, Blog_name } from 'functions';
@@ -67,8 +68,11 @@ const MainLayout = memo(() => {
   const now = new Date();
   const this_year = now.getFullYear();
 
+  //ディスプレイサイズに応じて取得する画像のサイズ変更
+  const displayFork = document.body.clientWidth > 1280 ? 0 : 1;
+
   return (
-    <>
+    <div className="m-auto">
       <TopBar
         tags={tags}
         handleClickNavButton={handleClickNavButton}
@@ -85,10 +89,7 @@ const MainLayout = memo(() => {
         }}
       >
         {/* <!--Content holder--> */}
-        <div
-          id="content"
-          className="flex flex-col items-center justify-center min-h-screen"
-        >
+        <div className="flex flex-col items-center justify-center min-h-screen">
           {tagState === 'info' && <Info />}
           {GetDataCTX.posts
             ? GetDataCTX.posts
@@ -97,13 +98,16 @@ const MainLayout = memo(() => {
                 )
                 .map((post: any, postK: any) => {
                   return (
-                    <article className="flex" key={postK}>
+                    <article
+                      className="min-h-square flex mb-10 max-w-full"
+                      key={postK}
+                    >
                       <div
                         className={`${
                           post.photoset_layout ? 'photoset block' : post.type
                         }`}
                       >
-                        <div className="container-l">
+                        <div className="photo-container min-w-golden23v max-w-golden38v m-auto">
                           {post.photos.map((photo: any, photoK: any) => {
                             if (
                               !post.tags.find(
@@ -113,10 +117,11 @@ const MainLayout = memo(() => {
                             ) {
                               return (
                                 <LazyLoadImage
-                                  src={photo.alt_sizes[1].url}
-                                  alt={photo.alt_sizes[1].url}
-                                  width={photo.alt_sizes[1].width}
-                                  height={photo.alt_sizes[1].height}
+                                  className="w-full"
+                                  src={photo.alt_sizes[displayFork].url}
+                                  alt={photo.alt_sizes[displayFork].url}
+                                  width={photo.alt_sizes[displayFork].width}
+                                  height={photo.alt_sizes[displayFork].height}
                                   afterLoad={() =>
                                     GetDataCTX.setDataCtx({
                                       ...GetDataCTX,
@@ -133,15 +138,13 @@ const MainLayout = memo(() => {
                           })}
                         </div>
                         <div
-                          className="container"
                           dangerouslySetInnerHTML={{
                             __html: post['caption']
                           }}
                         ></div>
-                        <footer className="post__footer container">
-                          <div className="metadata">
-                            <ul className="post__buttons"></ul>
-                            <ul className="post__info">
+                        <footer className="post-footer mt-0 text-sm">
+                          <div>
+                            <ul>
                               <li>
                                 <span className="time-ago">
                                   {new Intl.DateTimeFormat('en-US', {
@@ -151,7 +154,6 @@ const MainLayout = memo(() => {
                                 </span>
                               </li>
                             </ul>
-                            <ul className="post__tags"></ul>
                           </div>
                         </footer>
                       </div>
@@ -162,13 +164,13 @@ const MainLayout = memo(() => {
         </div>
       </section>
 
-      <footer className="pb-5 text-center">
+      <footer className="pb-5 text-center text-xs">
         © 2009-{this_year} {process.env.REACT_APP_author}
       </footer>
 
       <Outlet />
       {GetDataCTX.info && SetHead()}
-    </>
+    </div>
   );
 });
 

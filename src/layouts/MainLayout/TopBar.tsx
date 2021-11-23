@@ -2,6 +2,8 @@
 import React, { useContext, memo } from 'react';
 // 🧩
 import { DataCTX } from 'App';
+import './TopBar.css';
+//
 const TopBar = memo(
   (props: {
     tags: any[];
@@ -31,10 +33,10 @@ const TopBar = memo(
     }
 
     return (
-      <header className="head-wrap grade1">
-        <div className="index-img water"></div>
-        <div className="sunk">
-          <h1 className="head-title hero">
+      <header className="grade1 top-0 w-full text-center text-sm">
+        <div id="floater" className="index-img water"></div>
+        <div id="sinker" className="sunk">
+          <h1 className="head-title hero text-3xl">
             {GetDataCTX['info']
               ? GetDataCTX['info']['title']
               : process.env.REACT_APP_title}
@@ -52,18 +54,18 @@ const TopBar = memo(
               process.env.REACT_APP_description
             )}
           </p>
+          <nav className="m-auto text-center text-base">
+            {props.tags.map((tag: string, tagK: any) => (
+              <button
+                onClick={() => props.handleClickNavButton(tag)}
+                className={` m-3 ${props.tagState === tag && 'underline'}`}
+                key={tagK}
+              >
+                {tag}
+              </button>
+            ))}
+          </nav>
         </div>
-        <nav className="ma text-center text-base">
-          {props.tags.map((tag: string, tagK: any) => (
-            <button
-              onClick={() => props.handleClickNavButton(tag)}
-              className={` m-3 ${props.tagState === tag && 'underline'}`}
-              key={tagK}
-            >
-              {tag}
-            </button>
-          ))}
-        </nav>
       </header>
     );
   }

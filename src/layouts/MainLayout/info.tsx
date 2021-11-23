@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import './info.css';
 const Info = memo(() => {
   return (
     <div id="bio" className="px-5 text-center text-xs leading-7 md:text-sm">

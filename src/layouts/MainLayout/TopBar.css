@@ -1,0 +1,110 @@
+﻿@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* start */
+/* index only */
+.index-img {
+  @apply bg-surface;
+  z-index: 1;
+  width: 100%;
+  height: 38vh;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: top center;
+  background-size: 120% auto;
+  transform: matrix(1, 0, 0, 0.9, 0, 20);
+  animation: wave 180s 0s linear forwards;
+}
+.sunk {
+  opacity: 0;
+  transform: translate(0, -3em);
+  animation: sunk 30s 0.3s ease-out forwards;
+}
+header a {
+  margin: 0 0.2em;
+  line-height: 2.92em;
+  letter-spacing: 0.15em;
+}
+header {
+  font-size: 0.82rem;
+}
+header nav {
+  font-size: 1rem;
+}
+.head-title {
+  margin-bottom: 0.1618em;
+  font-size: 1.618em;
+  color: #555;
+  letter-spacing: 0.2em;
+}
+.grade1 {
+  /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
+  background: whitesmoke;
+  background: linear-gradient(
+    to top,
+    whitesmoke 0%,
+    #edfbff 16%,
+    #edf5f7 24%,
+    white 100%
+  );
+  background: linear-gradient(
+    to top,
+    whitesmoke 0%,
+    #edfbff 16%,
+    #edf5f7 24%,
+    white 100%
+  );
+  background: linear-gradient(
+    to top,
+    whitesmoke 0%,
+    #edfbff 16%,
+    #edf5f7 24%,
+    white 100%
+  );
+  background: linear-gradient(
+    to top,
+    whitesmoke 0%,
+    #edfbff 16%,
+    #edf5f7 24%,
+    white 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    whitesmoke 0%,
+    #edfbff 16%,
+    #edf5f7 24%,
+    white 100%
+  );
+}
+@keyframes wave {
+  0% {
+    transform: matrix(1, 0, 0, 0.7, 0, 10);
+  }
+  10% {
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+  30% {
+    transform: matrix(1, 0, 0, 0.8, 0, -10);
+  }
+  100% {
+    transform: matrix(1, 0, 0, 1, 0, -70);
+  }
+}
+
+@keyframes sunk {
+  0% {
+    opacity: 0;
+    transform: translate(0, -3em);
+  }
+  1% {
+    opacity: 0.618;
+    transform: translate(0, -1em);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
