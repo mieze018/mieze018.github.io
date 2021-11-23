@@ -22,5 +22,5 @@
       { ignoreShorthands: ['/flex/'] }
     ]
   },
-  ignoreFiles: ['**/node_modules/**']
+  ignoreFiles: ['**/node_modules/**', '**/build/**']
 };
