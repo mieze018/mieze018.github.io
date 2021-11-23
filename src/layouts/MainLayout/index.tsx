@@ -2,15 +2,18 @@
 import React, { useEffect, useContext, memo, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import axios from 'axios';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { CSSTransition } from 'react-transition-group';
+
 // 🧩
+import './index.css';
 import { DataCTX } from 'App';
 import { api_uri, api_Key, Blog_name } from 'functions';
 import TopBar from './TopBar';
 import Info from './info';
+import Posts from './Posts';
 
-import './index.scss';
-
+const tags = ['personal work', 'commissioned work'];
+const navItems = ['info'];
 const MainLayout = memo(() => {
   //🏁GetAPI start
   const GetDataCTX: any = useContext(DataCTX);
@@ -37,114 +40,75 @@ const MainLayout = memo(() => {
       .catch((err) => {
         GetDataCTX.setDataCtx({
           ...GetDataCTX,
-          info: [err]
+          error: [err]
         });
       });
   }
   function SetHead() {
     document.title = GetDataCTX['info']['title'];
     document
-      .querySelector('link[rel="apple-touch-icon"]')!
-      .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
-
+      .querySelector('link[rel="apple-touch-icon"]')
+      ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
     document
-      .querySelector('meta[name="description"]')!
-      .setAttribute('content', GetDataCTX['description']);
+      .querySelector('meta[name="description"]')
+      ?.setAttribute('content', GetDataCTX['description']);
     document
-      .querySelector('link[rel="icon"]')!
-      .setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
+      .querySelector('link[rel="icon"]')
+      ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
   // 表示するポストのタグによる切り替え
-  const tags = ['personal work', 'commission', 'info'];
-  const [tagState, setTagState] = useState<string>(tags[0]);
+  const [navState, setNavState] = useState<string>(tags[0]);
 
   function handleClickNavButton(tag: string) {
-    setTagState(tag);
-    GetDataCTX.setDataCtx({
-      ...GetDataCTX,
-      loading: true
-    });
+    GetDataCTX.error && RefreshData();
+    setNavState(tag);
   }
-
-  const now = new Date();
-  const this_year = now.getFullYear();
+  const fadePrefix = 'fade';
+  //ディスプレイサイズに応じて取得する画像のサイズ変更
+  const displayFork = document.body.clientWidth > 1280 ? 0 : 1;
+  //test
   return (
-    <>
-      {GetDataCTX['info'] && SetHead()}
+    <div className="m-auto">
       <TopBar
-        tags={tags}
+        navs={tags.concat(navItems)}
         handleClickNavButton={handleClickNavButton}
-        tagState={tagState}
+        navState={navState}
       />
 
-      <section id="wrapper" className="wrapper sunk-short fade-in">
-        {/* <!--Content holder--> */}
-        <div id="content" className="flex flex-col justify-center items-center">
-          {tagState === 'info' && <Info />}
-          {GetDataCTX['posts'] &&
-            GetDataCTX['posts']
-              .filter((post: any) =>
-                post.tags.find((tag: string, i: any) => tag === tagState)
-              )
-              .map((post: any, postK: any) => {
-                return (
-                  <article className=" flex" key={postK}>
-                    <div className={`${post.type}`}>
-                      <div className="container-l">
-                        {post.photos.map((photo: any, photoK: any) => {
-                          return (
-                            <LazyLoadImage
-                              src={photo.alt_sizes[1].url}
-                              alt={photo.alt_sizes[1].url}
-                              width={photo.alt_sizes[1].width}
-                              height={photo.alt_sizes[1].height}
-                              afterLoad={() =>
-                                GetDataCTX.setDataCtx({
-                                  ...GetDataCTX,
-                                  loading: false
-                                })
-                              }
-                              key={photoK}
-                              visibleByDefault={postK === 0 ? true : false}
-                            />
-                          );
-                        })}
-                      </div>
-                      <div
-                        className="container"
-                        dangerouslySetInnerHTML={{
-                          __html: post['caption']
-                        }}
-                      ></div>
-                      <footer className="post__footer container">
-                        <div className="metadata">
-                          <ul className="post__buttons"></ul>
-                          <ul className="post__info">
-                            <li>
-                              <span className="time-ago">
-                                {new Intl.DateTimeFormat('en-US', {
-                                  year: 'numeric',
-                                  month: 'long'
-                                }).format(new Date(post.date))}
-                              </span>
-                            </li>
-                          </ul>
-                          <ul className="post__tags"></ul>
-                        </div>
-                      </footer>
-                    </div>
-                  </article>
-                );
-              })}
-        </div>
+      <section id="posts-wrapper" className="sunk-short">
+        {tags.map((tagGroup: any, tagGroupK: number) => {
+          return (
+            <CSSTransition
+              in={navState === tagGroup}
+              appear={true}
+              timeout={500}
+              classNames={fadePrefix}
+              // onEnter={() => setTagState(navState)}
+              // onExited={() => setTagState(navState)}
+            >
+              <Posts
+                tag={tagGroup}
+                navState={navState}
+                displayFork={displayFork}
+                key={tagGroupK}
+                // className={tagGroupK === 0 ? `${fadePrefix}-enter-done ` : ``}
+              />
+            </CSSTransition>
+          );
+        })}
+
+        <CSSTransition
+          in={navState === navItems[0]}
+          timeout={500}
+          classNames="fade"
+        >
+          <Info navState={navState} tag={navItems[0]} />
+        </CSSTransition>
       </section>
 
-      <footer className=" text-center pb-5">
-        © 2009-{this_year} Ayu Nakata
-      </footer>
-
       <Outlet />
-    </>
+      {GetDataCTX.info && SetHead()}
+    </div>
   );
 });
 

@@ -2,11 +2,13 @@
 import React, { useContext, memo } from 'react';
 // 🧩
 import { DataCTX } from 'App';
+import './TopBar.css';
+//
 const TopBar = memo(
   (props: {
-    tags: any[];
+    navs: any[];
     handleClickNavButton: (tag: string) => void;
-    tagState: string;
+    navState: string;
   }) => {
     const GetDataCTX: any = useContext(DataCTX);
 
@@ -26,18 +28,18 @@ const TopBar = memo(
         .querySelector('.mobile .tumblr')
         ?.setAttribute(
           'href',
-          'http://www.tumblr.com/open/app?app_args=blog&blogName=mieze018&page=blog'
+          `http://www.tumblr.com/open/app?app_args=blog&blogName=${process.env.REACT_APP_Tumblr_username}&page=blog`
         );
     }
 
     return (
-      <header className="head-wrap grade1">
-        <div className="index-img water"></div>
-        <div className="sunk">
-          <h1 className="head-title hero">
+      <header className="grade1 z-10 top-0 w-full text-center text-sm">
+        <div id="floater" className="index-img water"></div>
+        <div id="sinker" className="sunk">
+          <h1 className="head-title hero text-3xl">
             {GetDataCTX['info']
               ? GetDataCTX['info']['title']
-              : 'mieze illustration'}
+              : process.env.REACT_APP_title}
           </h1>
 
           <p className="header-desc hero">
@@ -49,21 +51,21 @@ const TopBar = memo(
                 }}
               ></span>
             ) : (
-              'by Ayu Nakata. Osaka, Japan-based illustrator/artist.'
+              process.env.REACT_APP_description
             )}
           </p>
+          <nav className="m-auto text-center text-base">
+            {props.navs.map((tag: string, tagK: any) => (
+              <button
+                onClick={() => props.handleClickNavButton(tag)}
+                className={` m-3 ${props.navState === tag && 'underline'}`}
+                key={tagK}
+              >
+                {tag}
+              </button>
+            ))}
+          </nav>
         </div>
-        <nav className=" ma text-center text-base">
-          {props.tags.map((tag: string, tagK: any) => (
-            <button
-              onClick={() => props.handleClickNavButton(tag)}
-              className={` m-1 ${props.tagState === tag && 'underline'}`}
-              key={tagK}
-            >
-              {tag}
-            </button>
-          ))}
-        </nav>
       </header>
     );
   }
