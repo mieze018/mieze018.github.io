@@ -5,7 +5,7 @@ const Footer = memo(() => {
   const now = new Date();
   const this_year = now.getFullYear();
   return (
-    <footer className="absolute bottom-0 pb-5 text-center text-xs">
+    <footer className="absolute bottom-0 py-0 text-center text-xs">
       © 2009-{this_year} {process.env.REACT_APP_author}
     </footer>
   );
