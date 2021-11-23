@@ -31,7 +31,8 @@
     "build": "GENERATE_SOURCEMAP=false craco build",
     "deploy": "yarn build && gh-pages -d build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "lint:css": "stylelint --fix **/*.{css,scss,sass}"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +53,13 @@
     ]
   },
   "devDependencies": {
-    "prettier-plugin-tailwind": "^2.2.12"
+    "prettier-plugin-tailwind": "^2.2.12",
+    "stylelint": "^14.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^4.0.0"
   }
 }
