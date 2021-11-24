@@ -78,7 +78,9 @@ const Posts = memo(
                                 {new Intl.DateTimeFormat('en-US', {
                                   year: 'numeric',
                                   month: 'long'
-                                }).format(new Date(post.date))}
+                                }).format(
+                                  new Date(post.date.replace(/-/g, '/'))
+                                )}
                               </span>
                             </li>
                           </ul>
