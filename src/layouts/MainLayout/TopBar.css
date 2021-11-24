@@ -6,15 +6,47 @@
 @tailwind utilities;
 /* start */
 /* index only */
+header {
+  margin-bottom: 0;
+  font-size: 0.82rem;
+  /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
+  /* background: whitesmoke; */
+  background: linear-gradient(
+    to bottom,
+    rgb(245 245 245 / 100%) 0%,
+    rgb(237 251 255 / 100%) 16%,
+    rgb(237 245 247 / 100%) 24%,
+    rgb(255 255 255 / 100%) 100%
+  );
+}
+header a {
+  margin: 0 0.2em;
+  line-height: 2.92em;
+  letter-spacing: 0.15em;
+}
+header nav {
+  font-size: 1rem;
+}
+.header-title {
+  margin-bottom: 0.1618em;
+  font-size: 1.618em;
+  color: #555;
+  letter-spacing: 0.2em;
+}
+.header-desc,
+.header-title {
+  opacity: 1;
+}
 .index-img {
   @apply bg-surface;
-  z-index: 1;
+  position: relative;
+  top: 0;
   width: 100%;
   height: 38vh;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: top center;
-  background-size: 120% auto;
+  background-size: 120% 50%;
   transform: matrix(1, 0, 0, 0.9, 0, 20);
   animation: wave 180s 0s ease-out forwards;
 }
@@ -32,7 +64,7 @@
     transform: matrix(1, 0, 0, 0.8, 0, -10);
   }
   100% {
-    transform: matrix(1, 0, 0, 1, 0, -70);
+    transform: matrix(1, 0, 0, 1, 0, 0);
   }
 }
 .sunk {
@@ -65,59 +97,43 @@
     transform: translate(0, 10px);
   }
 }
-header a {
-  margin: 0 0.2em;
-  line-height: 2.92em;
-  letter-spacing: 0.15em;
-}
-header {
-  font-size: 0.82rem;
-}
-header nav {
-  font-size: 1rem;
-}
-.head-title {
-  margin-bottom: 0.1618em;
-  font-size: 1.618em;
-  color: #555;
-  letter-spacing: 0.2em;
-}
-.grade1 {
-  /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
-  background: whitesmoke;
-  background: linear-gradient(
-    to top,
-    whitesmoke 0%,
-    #edfbff 16%,
-    #edf5f7 24%,
-    white 100%
-  );
-  background: linear-gradient(
-    to top,
-    whitesmoke 0%,
-    #edfbff 16%,
-    #edf5f7 24%,
-    white 100%
-  );
-  background: linear-gradient(
-    to top,
-    whitesmoke 0%,
-    #edfbff 16%,
-    #edf5f7 24%,
-    white 100%
-  );
-  background: linear-gradient(
-    to top,
-    whitesmoke 0%,
-    #edfbff 16%,
-    #edf5f7 24%,
-    white 100%
-  );
+/* スクロール後 */
+header.shrink {
+  position: sticky;
+  margin-bottom: 18vh;
   background: linear-gradient(
     to bottom,
-    whitesmoke 0%,
-    #edfbff 16%,
-    #edf5f7 24%,
-    white 100%
+    rgb(245 245 245 / 100%) 0%,
+    rgb(237 251 255 / 30%) 16%,
+    rgb(237 245 247 / 0%) 24%,
+    rgb(255 255 255 / 0%) 100%
   );
+  /* transition: 500ms; */
+}
+header.shrink .index-img {
+  top: -2vh;
+  height: 10vh;
+  /* background-size: 120% 100%; */
+  /* transition: 200ms; */
+  animation: wave 180s 0s ease-out forwards;
+}
+header.shrink .header-desc,
+header.shrink .header-title {
+  display: none;
+  opacity: 0;
+  /* transition: 200ms; */
+}
+header.shrink nav {
+  z-index: 9;
+  /* transition: 200ms; */
+  transform: translate(0, -11vh);
+  animation: wave-shrink 3s 0s ease-out forwards;
+}
+@keyframes wave-shrink {
+  0% {
+    background-size: 120% 50%;
+  }
+  100% {
+    background-size: 120% 100%;
+  }
 }
