@@ -2,9 +2,9 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 
 module.exports = function (app) {
   app.use(
-    'https://api.tumblr.com/v2/blog/mieze018.tumblr.com/',
+    process.env.REACT_APP_api_URI,
     createProxyMiddleware({
-      target: 'https://www.mieze018.net/',
+      target: process.env.REACT_APP_url,
       changeOrigin: true
     })
   );

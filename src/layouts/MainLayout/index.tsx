@@ -7,7 +7,6 @@ import { CSSTransition } from 'react-transition-group';
 // 🧩
 import './index.css';
 import { DataCTX } from 'App';
-import { api_uri, api_Key, Blog_name } from 'functions';
 import TopBar from './TopBar';
 import Info from './info';
 import Posts from './Posts';
@@ -17,8 +16,10 @@ const navItems = ['info'];
 const MainLayout = memo(() => {
   //🏁GetAPI start
   const GetDataCTX: any = useContext(DataCTX);
-
   // 🚩データの取得
+  const api_uri = process.env.REACT_APP_api_URI;
+  const api_Key = process.env.REACT_APP_api_Key;
+  const Blog_name = `${process.env.REACT_APP_Tumblr_username}.tumblr.com`;
   useEffect(() => {
     RefreshData();
     // eslint-disable-next-line react-hooks/exhaustive-deps

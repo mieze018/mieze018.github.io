@@ -1,6 +1,6 @@
 // ⚛️
 import axios, { AxiosError } from 'axios';
-export const api_uri = 'https://api.tumblr.com/v2/blog/';
+export const api_uri = process.env.REACT_APP_api_URI;
 export const api_Key = process.env.REACT_APP_api_Key;
 export const Blog_name = `${process.env.REACT_APP_Tumblr_username}.tumblr.com`;
 
