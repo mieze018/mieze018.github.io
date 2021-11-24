@@ -114,18 +114,18 @@ header.shrink .index-img {
   top: -2vh;
   height: 10vh;
   /* background-size: 120% 100%; */
-  /* transition: 200ms; */
+  transition: 200ms;
   animation: wave 180s 0s ease-out forwards;
 }
 header.shrink .header-desc,
 header.shrink .header-title {
   display: none;
   opacity: 0;
-  /* transition: 200ms; */
+  transition: 200ms;
 }
 header.shrink nav {
   z-index: 9;
-  /* transition: 200ms; */
+  transition: 200ms;
   transform: translate(0, -11vh);
   animation: wave-shrink 3s 0s ease-out forwards;
 }
