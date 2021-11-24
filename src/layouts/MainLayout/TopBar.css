@@ -7,18 +7,20 @@
 /* start */
 /* index only */
 header {
+  position: fixed;
+  @apply h-golden61v;
   margin-bottom: 0;
   font-size: 0.82rem;
-  /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
-  /* background: whitesmoke; */
-  background: linear-gradient(
-    to bottom,
-    rgb(245 245 245 / 100%) 0%,
-    rgb(237 251 255 / 100%) 16%,
-    rgb(237 245 247 / 100%) 24%,
-    rgb(255 255 255 / 100%) 100%
-  );
 }
+/* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
+/* background: whitesmoke; */
+background: linear-gradient(
+  to bottom,
+  rgb(245 245 245 / 100%) 0%,
+  rgb(237 251 255 / 100%) 16%,
+  rgb(237 245 247 / 100%) 24%,
+  rgb(255 255 255 / 100%) 100%
+);
 header a {
   margin: 0 0.2em;
   line-height: 2.92em;
@@ -99,8 +101,6 @@ header nav {
 }
 /* スクロール後 */
 header.shrink {
-  position: sticky;
-  margin-bottom: 18vh;
   background: linear-gradient(
     to bottom,
     rgb(245 245 245 / 100%) 0%,
