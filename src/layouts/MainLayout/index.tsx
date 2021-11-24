@@ -66,7 +66,7 @@ const MainLayout = memo(() => {
   }
   const fadePrefix = 'fade';
   //ディスプレイサイズに応じて取得する画像のサイズ変更
-  const displayFork = document.body.clientWidth > 1280 ? 0 : 1;
+  const displayFork = document.body.clientWidth > 2500 ? 0 : 1;
   //test
   return (
     <div className="m-auto">

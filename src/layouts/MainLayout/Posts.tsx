@@ -36,7 +36,7 @@ const Posts = memo(
                         post.photoset_layout ? 'photoset block' : post.type
                       }`}
                     >
-                      <div className="photo-container m-auto min-w-golden23v xl:max-w-golden61v">
+                      <div className="photo-container m-auto min-w-golden23v xl:max-w-golden38v">
                         {post.photos.map((photo: any, photoK: any) => {
                           if (
                             !post.tags.find(
