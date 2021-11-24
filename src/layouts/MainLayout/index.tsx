@@ -48,14 +48,8 @@ const MainLayout = memo(() => {
   function SetHead() {
     document.title = GetDataCTX['info']['title'];
     document
-      .querySelector('link[rel="apple-touch-icon"]')
-      ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
-    document
       .querySelector('meta[name="description"]')
       ?.setAttribute('content', GetDataCTX['description']);
-    document
-      .querySelector('link[rel="icon"]')
-      ?.setAttribute('href', GetDataCTX['info']['avatar'][0]['url']);
   }
   // 表示するポストのタグによる切り替え
   const [navState, setNavState] = useState<string>(tags[0]);

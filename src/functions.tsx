@@ -5,7 +5,7 @@ export const api_Key = process.env.REACT_APP_api_Key;
 export const Blog_name = `${process.env.REACT_APP_Tumblr_username}.tumblr.com`;
 
 export function GetAPI(props: {
-  method: 'info' | 'avatar' | 'posts' | 'tagged'; // https://www.tumblr.com/docs/en/api/v2
+  method: 'info' | 'posts' | 'tagged'; // https://www.tumblr.com/docs/en/api/v2
   success: (res_data: any) => any;
   catch?: (err: any) => any;
   finally?: () => any;
