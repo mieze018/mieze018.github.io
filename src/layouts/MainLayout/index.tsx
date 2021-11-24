@@ -63,7 +63,9 @@ const MainLayout = memo(() => {
   function handleClickNavButton(tag: string) {
     GetDataCTX.error && RefreshData();
 
-    document.documentElement.scrollTop = 100;
+    if (window.pageYOffset > 0) {
+      document.documentElement.scrollTop = 100;
+    }
     setNavState(tag);
   }
   const fadePrefix = 'fade';
