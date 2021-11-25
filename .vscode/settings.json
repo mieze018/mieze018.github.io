@@ -25,5 +25,10 @@
     "tailwindcss",
     "webp",
     "welle"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#be8666",
+    "titleBar.activeBackground": "#be8666",
+    "titleBar.activeForeground": "#F8F9FD"
+  }
 }
