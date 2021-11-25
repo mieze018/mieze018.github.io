@@ -39,8 +39,6 @@ const TopBar = memo(
         );
     }
     //スクロール
-    const [isDisplay, setIsDisplay] = useState<boolean>(false);
-
     const isRunning = useRef(false); // スクロール多発防止用フラグ
     // リスナに登録する関数
     const isScrollToggle = useCallback(() => {
@@ -49,15 +47,14 @@ const TopBar = memo(
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
       requestAnimationFrame(() => {
-        // console.log(scrollTop);
-        if (scrollTop > 0) {
-          setIsDisplay(true);
-          !document.querySelector('header')?.classList.contains('shrink') &&
-            document.querySelector('header')?.classList.add('shrink');
-        } else if (scrollTop === 0) {
-          setIsDisplay(false);
-          document.querySelector('header')?.classList.contains('shrink') &&
-            document.querySelector('header')?.classList.remove('shrink');
+        const header = document.querySelector('header');
+        if (scrollTop > window.innerHeight * 0.618) {
+          // header.style.height = `${window.innerHeight * 0.618 - scrollTop}px`;
+          header?.classList.add('shrink-0');
+        } else if (scrollTop > 0) {
+          header?.classList.add('shrink-0');
+        } else if (scrollTop === 0 && header) {
+          header.classList.remove('shrink-0');
         }
         isRunning.current = false;
       });
@@ -90,41 +87,49 @@ const TopBar = memo(
     //   }
     //   watchScroll();
     // });
-    return (
-      <header className="z-10 top-0 w-full text-center text-sm">
-        <div id="floater" className="index-img water"></div>
-        <div id="sinker" className="sunk">
-          <h1 className="header-title hero text-3xl">
-            {GetDataCTX['info']
-              ? GetDataCTX['info']['title']
-              : process.env.REACT_APP_title}
-          </h1>
 
-          <p className="header-desc hero">
-            {GetDataCTX['description'] ? (
-              <span
-                dangerouslySetInnerHTML={{
-                  // __html: GetDataCTX['info']['description']
-                  __html: GetDataCTX['description']
-                }}
-              ></span>
-            ) : (
-              process.env.REACT_APP_description
-            )}
-          </p>
-          <nav className="m-auto text-center text-base">
-            {props.navs.map((tag: string, tagK: any) => (
-              <button
-                onClick={() => props.handleClickNavButton(tag)}
-                className={` m-3 ${props.navState === tag && 'underline'}`}
-                key={tagK}
-              >
-                {tag}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </header>
+    return (
+      <>
+        <header className="h-golden61vh transition-header fixed z-10 top-0 mb-0 w-full text-center text-sm">
+          <div
+            id="floater"
+            className="index-img water transition-header fixed top-0"
+          ></div>
+          <div id="sinker" className="transition-header fixed">
+            <h1 className="header-title hero text-3xl">
+              {GetDataCTX['info']
+                ? GetDataCTX['info']['title']
+                : process.env.REACT_APP_title}
+            </h1>
+
+            <p className="header-desc hero">
+              {GetDataCTX['description'] ? (
+                <span
+                  dangerouslySetInnerHTML={{
+                    // __html: GetDataCTX['info']['description']
+                    __html: GetDataCTX['description']
+                  }}
+                ></span>
+              ) : (
+                process.env.REACT_APP_description
+              )}
+            </p>
+            <nav className="z-10 m-auto text-center text-base">
+              {props.navs.map((tag: string, tagK: any) => (
+                <button
+                  onClick={() => props.handleClickNavButton(tag)}
+                  className={` m-3  mix-blend-color-burn hover:mix-blend-normal ${
+                    props.navState === tag && 'underline'
+                  }`}
+                  key={tagK}
+                >
+                  {tag}
+                </button>
+              ))}
+            </nav>
+          </div>
+        </header>
+      </>
     );
   }
 );

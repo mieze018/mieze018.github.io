@@ -5,29 +5,9 @@
 @tailwind components;
 @tailwind utilities;
 /* start */
-/* index only */
-header {
-  position: fixed;
-  @apply h-golden61v;
-  margin-bottom: 0;
-  font-size: 0.82rem;
-}
 /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
 /* background: whitesmoke; */
-background: linear-gradient(
-  to bottom,
-  rgb(245 245 245 / 100%) 0%,
-  rgb(237 251 255 / 100%) 16%,
-  rgb(237 245 247 / 100%) 24%,
-  rgb(255 255 255 / 100%) 100%
-);
-header a {
-  margin: 0 0.2em;
-  line-height: 2.92em;
-  letter-spacing: 0.15em;
-}
-header nav {
-  font-size: 1rem;
+header {
 }
 .header-title {
   margin-bottom: 0.1618em;
@@ -69,8 +49,13 @@ header nav {
     transform: matrix(1, 0, 0, 1, 0, 0);
   }
 }
-.sunk {
+#sinker {
+  top: auto;
+  width: 100%;
+  margin: auto;
+  margin-top: 50vh;
   opacity: 0;
+  transition: 2000ms;
   transform: translate(0, -3em);
   animation: sunk 10s 0.3s ease-out forwards
     /* ,
@@ -100,40 +85,30 @@ header nav {
   }
 }
 /* スクロール後 */
-header.shrink {
-  background: linear-gradient(
+header.shrink-0 {
+  /* background: linear-gradient(
     to bottom,
-    rgb(245 245 245 / 100%) 0%,
-    rgb(237 251 255 / 30%) 16%,
+    rgb(245 245 245 / 30%) 0%,
+    rgb(237 251 255 / 20%) 16%,
     rgb(237 245 247 / 0%) 24%,
     rgb(255 255 255 / 0%) 100%
-  );
-  /* transition: 500ms; */
+  ); */
 }
-header.shrink .index-img {
-  top: -2vh;
+header.shrink-0 #floater {
+  top: -3vh;
   height: 10vh;
   /* background-size: 120% 100%; */
-  /* transition: 200ms; */
-  animation: wave 180s 0s ease-out forwards;
+  transition: 2000ms;
+  animation: wave 180s 0s ease-in-out forwards;
 }
-header.shrink .header-desc,
-header.shrink .header-title {
-  display: none;
+header.shrink-0 #sinker {
+  margin-top: 0.1vh;
+}
+header.shrink-0 .header-desc,
+header.shrink-0 .header-title {
+  /* display: none; */
   opacity: 0;
-  /* transition: 200ms; */
-}
-header.shrink nav {
-  z-index: 9;
-  /* transition: 200ms; */
-  transform: translate(0, -11vh);
-  animation: wave-shrink 3s 0s ease-out forwards;
-}
-@keyframes wave-shrink {
-  0% {
-    background-size: 120% 50%;
-  }
-  100% {
-    background-size: 120% 100%;
-  }
+  transition-property: opacity, translate;
+  transition: 200ms, 2000ms;
+  transform: translate(0, -10vh);
 }

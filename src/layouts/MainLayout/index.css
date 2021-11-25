@@ -59,7 +59,7 @@ article {
 /* http://reactcommunity.org/react-transition-group/css-transition */
 #posts-wrapper {
   padding: 25px 0;
-  @apply mt-golden61v;
+  @apply mt-golden61vh;
 }
 .fade-wrapper {
   @apply flex flex-col items-center justify-center min-h-screen;
