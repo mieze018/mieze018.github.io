@@ -76,28 +76,30 @@ const MainLayout = memo(() => {
         navState={navState}
       />
 
-      <section id="posts-wrapper" className="sunk-short">
-        {tags.map((tagGroup: any, tagGroupK: number) => {
-          return (
-            <CSSTransition
-              in={navState === tagGroup}
-              appear={true}
-              timeout={500}
-              classNames={fadePrefix}
-              // onEnter={() => setTagState(navState)}
-              // onExited={() => setTagState(navState)}
-              key={tagGroupK}
-            >
-              <Posts
-                tag={tagGroup}
-                navState={navState}
-                displayFork={displayFork}
-                key={tagGroupK}
-                // className={tagGroupK === 0 ? `${fadePrefix}-enter-done ` : ``}
-              />
-            </CSSTransition>
-          );
-        })}
+      <section id="posts-wrapper" className="sunk-short mt-golden61v">
+        {GetDataCTX.posts
+          ? tags.map((tagGroup: any, tagGroupK: number) => {
+              return (
+                <CSSTransition
+                  in={navState === tagGroup}
+                  appear={true}
+                  timeout={500}
+                  classNames={fadePrefix}
+                  // onEnter={() => setTagState(navState)}
+                  // onExited={() => setTagState(navState)}
+                  key={tagGroupK}
+                >
+                  <Posts
+                    tag={tagGroup}
+                    navState={navState}
+                    displayFork={displayFork}
+                    key={tagGroupK}
+                    // className={tagGroupK === 0 ? `${fadePrefix}-enter-done ` : ``}
+                  />
+                </CSSTransition>
+              );
+            })
+          : GetDataCTX.error && String(GetDataCTX.error)}
 
         <CSSTransition
           in={navState === navItems[0]}
