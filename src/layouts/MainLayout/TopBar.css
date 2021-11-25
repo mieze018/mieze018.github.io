@@ -108,7 +108,7 @@ header.shrink-0 .header-desc,
 header.shrink-0 .header-title {
   /* display: none; */
   opacity: 0;
-  transition-property: opacity, translate;
   transition: 200ms, 2000ms;
+  transition-property: opacity, translate;
   transform: translate(0, -10vh);
 }
