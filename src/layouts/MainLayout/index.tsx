@@ -28,7 +28,9 @@ const MainLayout = memo(() => {
   //🏁GetAPI end
   function RefreshData() {
     axios
-      .get(`${api_uri}${Blog_name}/posts?api_key=${api_Key}&limit=999`)
+      .get(`${api_uri}${Blog_name}/posts?api_key=${api_Key}&limit=999`, {
+        timeout: 5000
+      })
       .then((res) => {
         GetDataCTX.setDataCtx({
           ...GetDataCTX,
