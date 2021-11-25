@@ -1,5 +1,4 @@
 import React, { memo } from 'react';
-import './info.css';
 const Footer = memo(() => {
   //現在の年を取得
   const now = new Date();
