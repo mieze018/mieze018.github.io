@@ -85,7 +85,7 @@ header {
   }
 }
 /* スクロール後 */
-header.shrink-0 {
+header.scroll-top-gt-0 {
   /* background: linear-gradient(
     to bottom,
     rgb(245 245 245 / 30%) 0%,
@@ -94,18 +94,18 @@ header.shrink-0 {
     rgb(255 255 255 / 0%) 100%
   ); */
 }
-header.shrink-0 #floater {
+header.scroll-top-gt-0 #floater {
   top: -3vh;
   height: 10vh;
   /* background-size: 120% 100%; */
   transition: 2000ms;
   animation: wave 180s 0s ease-in-out forwards;
 }
-header.shrink-0 #sinker {
+header.scroll-top-gt-0 #sinker {
   margin-top: 0.1vh;
 }
-header.shrink-0 .header-desc,
-header.shrink-0 .header-title {
+header.scroll-top-gt-0 .header-desc,
+header.scroll-top-gt-0 .header-title {
   /* display: none; */
   opacity: 0;
   transition: 200ms, 2000ms;
