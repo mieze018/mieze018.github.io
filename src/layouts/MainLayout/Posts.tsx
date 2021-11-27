@@ -83,7 +83,11 @@ const Posts = memo(
                                   year: 'numeric',
                                   month: 'long'
                                 }).format(
-                                  new Date(post.date.replace(/-/g, '/'))
+                                  new Date(
+                                    post.date
+                                      .replace(' GMT', '')
+                                      .replace(' ', 'T')
+                                  )
                                 )}
                               </span>
                             </li>
