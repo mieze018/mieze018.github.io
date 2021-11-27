@@ -49,6 +49,7 @@ const Info = memo(
                 className={`${
                   link.class && link.class
                 } block mx-2 tracking-wider`}
+                key={linkK}
               >
                 {link.text}
               </a>
