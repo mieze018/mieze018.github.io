@@ -7,32 +7,81 @@
 /* start */
 /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
 /* background: whitesmoke; */
-#fade-outer {
-  opacity: 1;
-}
+#floater {
+  top: 0; /* 上部のボケを隠すため少し上に上げる */
   @apply h-golden23vh;
+  filter: blur(0) brightness(1);
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-position: top center;
-  background-size: 120% 50%;
+  background-position: center top;
+  background-size: 120% 100%;
+  transition: 10000ms;
+  transform-origin: right top;
   animation: wave 180s 0s ease-out forwards;
 }
 @keyframes wave {
+  /* 読み込み時 */
   0% {
-    transform: matrix(1, 0, 0, 0.7, 0, 10);
+    transform: matrix(1, 0, 0, 1, 0, 0);
   }
+  /* 最初の3秒ほどでここまで沈む */
   2% {
     transform: matrix(1, 0, 0, 0.8, 0, 0);
   }
+  /* 少し戻る */
   10% {
-    transform: matrix(1, 0, 0, 1, 0, 0);
+    transform: matrix(1, 0.02, 0, 0.6, 0, 0);
   }
+  /* 少し沈む・水平に  */
   30% {
-    transform: matrix(1, 0, 0, 0.8, 0, -10);
+    transform: matrix(1, 0.03, 0, 0.8, 0, 0);
   }
+  /* その後30秒ほどかけて浮き上がる */
+  50% {
+    transform: matrix(1, 0.03, 0, 0.7, 0, 0);
+  }
+  /* 残り126秒かけて水平に元に戻る */
   100% {
-    transform: matrix(1, 0, 0, 1, 0, 0);
+    transform: matrix(1, 0.03, 0, 1, 0, 0);
   }
+}
+/* スクロール後 */
+.scroll-top-gt-0 #floater {
+  top: -2%;
+  @apply h-golden23vh;
+  filter: blur(1px) brightness(1.01);
+  transition: 10000ms, 10000ms, 8000ms;
+  transition-property: filter, top, height;
+}
+.scroll-top-gt-23vh #floater {
+  top: -5%;
+  @apply h-golden14vh;
+  filter: blur(10px) brightness(1.1);
+  transition: 10000ms, 10000ms, 10000ms;
+  transition-property: filter, top, height;
+}
+.scroll-backed #floater {
+  top: 0;
+  @apply h-golden23vh;
+  filter: blur(4px) brightness(1.05);
+  transition: 10000ms, 10000ms, 10000ms;
+  transition-property: filter, top, height;
+}
+#fade-outer {
+  margin-top: calc(23vh);
+  opacity: 1;
+  transition: 2000ms, 2000ms, 2000ms, 10000ms;
+  transition-property: opacity, translate, filter, margin-top;
+}
+.scroll-top-gt-0 #fade-outer {
+  margin-top: calc(-3em);
+  opacity: 0;
+  transition: 1000ms;
+}
+.scroll-top-gt-23vh #fade-outer {
+  margin-top: calc(-3em);
+  opacity: 0;
+  transition: 1000ms;
 }
 #sinker {
   top: auto;
