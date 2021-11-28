@@ -63,7 +63,9 @@ module.exports = {
         golden38vw: '38.2vw',
         golden38vh: '38.2vh',
         golden23vw: '23.6vw',
-        golden23vh: '23.6vh'
+        golden23vh: '23.6vh',
+        golden14vw: '14.6vw',
+        golden14vh: '14.6vh'
       },
       spacing: {
         square: 'calc((92vh + 92vw) /2)',
@@ -72,7 +74,9 @@ module.exports = {
         golden38vw: '38.2vw',
         golden38vh: '38.2vh',
         golden23vw: '23.6vw',
-        golden23vh: '23.6vh'
+        golden23vh: '23.6vh',
+        golden14vw: '14.6vw',
+        golden14vh: '14.6vh'
       },
       backgroundImage: {
         surface: `url('img/surface.webp')`
