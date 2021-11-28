@@ -7,6 +7,15 @@
 /* start */
 /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
 /* background: whitesmoke; */
+header {
+  /* 最上部の隙間対策 */
+  min-height: 2em;
+  background: linear-gradient(
+    180deg,
+    rgb(246 246 246 / 100%) 0%,
+    rgb(255 255 255 / 0%) 100%
+  );
+}
 #floater {
   top: 0; /* 上部のボケを隠すため少し上に上げる */
   @apply h-golden23vh;
@@ -47,24 +56,24 @@
 }
 /* スクロール後 */
 .scroll-top-gt-0 #floater {
-  top: -2%;
-  @apply h-golden23vh;
+  top: -1vh;
+  @apply h-golden14vh;
   filter: blur(1px) brightness(1.01);
-  transition: 10000ms, 10000ms, 8000ms;
+  transition: 10000ms, 1000ms, 8000ms;
   transition-property: filter, top, height;
 }
 .scroll-top-gt-23vh #floater {
-  top: -5%;
+  top: -4vh;
   @apply h-golden14vh;
   filter: blur(10px) brightness(1.1);
-  transition: 10000ms, 10000ms, 10000ms;
+  transition: 10000ms, 1000ms, 10000ms;
   transition-property: filter, top, height;
 }
 .scroll-backed #floater {
   top: 0;
   @apply h-golden23vh;
   filter: blur(4px) brightness(1.05);
-  transition: 10000ms, 10000ms, 10000ms;
+  transition: 10000ms, 1000ms, 10000ms;
   transition-property: filter, top, height;
 }
 #fade-outer {
