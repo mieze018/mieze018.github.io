@@ -7,29 +7,14 @@
 /* start */
 /* https://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28245\%2C245\%2C245\%2C1\%29\%200\%25\%2C\%20rgba\%28237\%2C251\%2C255\%2C1\%29\%2016\%25\%2C\%20rgba\%28237\%2C245\%2C247\%2C1\%29\%2024\%25\%2C\%20rgba\%28255\%2C255\%2C255\%2C1\%29\%20100\%25\%29\%3B' */
 /* background: whitesmoke; */
-header {
-}
-.header-title {
-  margin-bottom: 0.1618em;
-  font-size: 1.618em;
-  color: #555;
-  letter-spacing: 0.2em;
-}
-.header-desc,
-.header-title {
+#fade-outer {
   opacity: 1;
 }
-.index-img {
-  @apply bg-surface;
-  position: relative;
-  top: 0;
-  width: 100%;
-  height: 38vh;
+  @apply h-golden23vh;
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: top center;
   background-size: 120% 50%;
-  transform: matrix(1, 0, 0, 0.9, 0, 20);
   animation: wave 180s 0s ease-out forwards;
 }
 @keyframes wave {

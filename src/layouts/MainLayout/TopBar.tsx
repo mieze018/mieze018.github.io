@@ -74,14 +74,11 @@ const TopBar = memo(
     return (
       <>
         {' '}
-        <div
-          id="floater"
-          className="fixed z-10 top-0 w-full h-golden38vh bg-surface"
-        ></div>
+        <div id="floater" className="fixed z-10 top-0 w-full bg-surface"></div>
         <header className="fixed z-10 top-0 mb-0 w-full text-center text-sm">
           <div id="sinker" className="fixed mt-golden23vh">
             <div id="fade-outer">
-              <h1 className="header-title hero tracking-title text-primary mb-1 text-3xl">
+              <h1 className="header-title hero mb-1 text-primary text-3xl tracking-title">
                 {GetDataCTX['info']
                   ? GetDataCTX['info']['title']
                   : process.env.REACT_APP_title}
