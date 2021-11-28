@@ -60,7 +60,7 @@ const MainLayout = memo(() => {
     GetDataCTX.error && RefreshData();
 
     if (window.pageYOffset > 0) {
-      document.documentElement.scrollTop = 100;
+      document.documentElement.scrollTop = window.innerHeight * 0.24;
     }
     setNavState(tag);
   }
