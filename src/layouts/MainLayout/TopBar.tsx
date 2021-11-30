@@ -1,5 +1,6 @@
 // ⚛️
 import React, { useContext, memo, useEffect, useRef, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 // 🧩
 import { DataCTX } from 'App';
 import { classList } from 'functions';
@@ -113,7 +114,8 @@ const TopBar = memo(
             </div>
             <nav className="z-10 text-center">
               {props.navs.map((tag: string, tagK: any) => (
-                <button
+                <Link
+                  to={tag.replace(' ', '_')}
                   onClick={() => props.handleClickNavButton(tag)}
                   className={`m-2 xs:m-3  mix-blend-multiply xs:tracking-widest  ${
                     props.navState === tag && 'underline'
@@ -121,7 +123,7 @@ const TopBar = memo(
                   key={tagK}
                 >
                   {tag}
-                </button>
+                </Link>
               ))}
             </nav>
           </div>
