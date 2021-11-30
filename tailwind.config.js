@@ -90,6 +90,12 @@ module.exports = {
       },
       letterSpacing: {
         title: '0.2em'
+      },
+      blur: {
+        '1px': '1px'
+      },
+      screens: {
+        xs: '375px'
       }
     }
   },

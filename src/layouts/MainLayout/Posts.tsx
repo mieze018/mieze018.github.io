@@ -70,11 +70,12 @@ const Posts = memo(
                         })}
                       </div>
                       <div
+                        className="mt-0 text-sm sm:text-base"
                         dangerouslySetInnerHTML={{
                           __html: post['caption']
                         }}
                       ></div>
-                      <footer className="post-footer mt-0 text-sm">
+                      <footer className="mt-0 text-xs sm:text-sm">
                         <div>
                           <ul>
                             <li>
