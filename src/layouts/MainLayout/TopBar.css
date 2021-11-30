@@ -139,7 +139,7 @@ header {
 }
 .scroll-top-gt-38vh #sinker {
   top: -2em;
-  filter: blur(3px);
+  filter: blur(1px);
   opacity: 1;
   animation: fade-out-in 3ms 0.3s ease-in-out forwards;
 }
