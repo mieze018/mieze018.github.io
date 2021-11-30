@@ -83,7 +83,26 @@ export function GetData(props: {
       props.finally && props.finally();
     });
 }
-
+export function classList(elt: HTMLElement | null) {
+  const list = elt?.classList;
+  // console.log(list);
+  return elt === null
+    ? null
+    : {
+        toggle: function (c: string) {
+          list?.toggle(c);
+          return this;
+        },
+        add: function (c: string) {
+          list?.add(c);
+          return this;
+        },
+        remove: function (c: string) {
+          list?.remove(c);
+          return this;
+        }
+      };
+}
 /**定期実行する関数
  * - interval = 1ms */
 // export function useWatch(props: { interval: number; function: (any?) => any }) {

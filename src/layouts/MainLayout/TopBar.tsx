@@ -1,14 +1,8 @@
 // ⚛️
-import React, {
-  useContext,
-  memo,
-  useState,
-  useEffect,
-  useRef,
-  useCallback
-} from 'react';
+import React, { useContext, memo, useEffect, useRef, useCallback } from 'react';
 // 🧩
 import { DataCTX } from 'App';
+import { classList } from 'functions';
 import './TopBar.css';
 //
 const TopBar = memo(
@@ -22,6 +16,7 @@ const TopBar = memo(
     //スマホでアクセスした時tumblrへのリンクをアプリから開くリンクに書き換え
     {
       const userAgent = window.navigator.userAgent.toLowerCase();
+
       if (
         userAgent.indexOf('iphone') !== -1 ||
         userAgent.indexOf('ipad') !== -1 ||
@@ -31,6 +26,10 @@ const TopBar = memo(
       } else {
         document.querySelector('html')?.classList.add('desktop');
       }
+      userAgent.indexOf('android') !== -1 &&
+        document.querySelector('html')?.classList.add('android');
+      // userAgent.indexOf('gecko') !== -1 &&
+      //   document.querySelector('html')?.classList.add('gecko');
       document
         .querySelector('.mobile .tumblr')
         ?.setAttribute(
@@ -39,8 +38,6 @@ const TopBar = memo(
         );
     }
     //スクロール
-    const [isDisplay, setIsDisplay] = useState<boolean>(false);
-
     const isRunning = useRef(false); // スクロール多発防止用フラグ
     // リスナに登録する関数
     const isScrollToggle = useCallback(() => {
@@ -49,16 +46,33 @@ const TopBar = memo(
       const scrollTop =
         window.pageYOffset || document.documentElement.scrollTop;
       requestAnimationFrame(() => {
-        // console.log(scrollTop);
-        if (scrollTop > 0) {
-          setIsDisplay(true);
-          !document.querySelector('header')?.classList.contains('shrink') &&
-            document.querySelector('header')?.classList.add('shrink');
-        } else if (scrollTop === 0) {
-          setIsDisplay(false);
-          document.querySelector('header')?.classList.contains('shrink') &&
-            document.querySelector('header')?.classList.remove('shrink');
+        const body = document.querySelector('body');
+        if (scrollTop === 0) {
+          classList(body)
+            ?.add('scroll-backed')
+            .remove('scroll-top-gt-0')
+            .remove('scroll-top-gt-23vh')
+            .remove('scroll-top-gt-38vh');
+        } else if (scrollTop > window.innerHeight * 0.382) {
+          classList(body)
+            ?.add('scroll-top-gt-38vh')
+            .remove('scroll-backed')
+            .remove('scroll-top-gt-0')
+            .remove('scroll-top-gt-23vh');
+          // } else if (scrollTop > window.innerHeight * 0.236) {
+          //   classList(body)
+          //     ?.add('scroll-top-gt-23vh')
+          //     .remove('scroll-backed')
+          //     .remove('scroll-top-gt-0')
+          //     .remove('scroll-top-gt-38vh');
+        } else if (scrollTop > 0) {
+          classList(body)
+            ?.add('scroll-top-gt-0')
+            .remove('scroll-backed')
+            .remove('scroll-top-gt-23vh')
+            .remove('scroll-top-gt-38vh');
         }
+
         isRunning.current = false;
       });
     }, []);
@@ -66,65 +80,53 @@ const TopBar = memo(
     // 登録と後始末
     useEffect(() => {
       document.addEventListener('scroll', isScrollToggle, { passive: true });
-      // return () => {
-      //   document.removeEventListener('scroll', isScrollToggle, {
-      //     passive: true
-      //   });
-      // };
-    }, []);
+      return () => {
+        document.removeEventListener('scroll', isScrollToggle, true);
+      };
+    }, [isScrollToggle]);
 
-    // バツボタンでリスナ削除~ などはこのように
-    // const onClickClose = () => {
-    // document.removeEventListener('scroll', isScrollToggle, { passive: true });
-    // setIsDisplay(false);
-    // };
-
-    // const [scrollY, setScrollY] = useState<number>(0);
-
-    // useEffect(() => {
-    //   function watchScroll() {
-    //     window.addEventListener('scroll', () => setScrollY(window.pageYOffset));
-    //     scrollY > 500
-    //       ? document.querySelector('header')?.classList.add('shrink')
-    //       : document.querySelector('header')?.classList.remove('shrink');
-    //   }
-    //   watchScroll();
-    // });
     return (
-      <header className="z-10 top-0 w-full text-center text-sm">
-        <div id="floater" className="index-img water"></div>
-        <div id="sinker" className="sunk">
-          <h1 className="header-title hero text-3xl">
-            {GetDataCTX['info']
-              ? GetDataCTX['info']['title']
-              : process.env.REACT_APP_title}
-          </h1>
+      <>
+        {' '}
+        <div id="floater" className="fixed z-10 top-0 w-full bg-surface"></div>
+        <header className="fixed z-10 top-0 mb-0 w-full text-center text-sm">
+          <div id="sinker">
+            <div id="fade-outer">
+              <h1 className="header-title hero mb-1 text-primary text-3xl tracking-title">
+                {GetDataCTX['info']
+                  ? GetDataCTX['info']['title']
+                  : process.env.REACT_APP_title}
+              </h1>
 
-          <p className="header-desc hero">
-            {GetDataCTX['description'] ? (
-              <span
-                dangerouslySetInnerHTML={{
-                  // __html: GetDataCTX['info']['description']
-                  __html: GetDataCTX['description']
-                }}
-              ></span>
-            ) : (
-              process.env.REACT_APP_description
-            )}
-          </p>
-          <nav className="m-auto text-center text-base">
-            {props.navs.map((tag: string, tagK: any) => (
-              <button
-                onClick={() => props.handleClickNavButton(tag)}
-                className={` m-3 ${props.navState === tag && 'underline'}`}
-                key={tagK}
-              >
-                {tag}
-              </button>
-            ))}
-          </nav>
-        </div>
-      </header>
+              <p className="header-desc hero">
+                {GetDataCTX['description'] ? (
+                  <span
+                    dangerouslySetInnerHTML={{
+                      // __html: GetDataCTX['info']['description']
+                      __html: GetDataCTX['description']
+                    }}
+                  ></span>
+                ) : (
+                  process.env.REACT_APP_description
+                )}
+              </p>
+            </div>
+            <nav className="z-10 text-center text-base">
+              {props.navs.map((tag: string, tagK: any) => (
+                <button
+                  onClick={() => props.handleClickNavButton(tag)}
+                  className={` m-3  mix-blend-multiply tracking-widest ${
+                    props.navState === tag && 'underline'
+                  }`}
+                  key={tagK}
+                >
+                  {tag}
+                </button>
+              ))}
+            </nav>
+          </div>
+        </header>
+      </>
     );
   }
 );

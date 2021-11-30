@@ -20,22 +20,22 @@ body {
   text-shadow: 0 1px 0 rgb(255 255 255 / 38%), 0 2px 0 rgb(255 124 0 / 16%);
   letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
-  /* 明朝 */
-}
-img {
-  @apply block;
+  background: linear-gradient(
+    to bottom,
+    rgb(245 245 245 / 100%) 0%,
+    rgb(237 251 255 / 100%) 16%,
+    rgb(237 245 247 / 100%) 24%,
+    rgb(255 255 255 / 100%) 100%
+  );
+  background-attachment: fixed;
 }
 body,
 a {
   color: #797979;
 }
-p > a {
-  word-break: break-all;
-}
 a:active {
   opacity: 1 important;
 }
-/* a{color: #333;} */
 html.gecko,
 html.android {
   font-size: 0.85em;
@@ -47,16 +47,12 @@ article {
 svg:not(:root) {
   overflow: hidden;
 }
-body.has-center-text {
-  text-align: center;
-}
 a:hover {
   color: #222;
   opacity: 1;
 }
 li {
   margin: 0 0.556em 0 0;
-  list-style: none;
 }
 /* ショートカット */
 .eng {
@@ -67,20 +63,4 @@ li {
   font-size: small;
   line-height: 1.6em;
   letter-spacing: 0.1px;
-}
-.kakugo {
-  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo,
-    'メイリオ', 'ＭＳ ゴシック', 'MS Gothic', sans-serif;
-}
-.meiryo {
-  font-family: Meiryo, 'メイリオ', 'Hiragino Kaku Gothic ProN',
-    'ヒラギノ角ゴ ProN W3', 'ＭＳ ゴシック', 'MS Gothic', sans-serif;
-}
-.mincho {
-  font-family: 'HGS明朝E', 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro',
-    'ＭＳ Ｐ明朝', serif;
-}
-.mincho-num {
-  font-family: 'HGS明朝E', 'ヒラギノ明朝 Pro W3', 'Hiragino Mincho Pro',
-    'ＭＳ Ｐ明朝', serif;
 }

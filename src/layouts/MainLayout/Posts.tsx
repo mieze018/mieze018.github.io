@@ -36,7 +36,7 @@ const Posts = memo(
                         post.photoset_layout ? 'photoset block' : post.type
                       }`}
                     >
-                      <div className="photo-container m-auto min-w-golden23v xl:max-w-golden38v">
+                      <div className="photo-container min-w-golden23vw xl:max-w-golden38vw m-auto">
                         {post.photos.map((photo: any, photoK: any) => {
                           if (
                             !post.tags.find(
@@ -46,14 +46,18 @@ const Posts = memo(
                           ) {
                             return (
                               <LazyLoadImage
-                                className="w-full"
+                                className="w-full blur-lg"
                                 src={photo.alt_sizes[props.displayFork].url}
                                 alt={photo.alt_sizes[props.displayFork].url}
                                 threshold={1280}
-                                // afterLoad={() =>
-                                //   postK === 0 &&
-                                //   photoK === post.photos.length - 1 &&
-                                //   props.switchEffect()
+                                // afterLoad={
+                                //   () =>
+                                //     document
+                                //       .querySelector('img.blur-lg')
+                                //       ?.classList.remove('blur-lg')
+                                // postK === 0 &&
+                                // photoK === post.photos.length - 1 &&
+                                // props.switchEffect()
                                 // }
                                 // delayTime={postK === 0 ? 1 : 0}
                                 key={photoK}
@@ -79,7 +83,11 @@ const Posts = memo(
                                   year: 'numeric',
                                   month: 'long'
                                 }).format(
-                                  new Date(post.date.replace(/-/g, '/'))
+                                  new Date(
+                                    post.date
+                                      .replace(' GMT', '')
+                                      .replace(' ', 'T')
+                                  )
                                 )}
                               </span>
                             </li>

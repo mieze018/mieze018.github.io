@@ -28,7 +28,9 @@ const MainLayout = memo(() => {
   //🏁GetAPI end
   function RefreshData() {
     axios
-      .get(`${api_uri}${Blog_name}/posts?api_key=${api_Key}&limit=999`)
+      .get(`${api_uri}${Blog_name}/posts?api_key=${api_Key}&limit=999`, {
+        timeout: 5000
+      })
       .then((res) => {
         GetDataCTX.setDataCtx({
           ...GetDataCTX,
@@ -58,7 +60,7 @@ const MainLayout = memo(() => {
     GetDataCTX.error && RefreshData();
 
     if (window.pageYOffset > 0) {
-      document.documentElement.scrollTop = 100;
+      document.documentElement.scrollTop = window.innerHeight * 0.382 + 1;
     }
     setNavState(tag);
   }
@@ -74,28 +76,30 @@ const MainLayout = memo(() => {
         navState={navState}
       />
 
-      <section id="posts-wrapper" className="sunk-short">
-        {tags.map((tagGroup: any, tagGroupK: number) => {
-          return (
-            <CSSTransition
-              in={navState === tagGroup}
-              appear={true}
-              timeout={500}
-              classNames={fadePrefix}
-              // onEnter={() => setTagState(navState)}
-              // onExited={() => setTagState(navState)}
-              key={tagGroupK}
-            >
-              <Posts
-                tag={tagGroup}
-                navState={navState}
-                displayFork={displayFork}
-                key={tagGroupK}
-                // className={tagGroupK === 0 ? `${fadePrefix}-enter-done ` : ``}
-              />
-            </CSSTransition>
-          );
-        })}
+      <section id="posts-wrapper" className="sunk-short mt-golden61vh">
+        {GetDataCTX.posts
+          ? tags.map((tagGroup: any, tagGroupK: number) => {
+              return (
+                <CSSTransition
+                  in={navState === tagGroup}
+                  appear={true}
+                  timeout={500}
+                  classNames={fadePrefix}
+                  // onEnter={() => setTagState(navState)}
+                  // onExited={() => setTagState(navState)}
+                  key={tagGroupK}
+                >
+                  <Posts
+                    tag={tagGroup}
+                    navState={navState}
+                    displayFork={displayFork}
+                    key={tagGroupK}
+                    // className={tagGroupK === 0 ? `${fadePrefix}-enter-done ` : ``}
+                  />
+                </CSSTransition>
+              );
+            })
+          : GetDataCTX.error && String(GetDataCTX.error)}
 
         <CSSTransition
           in={navState === navItems[0]}
