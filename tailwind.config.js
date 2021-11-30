@@ -93,6 +93,9 @@ module.exports = {
       },
       blur: {
         '1px': '1px'
+      },
+      screens: {
+        xs: '375px'
       }
     }
   },

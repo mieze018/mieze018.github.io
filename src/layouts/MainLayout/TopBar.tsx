@@ -92,13 +92,13 @@ const TopBar = memo(
         <header className="fixed z-10 top-0 mb-0 w-full text-center text-sm">
           <div id="sinker">
             <div id="fade-outer">
-              <h1 className="header-title hero mb-1 text-primary text-3xl tracking-title">
+              <h1 className="header-title mb-1 text-primary text-2xl xs:text-3xl tracking-title">
                 {GetDataCTX['info']
                   ? GetDataCTX['info']['title']
                   : process.env.REACT_APP_title}
               </h1>
 
-              <p className="header-desc hero">
+              <p className="header-desc text-xs sm:text-base">
                 {GetDataCTX['description'] ? (
                   <span
                     dangerouslySetInnerHTML={{
@@ -111,11 +111,11 @@ const TopBar = memo(
                 )}
               </p>
             </div>
-            <nav className="z-10 text-center text-base">
+            <nav className="z-10 text-center">
               {props.navs.map((tag: string, tagK: any) => (
                 <button
                   onClick={() => props.handleClickNavButton(tag)}
-                  className={` m-3  mix-blend-multiply tracking-widest ${
+                  className={`m-2 xs:m-3  mix-blend-multiply xs:tracking-widest  ${
                     props.navState === tag && 'underline'
                   }`}
                   key={tagK}
