@@ -150,7 +150,7 @@ header {
   opacity: 0;
   transition: 2000ms, 2000ms, 2000ms, 10000ms;
   transition-property: opacity, filter, margin-top;
-  animation: fade-in 3ms 0.3s ease-in-out forwards;
+  animation: fade-in 3ms 0s ease-in-out forwards;
 }
 #fade-outer {
   opacity: 1;
