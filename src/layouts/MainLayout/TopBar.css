@@ -82,7 +82,7 @@ header {
   width: 100%;
   margin: auto;
   opacity: 0;
-  transition: 1000ms, 1000ms, 3000ms, 10000ms;
+  transition: 1000ms, 1000ms, 1200ms, 10000ms;
   transition-property: opacity, filter, top, height;
   animation: sunk 10s 0.3s ease-in-out forwards;
 }
