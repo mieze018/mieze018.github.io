@@ -62,9 +62,9 @@ header {
   transition: 10000ms, 1000ms, 8000ms;
   transition-property: filter, top, height;
 }
-.scroll-top-gt-23vh #floater {
+.scroll-top-gt-38vh #floater {
   top: -4vh;
-  @apply h-golden14vh;
+  height: calc(4vh + 7em);
   filter: blur(10px) brightness(1.1);
   transition: 10000ms, 1000ms, 10000ms;
   transition-property: filter, top, height;
@@ -76,35 +76,16 @@ header {
   transition: 10000ms, 1000ms, 10000ms;
   transition-property: filter, top, height;
 }
-#fade-outer {
-  margin-top: calc(23vh);
-  opacity: 1;
-  transition: 2000ms, 2000ms, 2000ms, 10000ms;
-  transition-property: opacity, translate, filter, margin-top;
-}
-.scroll-top-gt-0 #fade-outer {
-  margin-top: calc(-3em);
-  opacity: 0;
-  transition: 1000ms;
-}
-.scroll-top-gt-23vh #fade-outer {
-  margin-top: calc(-3em);
-  opacity: 0;
-  transition: 1000ms;
-}
 #sinker {
-  top: auto;
+  @apply fixed;
+  @apply top-golden23vh;
   width: 100%;
   margin: auto;
-  margin-top: 50vh;
-  opacity: 0;
-  transition: 2000ms;
-  transform: translate(0, -3em);
-  animation: sunk 10s 0.3s ease-out forwards
-    /* ,
-    drift 10s ease-in-out 3s infinite alternate */;
+  opacity: 1;
+  transition: 1000ms, 1000ms, 3000ms, 10000ms;
+  transition-property: opacity, filter, top, height;
+  animation: sunk 10s 0.3s ease-in-out forwards;
 }
-
 @keyframes sunk {
   0% {
     opacity: 0;
@@ -119,39 +100,82 @@ header {
     transform: translate(0, 0);
   }
 }
-@keyframes drift {
+@keyframes fade-in {
   0% {
-    transform: translate(0, 0);
+    opacity: 0;
   }
   100% {
-    transform: translate(0, 10px);
+    opacity: 1;
   }
 }
-/* スクロール後 */
-header.scroll-top-gt-0 {
-  /* background: linear-gradient(
-    to bottom,
-    rgb(245 245 245 / 30%) 0%,
-    rgb(237 251 255 / 20%) 16%,
-    rgb(237 245 247 / 0%) 24%,
-    rgb(255 255 255 / 0%) 100%
-  ); */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
-header.scroll-top-gt-0 #floater {
-  top: -3vh;
-  height: 10vh;
-  /* background-size: 120% 100%; */
-  transition: 2000ms;
-  animation: wave 180s 0s ease-in-out forwards;
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-header.scroll-top-gt-0 #sinker {
-  margin-top: 0.1vh;
-}
-header.scroll-top-gt-0 .header-desc,
-header.scroll-top-gt-0 .header-title {
+/* header.scroll-top-gt-0 .header-desc, */
+.scroll-top-gt-0 #sinker {
+  /* margin-top: 0.1vh; */
   /* display: none; */
+  top: -2em;
+  filter: blur(6px);
+  /* opacity: 0.1; */
+  /* animation: fade-ou-int 4ms 0.3s ease-in-out forwards; */
+  animation: sunk 3s 0s ease-in-out reverse both;
+}
+.scroll-top-gt-38vh #sinker {
+  top: -2em;
+  filter: blur(3px);
+  opacity: 1;
+  animation: fade-out-in 3ms 0.3s ease-in-out forwards;
+}
+#sinker:hover {
+  filter: blur(0);
+}
+.scroll-backed #sinker {
   opacity: 0;
-  transition: 200ms, 2000ms;
-  transition-property: opacity, translate;
-  transform: translate(0, -10vh);
+  transition: 2000ms, 2000ms, 2000ms, 10000ms;
+  transition-property: opacity, filter, margin-top;
+  animation: fade-in 3ms 0.3s ease-in-out forwards;
+}
+#fade-outer {
+  opacity: 1;
+  transition: 500ms;
+  /* margin-top: calc(23vh);
+  opacity: 1;
+  transition: 2000ms, 2000ms, 2000ms, 10000ms;
+  transition-property: opacity, translate, filter, margin-top; */
+}
+.scroll-top-gt-0 #fade-outer {
+  margin-top: calc(-2em);
+  opacity: 0;
+}
+.scroll-top-gt-38vh #fade-outer {
+  margin-top: calc(-2em);
+  opacity: 0;
+}
+nav {
+  @apply m-auto;
+  opacity: 1;
+  transition: 1200ms;
+}
+.scroll-top-gt-0 nav {
+  opacity: 0;
+}
+.scroll-top-gt-38vh nav {
+  opacity: 1;
 }
