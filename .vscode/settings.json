@@ -26,6 +26,7 @@
     "webp",
     "welle"
   ],
+  "autofold.default": 0,
   "workbench.colorCustomizations": {
     "activityBar.background": "#be8666",
     "titleBar.activeBackground": "#be8666",
