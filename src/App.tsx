@@ -6,17 +6,17 @@ import React, {
   useState,
   createContext
 } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import axios from 'axios';
 import { CSSTransition } from 'react-transition-group';
 
 // 🧩
-import './index.css';
 import { DataCTXType } from 'Type';
 import TopBar from 'layouts/MainLayout/TopBar';
 import Info from 'layouts/MainLayout/info';
 import Posts from 'layouts/MainLayout/Posts';
+import 'layouts/MainLayout/index.css';
 import 'index.css';
 export const DataCTX = createContext<DataCTXType>({
   loading: false,
@@ -26,6 +26,7 @@ export const DataCTX = createContext<DataCTXType>({
 const tags = ['personal work', 'commissioned work'];
 const navItems = ['info'];
 const MainLayout = memo(() => {
+  let location = useLocation();
   //ヘッダ内を設定
   process.env.REACT_APP_description &&
     document
@@ -48,8 +49,8 @@ const MainLayout = memo(() => {
     setDataCtx: setDataCtx,
     loading: false
   });
+  // const DataState: any = useContext(DataCTX);
   //🏁GetAPI start
-  const GetDataCTX: any = useContext(DataCTX);
   // 🚩データの取得
   const api_uri = process.env.REACT_APP_api_URI;
   const api_Key = process.env.REACT_APP_api_Key;
@@ -66,8 +67,8 @@ const MainLayout = memo(() => {
         timeout: 5000
       })
       .then((res) => {
-        GetDataCTX.setDataCtx({
-          ...GetDataCTX,
+        setDataCtx({
+          ...DataState,
           loading: false,
           info: res.data.response.blog,
           posts: res.data.response.posts,
@@ -75,48 +76,60 @@ const MainLayout = memo(() => {
         });
       })
       .catch((err) => {
-        GetDataCTX.setDataCtx({
-          ...GetDataCTX,
+        setDataCtx({
+          ...DataState,
           error: [err]
         });
       });
   }
   function SetHead() {
-    document.title = GetDataCTX['info']['title'];
-    document
-      .querySelector('meta[name="description"]')
-      ?.setAttribute('content', GetDataCTX['description']);
+    // document.title = DataState.info.title;
+    // document
+    //   .querySelector('meta[name="description"]')
+    //   ?.setAttribute('content', DataState['description']);
   }
   // 表示するポストのタグによる切り替え
   const [navState, setNavState] = useState<string>(tags[0]);
 
-  function handleClickNavButton(tag: string) {
-    GetDataCTX.error && RefreshData();
+  // function handleClickNavButton(tag: string) {
+  //   DataState.error && RefreshData();
 
+  //   if (window.pageYOffset > 0) {
+  //     document.documentElement.scrollTop = window.innerHeight * 0.382 + 1;
+  //   }
+  //   setNavState(tag);
+  // }
+  useEffect(() => {
+    DataState.error && RefreshData();
     if (window.pageYOffset > 0) {
       document.documentElement.scrollTop = window.innerHeight * 0.382 + 1;
     }
-    setNavState(tag);
-  }
+    setNavState(location.pathname.replace('/', ''));
+    DataState.setDataCtx({
+      ...DataState
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
   const fadePrefix = 'fade';
   //ディスプレイサイズに応じて取得する画像のサイズ変更
   const displayFork = document.body.clientWidth > 2500 ? 0 : 1;
-  //test
+
   return (
     <DataCTX.Provider value={{ ...DataState }}>
       <div className="m-auto">
         <TopBar
           navs={tags.concat(navItems)}
-          handleClickNavButton={handleClickNavButton}
+          // handleClickNavButton={handleClickNavButton}
           navState={navState}
         />
 
         <section id="posts-wrapper" className="sunk-short mt-golden61vh">
-          {GetDataCTX.posts
+          {DataState.posts
             ? tags.map((tagGroup: any, tagGroupK: number) => {
+                console.log(tagGroup);
                 return (
                   <CSSTransition
-                    in={navState === tagGroup}
+                    in={location.pathname === '/' + tagGroup.replace(' ', '_')}
                     appear={true}
                     timeout={500}
                     classNames={fadePrefix}
@@ -134,7 +147,7 @@ const MainLayout = memo(() => {
                   </CSSTransition>
                 );
               })
-            : GetDataCTX.error && String(GetDataCTX.error)}
+            : DataState.error && String(DataState.error)}
 
           <CSSTransition
             in={navState === navItems[0]}
@@ -146,7 +159,7 @@ const MainLayout = memo(() => {
         </section>
 
         <Outlet />
-        {GetDataCTX.info && SetHead()}
+        {DataState.info && SetHead()}
       </div>
     </DataCTX.Provider>
   );

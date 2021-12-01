@@ -5,4 +5,5 @@ export type DataCTXType = {
   info?: any[];
   posts?: any[];
   description?: any[];
+  error?: any
 };

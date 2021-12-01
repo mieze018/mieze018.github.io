@@ -1,6 +1,6 @@
 // ⚛️
 import React, { useContext, memo, useEffect, useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 // 🧩
 import { DataCTX } from 'App';
 import { classList } from 'functions';
@@ -9,10 +9,11 @@ import './TopBar.css';
 const TopBar = memo(
   (props: {
     navs: any[];
-    handleClickNavButton: (tag: string) => void;
+    // handleClickNavButton: (tag: string) => void;
     navState: string;
   }) => {
     const GetDataCTX: any = useContext(DataCTX);
+    let location = useLocation();
 
     //スマホでアクセスした時tumblrへのリンクをアプリから開くリンクに書き換え
     {
@@ -116,10 +117,10 @@ const TopBar = memo(
               {props.navs.map((tag: string, tagK: any) => (
                 <Link
                   to={tag.replace(' ', '_')}
-                  onClick={() => props.handleClickNavButton(tag)}
-                  className={`m-2 xs:m-3  mix-blend-multiply xs:tracking-widest  ${
+                  // onClick={() => props.handleClickNavButton(tag)}
                   className={`m-2 xs:m-3  mix-blend-multiply xs:tracking-widest inline-block  ${
-                    props.navState === tag && 'underline'
+                    location.pathname === '/' + tag.replace(' ', '_') &&
+                    'underline'
                   }`}
                   key={tagK}
                 >
