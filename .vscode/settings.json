@@ -1,5 +1,40 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
+  //フォーマット
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  "eslint.format.enable": false,
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.lineNumbers": "on",
+  "editor.rulers": [80],
+  "editor.wordWrap": "on",
+  "eslint.packageManager": "yarn",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "npm.packageManager": "yarn",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  // CSS
+  // CSSのチェック機能をオフ
+  "css.validate": false,
+  // JSXでもCSSクラスを補完できるように
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  // emmetでTailwind CSSのクラスを使えるように
+  "tailwindCSS.emmetCompletions": true,
+  // Tailwind CSSのDirectivesをLintする
+  "tailwindCSS.validate": true,
   "cSpell.words": [
     "behance",
     "browserslist",
