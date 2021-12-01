@@ -118,6 +118,7 @@ const TopBar = memo(
                   to={tag.replace(' ', '_')}
                   onClick={() => props.handleClickNavButton(tag)}
                   className={`m-2 xs:m-3  mix-blend-multiply xs:tracking-widest  ${
+                  className={`m-2 xs:m-3  mix-blend-multiply xs:tracking-widest inline-block  ${
                     props.navState === tag && 'underline'
                   }`}
                   key={tagK}
