@@ -5,25 +5,25 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 // 🧩
 import './index.css';
 import { DataCTX } from 'App';
+import { routeParam } from 'Type';
 import Footer from './footer';
 
 const Posts = memo(
-  (props: {
-    tag: string;
-    navState: string;
-    displayFork: number;
-    className?: string;
-  }) => {
+  (props: { tag: routeParam; displayFork: number; className?: string }) => {
     const GetDataCTX: any = useContext(DataCTX);
     return (
       <div
-        id={`tag_${props.tag.replace(' ', '_')}`}
+        id={props.tag.pathname}
         className={`fade-wrapper ${props.className && props.className}`}
       >
-        {GetDataCTX.posts
+        {props.tag.isStatic
+          ? props.tag.isStatic
+          : GetDataCTX.posts
           ? GetDataCTX.posts
               .filter((rawPost: any) =>
-                rawPost.tags.find((tag: string, i: any) => tag === props.tag)
+                rawPost.tags.find(
+                  (tag: string, i: any) => tag === props.tag.name
+                )
               )
               .map((post: any, postK: any) => {
                 return (

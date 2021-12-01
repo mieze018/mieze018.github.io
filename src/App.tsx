@@ -1,11 +1,5 @@
 // ⚛️
-import React, {
-  useEffect,
-  useContext,
-  memo,
-  useState,
-  createContext
-} from 'react';
+import React, { useEffect, memo, useState, createContext } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import axios from 'axios';
@@ -18,13 +12,8 @@ import Info from 'layouts/MainLayout/info';
 import Posts from 'layouts/MainLayout/Posts';
 import 'layouts/MainLayout/index.css';
 import 'index.css';
-export const DataCTX = createContext<DataCTXType>({
-  loading: false,
-  setDataCtx: (props) => props
-});
+export const DataCTX = createContext({});
 
-const tags = ['personal work', 'commissioned work'];
-const navItems = ['info'];
 const MainLayout = memo(() => {
   let location = useLocation();
   //ヘッダ内を設定
@@ -47,9 +36,20 @@ const MainLayout = memo(() => {
   };
   const [DataState, setDataState] = useState<DataCTXType>({
     setDataCtx: setDataCtx,
-    loading: false
+    loading: false,
+    routes: [
+      { name: 'personal work', pathname: '/personal_work' },
+      {
+        name: 'commissioned work',
+        pathname: '/commissioned_work'
+      },
+      {
+        name: 'info',
+        pathname: '/info',
+        isStatic: <Info />
+      }
+    ]
   });
-  // const DataState: any = useContext(DataCTX);
   //🏁GetAPI start
   // 🚩データの取得
   const api_uri = process.env.REACT_APP_api_URI;
@@ -82,29 +82,12 @@ const MainLayout = memo(() => {
         });
       });
   }
-  function SetHead() {
-    // document.title = DataState.info.title;
-    // document
-    //   .querySelector('meta[name="description"]')
-    //   ?.setAttribute('content', DataState['description']);
-  }
-  // 表示するポストのタグによる切り替え
-  const [navState, setNavState] = useState<string>(tags[0]);
 
-  // function handleClickNavButton(tag: string) {
-  //   DataState.error && RefreshData();
-
-  //   if (window.pageYOffset > 0) {
-  //     document.documentElement.scrollTop = window.innerHeight * 0.382 + 1;
-  //   }
-  //   setNavState(tag);
-  // }
   useEffect(() => {
     DataState.error && RefreshData();
     if (window.pageYOffset > 0) {
       document.documentElement.scrollTop = window.innerHeight * 0.382 + 1;
     }
-    setNavState(location.pathname.replace('/', ''));
     DataState.setDataCtx({
       ...DataState
     });
@@ -117,52 +100,38 @@ const MainLayout = memo(() => {
   return (
     <DataCTX.Provider value={{ ...DataState }}>
       <div className="m-auto">
-        <TopBar
-          navs={tags.concat(navItems)}
-          // handleClickNavButton={handleClickNavButton}
-          navState={navState}
-        />
+        <TopBar navs={DataState.routes} />
 
         <section id="posts-wrapper" className="sunk-short mt-golden61vh">
           {DataState.posts
-            ? tags.map((tagGroup: any, tagGroupK: number) => {
-                console.log(tagGroup);
+            ? DataState.routes.map((route: any, routeK: number) => {
                 return (
                   <CSSTransition
                     in={
-                      location.pathname === '/' + tagGroup.replace(' ', '_') ||
-                      (location.pathname === '/' && tagGroup === tags[0])
+                      location.pathname === route.pathname ||
+                      (location.pathname === '/' &&
+                        route.pathname === DataState.routes[0].pathname)
                     }
                     appear={true}
                     timeout={500}
                     classNames={fadePrefix}
                     // onEnter={() => setTagState(navState)}
                     // onExited={() => setTagState(navState)}
-                    key={tagGroupK}
+                    key={routeK}
                   >
                     <Posts
-                      tag={tagGroup}
-                      navState={navState}
+                      tag={route}
                       displayFork={displayFork}
-                      key={tagGroupK}
-                      // className={tagGroupK === 0 ? `${fadePrefix}-enter-done ` : ``}
+                      key={routeK}
+                      // className={routeK === 0 ? `${fadePrefix}-enter-done ` : ``}
                     />
                   </CSSTransition>
                 );
               })
             : DataState.error && String(DataState.error)}
-
-          <CSSTransition
-            in={navState === navItems[0]}
-            timeout={500}
-            classNames="fade"
-          >
-            <Info navState={navState} tag={navItems[0]} />
-          </CSSTransition>
         </section>
 
         <Outlet />
-        {DataState.info && SetHead()}
       </div>
     </DataCTX.Provider>
   );
