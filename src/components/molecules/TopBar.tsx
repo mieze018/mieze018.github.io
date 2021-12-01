@@ -90,9 +90,11 @@ const TopBar = memo((props: { navs: navs }) => {
         <div id="sinker">
           <div id="fade-outer">
             <h1 className="header-title mb-1 text-primary text-2xl xs:text-3xl tracking-title">
-              {GetDataCTX['info']
-                ? GetDataCTX['info']['title']
-                : process.env.REACT_APP_title}
+              <Link to="/">
+                {GetDataCTX['info']
+                  ? GetDataCTX['info']['title']
+                  : process.env.REACT_APP_title}
+              </Link>
             </h1>
 
             <p className="header-desc text-xs sm:text-base">
