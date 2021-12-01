@@ -129,7 +129,10 @@ const MainLayout = memo(() => {
                 console.log(tagGroup);
                 return (
                   <CSSTransition
-                    in={location.pathname === '/' + tagGroup.replace(' ', '_')}
+                    in={
+                      location.pathname === '/' + tagGroup.replace(' ', '_') ||
+                      (location.pathname === '/' && tagGroup === tags[0])
+                    }
                     appear={true}
                     timeout={500}
                     classNames={fadePrefix}
