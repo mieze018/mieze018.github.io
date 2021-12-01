@@ -3,7 +3,7 @@ import React, { useContext, memo, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // 🧩
 import { DataCTX } from 'App';
-import { navs, DataCTXType } from 'Type';
+import { navs } from 'Type';
 import { classList } from 'functions';
 import './TopBar.css';
 //

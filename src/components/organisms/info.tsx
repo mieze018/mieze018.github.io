@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import Footer from './footer';
+import Footer from 'components/atoms/footer';
 const Info = memo(() => {
   const links: { [key: string]: string | undefined }[] = [
     {

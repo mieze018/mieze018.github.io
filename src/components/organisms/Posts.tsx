@@ -3,10 +3,9 @@ import React, { useContext, memo } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // 🧩
-import './index.css';
 import { DataCTX } from 'App';
 import { routeParam } from 'Type';
-import Footer from './footer';
+import Footer from 'components/atoms/footer';
 
 const Posts = memo(
   (props: { tag: routeParam; displayFork: number; className?: string }) => {
