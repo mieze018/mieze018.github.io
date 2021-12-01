@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import MainLayout from 'layouts/MainLayout';
 import IndexView from 'views/Index';
-import CommissionedWorkView from 'views/CommissionedWork';
-import PersonalWorkView from 'views/PersonalWorkView';
+// import CommissionedWorkView from 'views/CommissionedWork';
+// import PersonalWorkView from 'views/PersonalWorkView';
 //"View"で終わってる必要がある
 export const urls: {
   [key: string]: {
@@ -14,21 +14,21 @@ export const urls: {
       path: '',
       element: <IndexView />
     },
-    personal_work: {
-      path: 'personal_work',
-      element: <PersonalWorkView />,
-      title: 'personal work'
-    },
-    commissioned_work: {
-      path: 'commissioned_work',
-      element: <CommissionedWorkView />,
-      title: 'commissioned work'
-    },
-    info: {
-      path: 'info',
-      element: <CommissionedWorkView />,
-      title: 'info'
-    },
+    // personal_work: {
+    //   path: 'personal_work',
+    //   element: <PersonalWorkView />,
+    //   title: 'personal work'
+    // },
+    // commissioned_work: {
+    //   path: 'commissioned_work',
+    //   element: <CommissionedWorkView />,
+    //   title: 'commissioned work'
+    // },
+    // info: {
+    //   path: 'info',
+    //   element: <CommissionedWorkView />,
+    //   title: 'info'
+    // },
     // git_repo: {
     //   path: process.env.REACT_APP_github_repo_name,
     //   element: <IndexView />,
