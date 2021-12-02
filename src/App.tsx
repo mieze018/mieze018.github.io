@@ -8,7 +8,7 @@ import { CSSTransition } from 'react-transition-group';
 // 🧩
 import { DataCTXType } from 'Type';
 import TopBar from 'components/molecules/TopBar';
-import Info from 'components/organisms/info';
+import Info from 'components/molecules/info';
 import Posts from 'components/organisms/Posts';
 import 'index.css';
 export const DataCTX = createContext({});
