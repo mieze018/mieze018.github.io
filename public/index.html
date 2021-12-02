@@ -20,6 +20,16 @@
       type="application/rss+xml"
       href="https://www.mieze018.net/rss"
     />
+    <script>
+      // GitHub Pages での SPA アドレス解決用
+      (function () {
+        const query = window.location.search;
+        if (query.startsWith('?p=')) {
+          const route = decodeURIComponent(query.substr(3));
+          window.history.replaceState(null, null, route);
+        }
+      })();
+    </script>
     <!-- Google 構造化データ マークアップ支援ツールが生成した JSON-LD マークアップです。 -->
     <script type="application/ld+json">
       {
