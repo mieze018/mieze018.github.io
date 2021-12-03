@@ -8,38 +8,36 @@ const Info = memo(() => {
         id="tag_info"
         className="px-5 text-xs leading-7 text-center md:text-sm"
       >
-        <div className="mb-0">
-          <a href={process.env.REACT_APP_linktree}>Linktree</a>
-        </div>
-        <div className="flex flex-wrap items-center justify-center m-auto sns-link">
-          {links.map((link, linkK) => (
-            <a
-              href={link.url}
-              className={`${
-                link.class && link.class
-              } block mx-2 tracking-wider`}
-              key={linkK}
-            >
-              {link.text}
-            </a>
-          ))}
-        </div>
-        <hr />
         <div id="workExperience" className="mt-12 text-left Japanese">
           <p>
-            mieze
-            <br />
+            mieze <small>【ミーツェ】</small>{' '}
             大阪在住のイラストレーター・アーティスト。
           </p>
           <p>
             {' '}
             お仕事のご依頼は以下のメールアドレスにお願いいたします。
-            <br />
-            mail:{' '}
+            <br />{' '}
             <a href={`mailto:${process.env.REACT_APP_mail}`}>
               {process.env.REACT_APP_mail}
             </a>
           </p>
+          <div className="mt-16">
+            <h1 className="">
+              <a href={process.env.REACT_APP_linktree}>Linktree</a>
+            </h1>
+            <hr />
+            {links.map((link, linkK) => (
+              <p>
+                <a
+                  href={link.url}
+                  className={`${link.class && link.class} ml-3 tracking-wider`}
+                  key={linkK}
+                >
+                  {link.text}
+                </a>
+              </p>
+            ))}
+          </div>
           {/* <p>
           イベントの参加予定
           <hr />-
