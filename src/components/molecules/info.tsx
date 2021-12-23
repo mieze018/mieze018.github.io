@@ -27,11 +27,10 @@ const Info = memo(() => {
             </h1>
             <hr />
             {links.map((link, linkK) => (
-              <p>
+              <p key={linkK}>
                 <a
                   href={link.url}
                   className={`${link.class && link.class} ml-3 tracking-wider`}
-                  key={linkK}
                 >
                   {link.text}
                 </a>
@@ -46,16 +45,16 @@ const Info = memo(() => {
             <h1 className="">仕事の経験(敬称略)</h1>
             <hr />
             <ul>
-              {Genres.map((genre) => (
-                <li className="">
+              {Genres.map((genre, genreK) => (
+                <li key={genreK} className="">
                   <h2 className="my-2 leading-loose tracking-widest">
                     {genre}
                   </h2>
                   <ul className="leading-normal tracking-wide">
                     {workExperience
                       .filter((work) => work.gジャンル === genre)
-                      .map((work) => (
-                        <li>
+                      .map((work, workK) => (
+                        <li key={workK}>
                           <i className="ml-3">{work.t著者}</i>
                           <span className="ml-3">『{work.tタイトル}』</span>
                           {work.s出版社 && (
