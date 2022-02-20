@@ -37,7 +37,8 @@
     "deploy": "GENERATE_SOURCEMAP=false craco build && gh-pages -d build",
     "lint:css": "stylelint --fix **/*.{css,scss,sass}",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "chromatic": "npx chromatic --project-token=ea665c8d1b1d"
   },
   "eslintConfig": {
     "extends": [
@@ -79,6 +80,7 @@
     "@storybook/react": "^6.4.19",
     "@storybook/testing-library": "^0.0.9",
     "@types/react-transition-group": "^4.4.4",
+    "chromatic": "^6.4.3",
     "eslint-config-prettier": "^8.3.0",
     "prettier-plugin-tailwind": "^2.2.12",
     "stylelint": "^14.2.0",
