@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "build": "GENERATE_SOURCEMAP=false craco build",
     "deploy": "GENERATE_SOURCEMAP=false craco build && gh-pages -d build",
