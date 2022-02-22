@@ -45,7 +45,7 @@ const Posts = memo(
                           ) {
                             return (
                               <LazyLoadImage
-                                className="w-full blur-lg"
+                                className="w-full"
                                 src={photo.alt_sizes[props.displayFork].url}
                                 alt={photo.alt_sizes[props.displayFork].url}
                                 threshold={1280}
