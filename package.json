@@ -34,7 +34,11 @@
     "lint:css": "stylelint --fix **/*.{css,scss,sass}",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "chromatic": "npx chromatic --project-token=ea665c8d1b1d"
+    "chromatic": "npx chromatic --project-token=ea665c8d1b1d",
+    "lint:eslint": "eslint --ignore-path .gitignore . --ext .js,.jsx",
+    "fix:eslint": "eslint --fix --ignore-path .gitignore . --ext .js,.jsx",
+    "format:check": "prettier --check --ignore-path .gitignore './**/*.{js,jsx,json,css}'",
+    "format:fix": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,json,css}'"
   },
   "eslintConfig": {
     "extends": [
