@@ -25,3 +25,4 @@ yarn-error.log*
 /vendor
 /参照
 *.bak
+build-storybook.log
