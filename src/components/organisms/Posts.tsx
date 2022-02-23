@@ -5,7 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 // 🧩
 import { DataCTX } from 'App';
 import { routeParam } from 'Type';
-import Footer from 'components/atoms/footer';
+import {Footer} from 'components/atoms/footer';
 
 const Posts = memo(
   (props: { tag: routeParam; displayFork: number; className?: string }) => {
@@ -27,7 +27,7 @@ const Posts = memo(
               .map((post: any, postK: any) => {
                 return (
                   <article
-                    className="flex mb-10 max-w-full min-h-square"
+                    className="flex max-w-full mb-10 min-h-square"
                     key={postK}
                   >
                     <div
@@ -35,7 +35,7 @@ const Posts = memo(
                         post.photoset_layout ? 'photoset block' : post.type
                       }`}
                     >
-                      <div className="photo-container min-w-golden23vw xl:max-w-golden38vw m-auto">
+                      <div className="m-auto photo-container min-w-golden23vw xl:max-w-golden38vw">
                         {post.photos.map((photo: any, photoK: any) => {
                           if (
                             !post.tags.find(

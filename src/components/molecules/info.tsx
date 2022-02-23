@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import Footer from 'components/atoms/footer';
+import {Footer} from 'components/atoms/footer';
 import { links, Genres, workExperience } from './infoData';
 const Info = memo(() => {
   return (
