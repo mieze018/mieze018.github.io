@@ -1,5 +1,5 @@
 // ⚛️
-import React, { useEffect, memo, useState, createContext } from 'react';
+import React, { useEffect, memo, useState, createContext, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import axios from 'axios';
@@ -15,6 +15,7 @@ export const DataCTX = createContext({});
 
 const MainLayout = memo(() => {
   let location = useLocation();
+  const scrollTopContainer = useRef<HTMLDivElement>(null)
   //ヘッダ内を設定
   process.env.REACT_APP_description &&
     document
@@ -84,7 +85,7 @@ const MainLayout = memo(() => {
 
   useEffect(() => {
     DataState.error && RefreshData();
-    if (window.pageYOffset > 0) {
+    if (location.pathname !== '/' && scrollTopContainer?.current) {//window.pageYOffset > 0
       document.documentElement.scrollTop = window.innerHeight * 0.382 + 1;
     }
     DataState.setDataCtx({
@@ -98,41 +99,41 @@ const MainLayout = memo(() => {
 
   return (
     <DataCTX.Provider value={{ ...DataState }}>
-      <div className="m-auto">
+      <div className="m-auto" ref={scrollTopContainer} >
         <TopBar navs={DataState.routes} />
 
         <section id="posts-wrapper" className="sunk-short mt-golden61vh">
           {DataState.posts
             ? DataState.routes.map((route: any, routeK: number) => {
-                return (
-                  <CSSTransition
-                    in={
-                      location.pathname === route.pathname ||
-                      (location.pathname === '/' &&
-                        route.pathname === DataState.routes[0].pathname)
-                    }
-                    appear={true}
-                    timeout={500}
-                    classNames={fadePrefix}
-                    // onEnter={() => setTagState(navState)}
-                    // onExited={() => setTagState(navState)}
+              return (
+                <CSSTransition
+                  in={
+                    location.pathname === route.pathname ||
+                    (location.pathname === '/' &&
+                      route.pathname === DataState.routes[0].pathname)
+                  }
+                  appear={true}
+                  timeout={500}
+                  classNames={fadePrefix}
+                  // onEnter={() => setTagState(navState)}
+                  // onExited={() => setTagState(navState)}
+                  key={routeK}
+                >
+                  <Posts
+                    tag={route}
+                    displayFork={displayFork}
                     key={routeK}
-                  >
-                    <Posts
-                      tag={route}
-                      displayFork={displayFork}
-                      key={routeK}
-                      // className={routeK === 0 ? `${fadePrefix}-enter-done ` : ``}
-                    />
-                  </CSSTransition>
-                );
-              })
+                  // className={routeK === 0 ? `${fadePrefix}-enter-done ` : ``}
+                  />
+                </CSSTransition>
+              );
+            })
             : DataState.error && String(DataState.error)}
         </section>
 
         <Outlet />
       </div>
-    </DataCTX.Provider>
+    </DataCTX.Provider >
   );
 });
 
