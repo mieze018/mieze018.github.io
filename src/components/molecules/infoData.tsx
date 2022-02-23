@@ -1,3 +1,4 @@
+import { events, works } from 'Type'
 export const links: { [key: string]: string | undefined }[] = [
   {
     text: 'Twitter',
@@ -30,15 +31,6 @@ export const links: { [key: string]: string | undefined }[] = [
   }
 ];
 export const Genres = ['文芸書 装画', '文芸誌 扉絵', 'その他'] as const;
-type works = {
-  gジャンル: typeof Genres[number];
-  k形態?: '単行本' | '文庫本' | string;
-  s出版社?: string;
-  tタイトル: string;
-  t著者?: string;
-  dデザイン?: string;
-  n発表年月?: string;
-}[];
 export const workExperienceEtc: works = [
   {
     gジャンル: 'その他',
@@ -332,5 +324,7 @@ export const workExperienceBook: works = [
     n発表年月: '2011-12'
   }
 ];
-export const workExperience: works =
-  workExperienceEtc.concat(workExperienceBook);
+export const workExperience: works = workExperienceEtc.concat(workExperienceBook);
+export const Events: events = [
+
+]

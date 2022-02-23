@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
-import {Footer} from 'components/atoms/footer';
-import { links, Genres, workExperience } from './infoData';
-const Info = memo(() => {
+import { FC, memo } from 'react';
+import { Work } from 'components/atoms/Work'
+import { Footer } from 'components/atoms/footer';
+import { links, Genres, workExperience, Events } from './infoData';
+const Info: FC = memo(() => {
   return (
     <>
       <div
@@ -37,10 +38,14 @@ const Info = memo(() => {
               </p>
             ))}
           </div>
-          {/* <p>
-          イベントの参加予定
-          <hr />-
-        </p> */}
+
+          {Events.length > 0 && (
+            <p>
+              イベントの参加予定
+              <hr />
+            </p>
+          )}
+
           <div className="mt-16">
             <h1 className="">仕事の経験(敬称略)</h1>
             <hr />
@@ -54,18 +59,7 @@ const Info = memo(() => {
                     {workExperience
                       .filter((work) => work.gジャンル === genre)
                       .map((work, workK) => (
-                        <li key={workK}>
-                          <i className="ml-3">{work.t著者}</i>
-                          <span className="ml-3">『{work.tタイトル}』</span>
-                          {work.s出版社 && (
-                            <span className="ml-3">({work.s出版社})</span>
-                          )}
-                          <small className="ml-3">{work.k形態}</small>
-                          <small className="ml-3">{work.dデザイン}</small>
-                          <small className="ml-3">
-                            - {work.n発表年月?.split('-', 1)}
-                          </small>
-                        </li>
+                        <Work key={workK} work={work} />
                       ))}
                   </ul>
                 </li>
