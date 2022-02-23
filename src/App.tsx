@@ -85,13 +85,12 @@ const MainLayout = memo(() => {
 
   useEffect(() => {
     DataState.error && RefreshData();
-    if (window.pageYOffset > 0) {
+    if (location.pathname !== '/' && scrollTopContainer?.current) {//window.pageYOffset > 0
       document.documentElement.scrollTop = window.innerHeight * 0.382 + 1;
     }
     DataState.setDataCtx({
       ...DataState
     });
-    scrollTopContainer?.current && scrollTopContainer.current.scrollTo(0, 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location]);
   const fadePrefix = 'fade';
