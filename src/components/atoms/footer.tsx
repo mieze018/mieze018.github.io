@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-export const Footer = memo(() => {
+import React, { memo, FC } from 'react';
+export const Footer: FC = memo(() => {
   //現在の年を取得
   const now = new Date();
   const this_year = now.getFullYear();
