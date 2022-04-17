@@ -6,6 +6,7 @@
   "dependencies": {
     "@babel/core": "^7.17.5",
     "@emotion/babel-plugin-jsx-pragmatic": "^0.1.5",
+    "@emotion/babel-preset-css-prop": "^11.2.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@testing-library/jest-dom": "^5.16.1",
