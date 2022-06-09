@@ -33,6 +33,7 @@
     "eject": "react-scripts eject",
     "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "deploy": "GENERATE_SOURCEMAP=false react-scripts build && gh-pages -d build",
+    "winDeploy": "set \"GENERATE_SOURCEMAP=false\" && react-scripts build && gh-pages -d build",
     "lint:css": "stylelint --fix **/*.{css,scss,sass}",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
