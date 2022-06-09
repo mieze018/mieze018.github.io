@@ -42,7 +42,7 @@ const MainLayout = memo(() => {
       {
         name: 'commissioned work',
         pathname: '/commissioned_work'
-      },
+      },//todo:tumblrのタグもclient workに置換してから
       {
         name: 'info',
         pathname: '/info',
