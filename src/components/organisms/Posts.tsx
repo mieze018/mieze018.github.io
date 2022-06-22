@@ -6,6 +6,8 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { DataCTX } from 'App';
 import { routeParam } from 'Type';
 import { Footer } from 'components/atoms/footer';
+import tw from 'twin.macro';
+import styled from 'styled-components';
 
 const Posts = memo(
   (props: {
@@ -20,12 +22,18 @@ const Posts = memo(
     if (!GetDataCTX.posts) return <></>
     // タグで現在のページで表示する投稿かどうかをフィルター
     const filteredPosts = GetDataCTX.posts.filter((rawPost: any) => rawPost.tags.find((tag: string) => tag === props.tag.name))
-
+    const Article = tw.article`flex max-w-full mb-10 min-h-square`
+    const PhotoSetWrapper = styled.div<{ isColumn: boolean }>`
+      ${tw`mx-auto`}
+      ${props => props.isColumn && tw`inline-flex flex-wrap items-center content-start justify-around`}
+      ${props => !props.isColumn && tw`grid gap-y-4`}
+    `
     return (
       <>
         {filteredPosts.map((post: any, postK: any) => {
+          const isColumn = !!post.photoset_layout && post.photos.length >= 4
           return (
-            <article
+            <Article
               className="flex max-w-full mb-10 min-h-square"
               key={postK}
             >
@@ -34,7 +42,7 @@ const Posts = memo(
 
                   {post.photos.map((photo: any, i: any) => {
                     if (post.tags.find((tag: string, i: any) => tag === showOnlyLastPhoto) && i < post.photos.length - 1) return <></>
-                    return (<Photo photo={photo} displayFork={props.displayFork} postK={postK} />);
+                    return (<Photo isColumn={isColumn} photo={photo} displayFork={props.displayFork} postK={postK} />);
                   }
                   )}
 
@@ -42,7 +50,7 @@ const Posts = memo(
                 <PostCaption captionHtml={post.caption} />
                 <PostFooter date={post.date} />
               </div>
-            </article>
+            </Article>
           );
         })}
         <Footer />
@@ -51,9 +59,9 @@ const Posts = memo(
   }
 );
 
-const Photo: React.VFC<{ photo: any, displayFork: number, postK: number }> = ({ photo, displayFork, postK }) => (
+const Photo: React.VFC<{ photo: any, displayFork: number, postK: number, isColumn: boolean }> = ({ photo, displayFork, postK, isColumn }) => (
   <LazyLoadImage
-    className="w-full"
+    className={`w-full ${isColumn ? 'basis-1/4 w-1/4 flex-grow shrink mx-0 my-4' : ''}`}
     src={photo.alt_sizes[displayFork].url}
     alt={photo.alt_sizes[displayFork].url}
     threshold={1280}
@@ -81,25 +89,17 @@ const PostCaption: React.VFC<{ captionHtml: string }> = ({ captionHtml }) => (
 )
 
 const PostFooter: React.VFC<{ date: string }> = ({ date }) => (
-  <footer className="mt-0 text-xs sm:text-sm">
-    <div>
-      <ul>
-        <li>
-          <span className="time-ago">
-            {new Intl.DateTimeFormat('en-US', {
-              year: 'numeric',
-              month: 'long'
-            }).format(
-              new Date(date
-                .replace(' GMT', '')
-                .replace(' ', 'T')
-              )
-            )}
-          </span>
-        </li>
-      </ul>
-    </div>
-  </footer>
+  <div className="text-xs sm:text-sm">
+    {new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
+      month: 'long'
+    }).format(
+      new Date(date
+        .replace(' GMT', '')
+        .replace(' ', 'T')
+      )
+    )}
+  </div>
 )
 
 export default Posts;
