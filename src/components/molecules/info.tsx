@@ -66,26 +66,7 @@ const Info: FC = memo(() => {
               ))}
             </ul>
           </div>
-
-          {/* <p className="mt20">
-          展示
-          <hr />
-          <ul>
-            <li>
-              2016
-              <ul>
-                <li>
-                  <i></i>CANCAN exhibition at LemoArt Gallery (Berlin, Germany)
-                </li>
-                <li>
-                  <i></i>Digital Creator 23人展「恋」 at アートスペースリビーナ
-                  (Tokyo, Japan)
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </p> */}
-
+          {/* <Exhibitions /> */}
           <div className="my-12">
             受賞
             <hr />
@@ -108,5 +89,23 @@ const Info: FC = memo(() => {
     </>
   );
 });
+const Exhibitions: React.FC = () => (<p className="mt20">
+  展示
+  <hr />
+  <ul>
+    <li>
+      2016
+      <ul>
+        <li>
+          <i></i>CANCAN exhibition at LemoArt Gallery (Berlin, Germany)
+        </li>
+        <li>
+          <i></i>Digital Creator 23人展「恋」 at アートスペースリビーナ
+          (Tokyo, Japan)
+        </li>
+      </ul>
+    </li>
+  </ul>
+</p>)
 
 export default Info;
