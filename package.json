@@ -61,6 +61,11 @@
       }
     ]
   },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+      }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
