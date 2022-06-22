@@ -46,26 +46,7 @@ const Info: FC = memo(() => {
             </p>
           )}
 
-          <div className="mt-16">
-            <h1 className="">仕事の経験(敬称略)</h1>
-            <hr />
-            <ul>
-              {Genres.map((genre, genreK) => (
-                <li key={genreK} className="">
-                  <h2 className="my-2 leading-loose tracking-widest">
-                    {genre}
-                  </h2>
-                  <ul className="leading-normal tracking-wide">
-                    {workExperience
-                      .filter((work) => work.gジャンル === genre)
-                      .map((work, workK) => (
-                        <Work key={workK} work={work} />
-                      ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Works />
           {/* <Exhibitions /> */}
           <Prizes />
         </div>
@@ -109,6 +90,28 @@ const Prizes: React.FC = () => (
         <i className="ml-3">ペーターズギャラリーコンペ 2010</i>
         「山口はるみ賞」及び「鈴木成一賞次点」
       </li>
+    </ul>
+  </div>
+)
+const Works: React.FC = () => (
+  <div className="mt-16">
+    <h1 className="">仕事の経験(敬称略)</h1>
+    <hr />
+    <ul>
+      {Genres.map((genre, genreK) => (
+        <li key={genreK} className="">
+          <h2 className="my-2 leading-loose tracking-widest">
+            {genre}
+          </h2>
+          <ul className="leading-normal tracking-wide">
+            {workExperience
+              .filter((work) => work.gジャンル === genre)
+              .map((work, workK) => (
+                <Work key={workK} work={work} />
+              ))}
+          </ul>
+        </li>
+      ))}
     </ul>
   </div>
 )
