@@ -7,6 +7,8 @@ import tw from 'twin.macro';
 const Wrapper = tw.div`px-5 text-xs leading-7 md:text-sm mb-20 grid gap-12 text-left`
 const SectionWrapper = tw.section``
 const Hr = tw.hr``
+const H2 = tw.h2`mt-8 mb-2 leading-loose tracking-widest`
+const UlNest1 = tw.ul`grid gap-1 leading-normal tracking-wide`
 const Info: FC = memo(() => {
   return (
     <>
@@ -61,7 +63,7 @@ const Exhibitions: React.FC = () => (
     <ul>
       <li>
         2016
-        <ul>
+        <UlNest1>
           <li>
             <i></i>CANCAN exhibition at LemoArt Gallery (Berlin, Germany)
           </li>
@@ -69,7 +71,7 @@ const Exhibitions: React.FC = () => (
             <i></i>Digital Creator 23人展「恋」 at アートスペースリビーナ
             (Tokyo, Japan)
           </li>
-        </ul>
+        </UlNest1>
       </li>
     </ul>
   </SectionWrapper>
@@ -80,7 +82,7 @@ const Prizes: FC = () => (
     <Hr />
     <ul>
       <li>
-        <h2 className="my-2 leading-loose tracking-widest"> </h2>
+        <H2> </H2>
         <i className="ml-3">ペーターズギャラリーコンペ 2010</i>
         「山口はるみ賞」及び「鈴木成一賞次点」
       </li>
@@ -94,16 +96,14 @@ const Works: FC = () => (
     <ul>
       {Genres.map((genre) => (
         <li key={genre}>
-          <h2 className="mt-8 mb-2 leading-loose tracking-widest">
-            {genre}
-          </h2>
-          <ul className="grid gap-1 leading-normal tracking-wide">
+          <H2>{genre}</H2>
+          <UlNest1>
             {workExperience
               .filter((work) => work.gジャンル === genre)
               .map((work, workK) => (
                 <Work key={workK} work={work} />
               ))}
-          </ul>
+          </UlNest1>
         </li>
       ))}
     </ul>
