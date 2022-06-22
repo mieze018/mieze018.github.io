@@ -27,11 +27,11 @@ const Info: FC = memo(() => {
               <a href={process.env.REACT_APP_linktree}>Linktree</a>
             </h1>
             <hr />
-            {links.map((link, linkK) => (
-              <p key={linkK}>
+            {links.map((link) => (
+              <p key={link.text}>
                 <a
                   href={link.url}
-                  className={`${link.class && link.class} ml-3 tracking-wider`}
+                  className={`${link.class ?? ''} ml-3 tracking-wider`}
                 >
                   {link.text}
                 </a>

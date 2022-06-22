@@ -1,5 +1,5 @@
 import { events, works } from 'Type'
-export const links: { [key: string]: string | undefined }[] = [
+export const links: { text: string; url?: string; class?: string }[] = [
   {
     text: 'Twitter',
     url: process.env.REACT_APP_twitter_url
