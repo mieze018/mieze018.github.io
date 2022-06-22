@@ -1,13 +1,15 @@
 // ⚛️
-import React, { useContext, memo, useEffect, useRef, useCallback } from 'react';
+import { FC, useContext, memo, useEffect, useRef, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // 🧩
 import { DataCTX } from 'App';
 import { navs } from 'Type';
 import { classList } from 'functions';
 import './TopBar.css';
+import tw from 'twin.macro';
+import styled from 'styled-components';
 //
-const TopBar = memo((props: { navs: navs }) => {
+export const TopBar: FC<{ navs: navs }> = memo((props) => {
   const GetDataCTX: any = useContext(DataCTX);
   let location = useLocation();
 
@@ -82,54 +84,76 @@ const TopBar = memo((props: { navs: navs }) => {
     };
   }, [isScrollToggle]);
 
+  const TitleLink: FC = (props) => {
+    return (<Link to="/">
+      {GetDataCTX['info']?.['title'] ?? process.env.REACT_APP_title}
+    </Link>)
+  }
+  const navLinks: FC<{ className: string }> = ({ className }) => {
+    console.log(className)
+    return (
+      <>
+        {props.navs.map((nav) =>
+          <Link
+            to={nav.pathname}
+            key={nav.name}
+            className={`${className} ${location.pathname === nav.pathname ||
+              (location.pathname === '/' &&
+                nav.pathname === GetDataCTX.routes[0].pathname)
+              ? 'underline'
+              : ''
+              }`}
+          >
+            {nav.name}
+          </Link>
+        )}
+      </>
+    )
+  }
   return (
-    <>
-      {' '}
-      <div id="floater" className="fixed z-10 top-0 w-full bg-surface"></div>
-      <header className="fixed z-10 top-0 mb-0 w-full text-center text-sm">
-        <div id="sinker">
-          <div id="fade-outer">
-            <h1 className="header-title mb-1 text-primary text-2xl xs:text-3xl tracking-title">
-              <Link to="/">
-                {GetDataCTX['info']
-                  ? GetDataCTX['info']['title']
-                  : process.env.REACT_APP_title}
-              </Link>
-            </h1>
-
-            <p className="header-desc text-xs sm:text-base">
-              {GetDataCTX['description'] ? (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: GetDataCTX['description']
-                  }}
-                ></span>
-              ) : (
-                process.env.REACT_APP_description
-              )}
-            </p>
-          </div>
-          <nav className="z-10 text-center">
-            {props.navs.map((nav) => (
-              <Link
-                to={nav.pathname}
-                key={nav.name}
-                className={`m-2 xs:m-3  mix-blend-multiply xs:tracking-widest inline-block  ${
-                  location.pathname === nav.pathname ||
-                  (location.pathname === '/' &&
-                    nav.pathname === GetDataCTX.routes[0].pathname)
-                    ? 'underline'
-                    : ''
-                }`}
-              >
-                {nav.name}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-    </>
+    <TopBarComponent
+      TitleLink={TitleLink}
+      description={GetDataCTX['description']}
+      navLinks={navLinks} />
   );
 });
 
-export default TopBar;
+
+
+export const TopBarComponent: FC<{
+  TitleLink: FC
+  description?: string
+  navLinks: FC<{ className: string; }>
+}> = memo((props) => {
+
+  const Header = styled.header`{
+  background: linear-gradient(
+    180deg,
+    rgb(246 246 246 / 100%) 0%,
+    rgb(255 255 255 / 0%) 100%
+  );
+}
+${tw`fixed top-0 z-10 w-full mb-0 text-sm text-center min-h-[2rem]`}`
+  return (
+    <>
+      <div id="floater" className="fixed top-0 z-10 w-full bg-surface"></div>
+      <Header>
+        <div id="sinker">
+          <div id="fade-outer">
+            <h1 className="mb-1 text-2xl header-title text-primary xs:text-3xl tracking-title">
+              <props.TitleLink />
+            </h1>
+
+            <p className="text-xs header-desc sm:text-base">
+              {props.description ?? process.env.REACT_APP_description
+              }
+            </p>
+          </div>
+          <nav className="z-10 text-center">
+            <props.navLinks className='inline-block m-2 xs:m-3 mix-blend-multiply xs:tracking-widest' />
+          </nav>
+        </div>
+      </Header>
+    </>
+  );
+});
