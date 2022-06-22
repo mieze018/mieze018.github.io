@@ -14,7 +14,14 @@
       true,
       {
         // tailwind CSS のためのルール
-        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen']
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'variants',
+          'responsive',
+          'screen',
+          'layer'
+        ]
       }
     ],
     'declaration-block-no-redundant-longhand-properties': [
