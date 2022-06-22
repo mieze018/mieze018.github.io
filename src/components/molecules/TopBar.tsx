@@ -6,6 +6,8 @@ import { DataCTX } from 'App';
 import { navs } from 'Type';
 import { classList } from 'functions';
 import './TopBar.css';
+import tw from 'twin.macro';
+import styled from 'styled-components';
 //
 export const TopBar: FC<{ navs: navs }> = memo((props) => {
   const GetDataCTX: any = useContext(DataCTX);
@@ -123,10 +125,19 @@ export const TopBarComponent: FC<{
   description?: string
   navLinks: FC<{ className: string; }>
 }> = memo((props) => {
+
+  const Header = styled.header`{
+  background: linear-gradient(
+    180deg,
+    rgb(246 246 246 / 100%) 0%,
+    rgb(255 255 255 / 0%) 100%
+  );
+}
+${tw`fixed top-0 z-10 w-full mb-0 text-sm text-center min-h-[2rem]`}`
   return (
     <>
       <div id="floater" className="fixed top-0 z-10 w-full bg-surface"></div>
-      <header className="fixed top-0 z-10 w-full mb-0 text-sm text-center">
+      <Header>
         <div id="sinker">
           <div id="fade-outer">
             <h1 className="mb-1 text-2xl header-title text-primary xs:text-3xl tracking-title">
@@ -142,7 +153,7 @@ export const TopBarComponent: FC<{
             <props.navLinks className='inline-block m-2 xs:m-3 mix-blend-multiply xs:tracking-widest' />
           </nav>
         </div>
-      </header>
+      </Header>
     </>
   );
 });
