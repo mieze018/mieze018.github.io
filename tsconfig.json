@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
     "baseUrl": "src",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
