@@ -11,9 +11,6 @@ const Posts = memo(
   (props: { tag: routeParam; displayFork: number; className?: string }) => {
     const GetDataCTX: any = useContext(DataCTX);
     return (
-      <div
-        id={props.tag.pathname}
-        className={`fade-wrapper ${props.className && props.className}`}
       >
         {props.tag.isStatic
           ? props.tag.isStatic
@@ -94,13 +91,14 @@ const Posts = memo(
                           </ul>
                         </div>
                       </footer>
+      <>
                     </div>
                   </article>
                 );
               })
           : ' '}
         <Footer />
-      </div>
+      </>
     );
   }
 );
