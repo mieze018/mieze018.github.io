@@ -2,68 +2,62 @@ import { FC, memo } from 'react';
 import { Work } from 'components/atoms/Work'
 import { Footer } from 'components/atoms/footer';
 import { links, Genres, workExperience, Events } from './infoData';
+import tw from 'twin.macro';
+
+const Wrapper = tw.div`px-5 text-xs leading-7 md:text-sm mb-20 grid gap-12 text-left`
+const SectionWrapper = tw.section``
+const Hr = tw.hr``
 const Info: FC = memo(() => {
   return (
     <>
-      <div
-        id="tag_info"
-        className="px-5 text-xs leading-7 text-center md:text-sm"
-      >
-        <div id="workExperience" className="mt-12 text-left Japanese">
+      <Wrapper>
+        <SectionWrapper>
           <p>
-            mieze <small>【ミーツェ】</small>{' '}
+            mieze <small>【ミーツェ】</small>
             大阪在住のイラストレーター・アーティスト。
           </p>
           <p>
-            {' '}
             お仕事のご依頼は以下のメールアドレスにお願いいたします。
-            <br />{' '}
+            <br />
             <a href={`mailto:${process.env.REACT_APP_mail}`}>
               {process.env.REACT_APP_mail}
             </a>
           </p>
-          <div className="mt-16">
-            <h1 className="">
-              <a href={process.env.REACT_APP_linktree}>Linktree</a>
-            </h1>
-            <hr />
-            {links.map((link) => (
-              <p key={link.text}>
-                <a
-                  href={link.url}
-                  className={`${link.class ?? ''} ml-3 tracking-wider`}
-                >
-                  {link.text}
-                </a>
-              </p>
-            ))}
-          </div>
+        </SectionWrapper>
 
-          {Events.length > 0 && (
-            <p>
-              イベントの参加予定
-              <hr />
+        <SectionWrapper>
+          <h1>
+            <a href={process.env.REACT_APP_linktree}>Linktree</a>
+          </h1>
+          <Hr />
+          {links.map((link) => (
+            <p key={link.text}>
+              <a
+                href={link.url}
+                className={`${link.class ?? ''} ml-3 tracking-wider`}
+              >
+                {link.text}
+              </a>
             </p>
-          )}
+          ))}
+        </SectionWrapper>
 
-          <Works />
-          {/* <Exhibitions /> */}
-          <Prizes />
-        </div>
-        {/* <div className="mt20">
-        <a href="https://www.cgtrader.com" target="_blank" rel="noreferrer">
-          Participant of the CGTrader Digital Art Competition
-        </a>
-      </div> */}
-      </div>
+        {
+          !!Events.length && (<p>イベントの参加予定 <hr /></p>)//実装できてない
+        }
+        < Works />
+        {/* <Exhibitions /> */}
+        < Prizes />
+        {/* <EtcLinks/> */}
+      </Wrapper>
       <Footer />
     </>
   );
 });
 const Exhibitions: React.FC = () => (
-  <p className="mt20">
+  <SectionWrapper>
     展示
-    <hr />
+    <Hr />
     <ul>
       <li>
         2016
@@ -78,12 +72,12 @@ const Exhibitions: React.FC = () => (
         </ul>
       </li>
     </ul>
-  </p>
+  </SectionWrapper>
 )
-const Prizes: React.FC = () => (
-  <div className="my-12">
+const Prizes: FC = () => (
+  <SectionWrapper>
     受賞
-    <hr />
+    <Hr />
     <ul>
       <li>
         <h2 className="my-2 leading-loose tracking-widest"> </h2>
@@ -91,15 +85,15 @@ const Prizes: React.FC = () => (
         「山口はるみ賞」及び「鈴木成一賞次点」
       </li>
     </ul>
-  </div>
+  </SectionWrapper>
 )
-const Works: React.FC = () => (
-  <div className="mt-16">
-    <h1 className="">仕事の経験(敬称略)</h1>
-    <hr />
+const Works: FC = () => (
+  <SectionWrapper>
+    <h1>仕事の経験(敬称略)</h1>
+    <Hr />
     <ul>
-      {Genres.map((genre, genreK) => (
-        <li key={genreK} className="">
+      {Genres.map((genre) => (
+        <li key={genre}>
           <h2 className="my-2 leading-loose tracking-widest">
             {genre}
           </h2>
@@ -113,7 +107,14 @@ const Works: React.FC = () => (
         </li>
       ))}
     </ul>
-  </div>
+  </SectionWrapper>
+)
+const EtcLinks: FC = () => (
+  <SectionWrapper>
+    <a href="https://www.cgtrader.com" target="_blank" rel="noreferrer">
+      Participant of the CGTrader Digital Art Competition
+    </a>
+  </SectionWrapper>
 )
 
 export default Info;
