@@ -56,7 +56,6 @@ const Posts = memo(
                                 // props.switchEffect()
                                 // }
                                 // delayTime={postK === 0 ? 1 : 0}
-                                key={photoK}
                                 visibleByDefault={postK === 0 ? true : false}
                               />
                             );
@@ -92,6 +91,7 @@ const Posts = memo(
                         </div>
                       </footer>
       <>
+                            key={photo.original_size.url}
                     </div>
                   </article>
                 );
