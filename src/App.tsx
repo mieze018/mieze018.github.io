@@ -119,12 +119,17 @@ const MainLayout = memo(() => {
                   // onExited={() => setTagState(navState)}
                   key={routeK}
                 >
-                  <Posts
-                    tag={route}
-                    displayFork={displayFork}
-                    key={routeK}
-                  // className={routeK === 0 ? `${fadePrefix}-enter-done ` : ``}
-                  />
+                  <div
+                    id={route.pathname}
+                    className={`fade-wrapper`}
+                  >
+                    <Posts
+                      tag={route}
+                      displayFork={displayFork}
+                      key={routeK}
+                    // className={routeK === 0 ? `${fadePrefix}-enter-done ` : ``}
+                    />
+                  </div>
                 </CSSTransition>
               );
             })
