@@ -103,4 +103,55 @@ const Posts = memo(
   }
 );
 
+const Photo: React.VFC<{ photo: any, displayFork: number, postK: number }> = ({ photo, displayFork, postK }) => (
+  <LazyLoadImage
+    className="w-full"
+    src={photo.alt_sizes[displayFork].url}
+    alt={photo.alt_sizes[displayFork].url}
+    threshold={1280}
+    // afterLoad={
+    //   () =>
+    //     document
+    //       .querySelector('img.blur-lg')
+    //       ?.classList.remove('blur-lg')
+    // postK === 0 &&
+    // photoK === post.photos.length - 1 &&
+    // props.switchEffect()
+    // }
+    // delayTime={postK === 0 ? 1 : 0}
+    key={photo.original_size.url}
+    visibleByDefault={postK === 0 ? true : false}
+  />
+)
+const PostCaption: React.VFC<{ captionHtml: string }> = ({ captionHtml }) => (
+  <div
+    className="mt-0 text-sm sm:text-base"
+    dangerouslySetInnerHTML={{
+      __html: captionHtml
+    }}
+  ></div>
+)
+
+const PostFooter: React.VFC<{ date: string }> = ({ date }) => (
+  <footer className="mt-0 text-xs sm:text-sm">
+    <div>
+      <ul>
+        <li>
+          <span className="time-ago">
+            {new Intl.DateTimeFormat('en-US', {
+              year: 'numeric',
+              month: 'long'
+            }).format(
+              new Date(date
+                .replace(' GMT', '')
+                .replace(' ', 'T')
+              )
+            )}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </footer>
+)
+
 export default Posts;
