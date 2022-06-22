@@ -94,10 +94,10 @@ const Works: FC = () => (
     <ul>
       {Genres.map((genre) => (
         <li key={genre}>
-          <h2 className="my-2 leading-loose tracking-widest">
+          <h2 className="mt-8 mb-2 leading-loose tracking-widest">
             {genre}
           </h2>
-          <ul className="leading-normal tracking-wide">
+          <ul className="grid gap-1 leading-normal tracking-wide">
             {workExperience
               .filter((work) => work.gジャンル === genre)
               .map((work, workK) => (
