@@ -67,17 +67,7 @@ const Info: FC = memo(() => {
             </ul>
           </div>
           {/* <Exhibitions /> */}
-          <div className="my-12">
-            受賞
-            <hr />
-            <ul>
-              <li>
-                <h2 className="my-2 leading-loose tracking-widest"> </h2>
-                <i className="ml-3">ペーターズギャラリーコンペ 2010</i>
-                「山口はるみ賞」及び「鈴木成一賞次点」
-              </li>
-            </ul>
-          </div>
+          <Prizes />
         </div>
         {/* <div className="mt20">
         <a href="https://www.cgtrader.com" target="_blank" rel="noreferrer">
@@ -89,23 +79,38 @@ const Info: FC = memo(() => {
     </>
   );
 });
-const Exhibitions: React.FC = () => (<p className="mt20">
-  展示
-  <hr />
-  <ul>
-    <li>
-      2016
-      <ul>
-        <li>
-          <i></i>CANCAN exhibition at LemoArt Gallery (Berlin, Germany)
-        </li>
-        <li>
-          <i></i>Digital Creator 23人展「恋」 at アートスペースリビーナ
-          (Tokyo, Japan)
-        </li>
-      </ul>
-    </li>
-  </ul>
-</p>)
+const Exhibitions: React.FC = () => (
+  <p className="mt20">
+    展示
+    <hr />
+    <ul>
+      <li>
+        2016
+        <ul>
+          <li>
+            <i></i>CANCAN exhibition at LemoArt Gallery (Berlin, Germany)
+          </li>
+          <li>
+            <i></i>Digital Creator 23人展「恋」 at アートスペースリビーナ
+            (Tokyo, Japan)
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </p>
+)
+const Prizes: React.FC = () => (
+  <div className="my-12">
+    受賞
+    <hr />
+    <ul>
+      <li>
+        <h2 className="my-2 leading-loose tracking-widest"> </h2>
+        <i className="ml-3">ペーターズギャラリーコンペ 2010</i>
+        「山口はるみ賞」及び「鈴木成一賞次点」
+      </li>
+    </ul>
+  </div>
+)
 
 export default Info;
