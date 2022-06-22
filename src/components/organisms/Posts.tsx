@@ -29,7 +29,7 @@ const Posts = memo(
               className="flex max-w-full mb-10 min-h-square"
               key={postK}
             >
-              <div className={`${post.photoset_layout ? 'photoset block' : post.type}`}>
+              <div className={`${post.photoset_layout && post.photos.length >= 4 ? 'photoset block' : post.type}`}>
                 <div className="m-auto photo-container min-w-golden23vw xl:max-w-golden38vw">
 
                   {post.photos.map((photo: any, i: any) => {
