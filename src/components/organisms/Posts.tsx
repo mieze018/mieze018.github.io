@@ -30,7 +30,7 @@ const Posts = memo(
               key={postK}
             >
               <div className={`${post.photoset_layout && post.photos.length >= 4 ? 'photoset block' : post.type}`}>
-                <div className="m-auto photo-container min-w-golden23vw xl:max-w-golden38vw">
+                <div className={`${post.photos.length < 4 && 'grid gap-y-4'} m-auto photo-container min-w-golden23vw xl:max-w-golden38vw`}>
 
                   {post.photos.map((photo: any, i: any) => {
                     if (post.tags.find((tag: string, i: any) => tag === showOnlyLastPhoto) && i < post.photos.length - 1) return <></>
