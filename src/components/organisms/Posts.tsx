@@ -1,5 +1,5 @@
 // ⚛️
-import React, { useContext, memo } from 'react';
+import { useContext, memo } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // 🧩

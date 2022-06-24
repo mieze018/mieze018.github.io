@@ -1,5 +1,5 @@
 // ⚛️
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 // 🧰
 
 // import { AutoSizer, Column, Table } from 'react-virtualized';
@@ -17,8 +17,8 @@ const Results = (props: any, { ...rest }) => {
   const status = !props.data
     ? 'loading'
     : props.data[0] && props.data[0].isAxiosError
-    ? 'failed'
-    : 'success';
+      ? 'failed'
+      : 'success';
   //🚩
   return (
     <div>
@@ -59,8 +59,8 @@ const Results = (props: any, { ...rest }) => {
                           {newLocal
                             ? newLocal.name
                             : item1.displayText
-                            ? item1.displayText(item)
-                            : item[item1.input_name]}
+                              ? item1.displayText(item)
+                              : item[item1.input_name]}
                         </td>
                       );
                     return null;

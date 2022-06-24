@@ -1,5 +1,5 @@
 // ⚛️
-import React, { useEffect, memo, useState, createContext, useRef } from 'react';
+import { useEffect, memo, useState, createContext, useRef } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import axios from 'axios';

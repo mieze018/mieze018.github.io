@@ -1,4 +1,4 @@
-import React, { memo, FC } from 'react';
+import { memo, FC } from 'react';
 export const Footer: FC = memo(() => {
   //現在の年を取得
   const now = new Date();
