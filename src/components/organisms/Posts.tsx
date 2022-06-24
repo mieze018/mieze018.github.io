@@ -59,7 +59,7 @@ const Posts = memo(
   }
 );
 
-const Photo: React.VFC<{ photo: any, displayFork: number, postK: number, isColumn: boolean }> = ({ photo, displayFork, postK, isColumn }) => (
+const Photo: React.FC<{ photo: any, displayFork: number, postK: number, isColumn: boolean }> = ({ photo, displayFork, postK, isColumn }) => (
   <LazyLoadImage
     className={`w-full ${isColumn ? 'basis-1/4 w-1/4 flex-grow shrink mx-0 my-4' : ''}`}
     src={photo.alt_sizes[displayFork].url}
@@ -79,7 +79,7 @@ const Photo: React.VFC<{ photo: any, displayFork: number, postK: number, isColum
     visibleByDefault={postK === 0 ? true : false}
   />
 )
-const PostCaption: React.VFC<{ captionHtml: string }> = ({ captionHtml }) => (
+const PostCaption: React.FC<{ captionHtml: string }> = ({ captionHtml }) => (
   <div
     className="mt-0 text-sm sm:text-base"
     dangerouslySetInnerHTML={{
@@ -88,7 +88,7 @@ const PostCaption: React.VFC<{ captionHtml: string }> = ({ captionHtml }) => (
   ></div>
 )
 
-const PostFooter: React.VFC<{ date: string }> = ({ date }) => (
+const PostFooter: React.FC<{ date: string }> = ({ date }) => (
   <div className="text-xs sm:text-sm">
     {new Intl.DateTimeFormat('en-US', {
       year: 'numeric',
